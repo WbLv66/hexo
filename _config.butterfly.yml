@@ -11,12 +11,23 @@
 
 nav:
   # Navigation bar logo image
-  logo:
+  logo: https://minio.wblv66.top/hexo/favicon.png
   display_title: true
   # Whether to fix navigation bar
-  fixed: false
+  fixed: true
 
 menu:
+  首页: / || fas fa-home
+  # 时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  # 清单||fa fa-heartbeat:
+  # 音乐: /music/ || fas fa-music
+  # 照片: /Gallery/ || fas fa-images
+  # 电影: /movies/ || fas fa-video
+  # 友链: /link/ || fas fa-link
+  # 关于: /about/ || fas fa-heart
+
   # Home: / || fas fa-home
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
@@ -123,12 +134,12 @@ post_meta:
   # Home Page
   page:
     # Choose: created / updated / both
-    date_type: created
+    date_type: updated
     # Choose: date / relative
     date_format: date
     categories: true
-    tags: false
-    label: true
+    tags: true
+    label: false
   post:
     # Choose: left / center
     position: left
@@ -153,12 +164,12 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
-  effect: true
+  effect: false
   # Customize typed.js
   # https://github.com/mattboldt/typed.js/#customization
-  typed_option:
+  typed_option: 
   # Source - Call the third-party service API (Chinese only)
   # It will show the source first, then show the content of sub
   # Choose: false/1/2/3
@@ -166,7 +177,7 @@ subtitle:
   # 1 - hitokoto.cn
   # 2 - https://api.aa1.cn/doc/yiyan.html
   # 3 - jinrishici.com
-  source: false
+  source: 2
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
 
@@ -236,13 +247,13 @@ related_post:
   # Number of posts displayed
   limit: 6
   # Choose: created / updated
-  date_type: created
+  date_type: updated
 
 # Choose: 1 / 2 / false
 # 1: The 'next post' will link to old post
 # 2: The 'next post' will link to new post
 # false: disable pagination
-post_pagination: 1
+post_pagination: 2
 
 # Displays outdated notice for a post
 noticeOutdate:
@@ -511,7 +522,7 @@ search:
 share:
   # Choose: sharejs / addtoany
   # Leave it empty if you don't need share
-  use: sharejs
+  use: addtoany
 
   # Share.js
   # https://github.com/overtrue/share.js
@@ -521,7 +532,7 @@ share:
   # AddToAny
   # https://www.addtoany.com/
   addtoany:
-    item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
+    item: evernote,wechat,sina_weibo,copy_link
 
 # --------------------------------------
 # Comments System
@@ -807,13 +818,13 @@ display_mode: light
 
 # Configuration for beautifying the content of the article
 beautify:
-  enable: false
+  enable: true
   # Specify the field to beautify (site or post)
-  field: post
+  field: site
   # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title_prefix_icon:
+  title_prefix_icon: '\f0c1'
   # Specify the color of the title prefix icon, such as '#F47466'
-  title_prefix_icon_color:
+  title_prefix_icon_color: '#F47466'
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
