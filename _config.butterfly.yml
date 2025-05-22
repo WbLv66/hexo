@@ -18,7 +18,7 @@ nav:
 
 menu:
   首页: / || fas fa-home
-  # 时间轴: /archives/ || fas fa-archive
+  时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   # 清单||fa fa-heartbeat:
@@ -279,7 +279,10 @@ footer:
   copyright:
     enable: true
     version: true
-  custom_text: <a href="https://beian.miit.gov.cn/" target="_blank"><span>冀ICP备2025114707号-1</span></a>
+  custom_text:
+    <a href="https://beian.miit.gov.cn/" target="_blank"><span>冀ICP备2025114707号-1</span></a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11010802045820" rel="noreferrer" target="_blank"><img class="icp-icon" src="https://minio.wblv66.top/hexo/beian.png"><span>京公网安备11010802045820号</span></a>
+    
 
 
 # --------------------------------------
@@ -302,7 +305,7 @@ aside:
     enable: true
     description:
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: Follow Me
       link: https://github.com/xxxxxx
@@ -310,11 +313,11 @@ aside:
     enable: true
     content: This is my Blog
   card_recent_post:
-    enable: true
+    enable: false
     # If set 0 will show all
     limit: 5
     # Sort: date / updated
-    sort: date
+    sort: updated
     sort_order:
   card_newest_comments:
     enable: false
@@ -324,24 +327,24 @@ aside:
     storage: 10
     avatar: true
   card_categories:
-    enable: true
+    enable: false
     # If set 0 will show all
-    limit: 8
+    limit: all
     # Choose: none / true / false
-    expand: none
+    expand: true
     sort_order:
   card_tags:
-    enable: true
+    enable: false
     # If set 0 will show all
-    limit: 40
-    color: false
+    limit: 10
+    color: true
     # Order of tags, random/name/length
-    orderby: random
+    orderby: length
     # Sort of order. 1, asc for ascending; -1, desc for descending
-    order: 1
+    order: -1
     sort_order:
   card_archives:
-    enable: true
+    enable: false
     # Type: monthly / yearly
     type: monthly
     # Eg: YYYY年MM月
@@ -354,7 +357,7 @@ aside:
   card_post_series:
     enable: true
     # The title shows the series name
-    series_title: false
+    series_title: true
     # Order by title or date
     orderBy: 'date'
     # Sort of order. 1, asc for ascending; -1, desc for descending
@@ -367,7 +370,7 @@ aside:
     # Time difference between publish date and now
     # Formal: Month/Day/Year Time or Year/Month/Day Time
     # Leave it empty if you don't enable this feature
-    runtime_date:
+    runtime_date: 5/15/2025 00:00:00
 
 # --------------------------------------
 # Bottom right button
@@ -489,7 +492,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use:
+  use: local_search
   placeholder:
 
   # Algolia Search
@@ -808,7 +811,7 @@ preloader:
   # 2. pace (progress bar)
   source: 1
   # pace theme (see https://codebyzach.github.io/pace/)
-  pace_css_url:
+  pace_css_url: 
 
 # Page Transition
 enter_transitions: true
@@ -829,10 +832,10 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work
 font:
-  global_font_size:
-  code_font_size:
-  font_family:
-  code_font_family:
+  global_font_size: 16px
+  code_font_size: 16px
+  font_family: 'Noto Sans SC'
+  code_font_family: 'JetBrainsMono'
 
 # Font settings for the site title and site subtitle
 blog_title_font:
@@ -1058,7 +1061,9 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
+  # 图标
    - <link rel="stylesheet" href="/css/iconfont.css">
+   - <link rel="stylesheet" href="/css/fontSetting.css">
   #  - <link rel="stylesheet" href="/self/duotone.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
