@@ -17,10 +17,10 @@ nav:
   fixed: true
 
 menu:
-  首页: / || 
-  时间轴: /archives/ || 
-  标签: /tags/ || 
-  分类: /categories/ || 
+  首页: / || iconfont icon-shouye
+  时间轴: /archives/ || iconfont icon-shijianzhou
+  标签: /tags/ || iconfont icon-biaoqian
+  分类: /categories/ || iconfont icon-fenlei
   # 清单||fa fa-heartbeat:
   # 音乐: /music/ || fas fa-music
   # 照片: /Gallery/ || fas fa-images

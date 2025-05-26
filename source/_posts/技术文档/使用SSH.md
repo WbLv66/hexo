@@ -57,7 +57,7 @@ vim ~/.ssh/config
 Host 别名
   HostName 目标IP地址
   User 目标用户名
-  IdentityFile 私钥的地址
+  IdentityFile 私钥的位置（绝对位置）
 ```
 
 修改文件权限，SSH严格要求私钥文件必须仅所有者可读，其他用户无权访问
@@ -104,6 +104,12 @@ sudo vim /etc/ssh/sshd_config
 PubkeyAuthentication yes           # 启用公钥认证
 PasswordAuthentication no          # 禁用密码认证
 AuthorizedKeysFile .ssh/authorized_keys # 指定公钥文件路径
+```
+
+重启SSH服务
+
+```bash
+sudo service ssh restart
 ```
 
 ### 2.4 配置SSH本地客户端

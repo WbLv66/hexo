@@ -3,25 +3,37 @@
   /* Project id 4922066 */
   /* Color fonts */
   src:
-    url('iconfont.woff2?t=1747287423920') format('woff2'),
-    url('iconfont.woff?t=1747287423920') format('woff'),
-    url('iconfont.ttf?t=1747287423920') format('truetype');
+    url('./icon/iconfont.woff2') format('woff2'),
+    url('./icon/iconfont.woff') format('woff'),
+    url('./icon/iconfont.ttf') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 22px;
+  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-QQ:before {
-  content: "\e667";
+.icon-shouye:before {
+  content: "\e673";
+}
+
+.icon-shijianzhou:before {
+  content: "\e615";
+}
+
+.icon-fenlei:before {
+  content: "\e603";
+}
+
+.icon-biaoqian:before {
+  content: "\e608";
 }
 
 .icon-github:before {
-  content: "\e66f";
+  content: "\e600";
 }
 
 .icon-ORCID:before {
