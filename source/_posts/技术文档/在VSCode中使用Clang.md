@@ -33,27 +33,29 @@ top_img: transparent
 
 ## 1. 在Ubuntu上安装Clang（推荐14及以上，有类型提示）
 
+clang的最新版本可在[github主页](https://github.com/llvm/llvm-project/releases)查看
+
 ```bash
 wget https://apt.llvm.org/llvm.sh
 chmod u+x llvm.sh
-sudo ./llvm.sh 14
+sudo ./llvm.sh 20
 # 或者使用清华源
 # 下载脚本
 wget https://mirrors.tuna.tsinghua.edu.cn/llvm-apt/llvm.sh
 chmod +x llvm.sh
-sudo ./llvm.sh 14 all -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt
+sudo ./llvm.sh 20 all -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt
 ```
 
-将clang14和clang++14设为默认版本
+将clang20和clang++20设为默认版本
 
 ```bash
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 200
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 20
 
-sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 200
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-20 20
 
 # 列出已存在的替代项
 sudo update-alternatives --display clang++
- ```
+```
 
 ## 2. 在VSCode上安装插件
 
@@ -65,6 +67,8 @@ sudo update-alternatives --display clang++
 
 下载clangd插件和codelldb插件，codelldb插件在安装时会自动额外下载一个包
 
+若是网络不稳定，可以手动下载VSIX文件，然后按下`ctrl+shift+p`，在命令框里输入`install from VSIX`
+
 安装好后在clangd插件设置中勾选enable code completion，在clangd插件设置Arguments里面添加
 
 ```ini
@@ -72,7 +76,7 @@ sudo update-alternatives --display clang++
 --header-insertion=never
 ```
 
-Path设置为`/usr/bin/clangd-14`
+Path设置为`/usr/bin/clangd-20`
 
 ## 3. 配置.clang-format
 

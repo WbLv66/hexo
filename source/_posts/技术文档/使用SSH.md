@@ -122,3 +122,29 @@ sudo service ssh restart
 ssh xxx
 #xxx为Host的值
 ```
+
+为了不再需要重复输入密码解锁密钥需使用SSH Agent
+
+```bash
+# 启动 SSH Agent（如果未运行）
+eval "$(ssh-agent -s)"
+
+# 添加私钥到 Agent（会提示输入一次密码）
+ssh-add ~/.ssh/id_rsa
+```
+
+为了实现持久化 SSH Agent（跨会话有效​，将以下内容添加到 `~/.bashrc` 或 `~/.zshrc`
+
+```bash
+# 自动启动 SSH Agent 并添加密钥
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   eval "$(ssh-agent -s)"
+   ssh-add ~/.ssh/id_rsa 2>/dev/null
+fi
+```
+
+然后重新加载配置
+
+```bash
+source ~/.bashrc
+```
