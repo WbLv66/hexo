@@ -131,7 +131,7 @@ server
 {
     listen 80;
     # server_name填写你自己的域名，没有的话填ip
-    server_name wblv66.top;
+    server_name wblv66.top www.wblv66.top;
     index index.php index.html index.htm default.php default.htm default.html;
     # 这里root填写自己的网站根目录，修改为/var/hexo
     root /var/hexo;
