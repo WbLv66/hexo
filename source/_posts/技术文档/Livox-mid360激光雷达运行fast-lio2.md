@@ -95,11 +95,10 @@ git submodule update --init
 
 ### 4.2 修改项目源代码
 
-1. 将`FAST_LIO/CMakeLists.txt`的`livox_ros_driver`改成`livox_ros_driver2`
+1. 将`FAST_LIO/CMakeLists.txt`的`livox_ros_driver`改成`livox_ros_driver2`；在`find_package`尾部加上`genmsg`
 2. 将`FAST_LIO/package.xml`的`livox_ros_driver`改成`livox_ros_driver2`
 3. 将`FAST_LIO/src/preprocess.h`和`FAST_LIO/src/laserMapping.cpp`中`livox_ros_driver`头文件改为`livox_ros_driver2`
 4. 将`FAST_LIO/src/preprocess.h` `FAST_LIO/src/preprocess.cpp` `FAST_LIO/src/laserMapping.cpp`中的`livox_ros_driver::`命名空间改为`livox_ros_driver2::`
-5. 将`FAST_LIO/CMakeLists.txt`里面`find_package`尾部加上`genmsg`
 
 ### 4.3 编译代码
 
