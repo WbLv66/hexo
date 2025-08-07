@@ -44,6 +44,8 @@ top_img: transparent
 
 ## 2. 安装Livox SDK2
 
+### 2.1 源码安装
+
 ```bash
 git clone https://github.com/Livox-SDK/Livox-SDK2.git
 cd Livox-SDK2/
@@ -53,7 +55,17 @@ make -j
 sudo make install
 ```
 
-删除的指令
+### 2.2 运行Livox-SDK2示例
+
+进入`Livox-SDK2/samples/livox_lidar_quick_start`这个文件夹，找到`mid360_config.json`，把 `host_ip` 改成 `192.168.1.50`
+
+进入`Livox-SDK2/build/samples/livox_lidar_quick_start`这个文件夹运行如下代码
+
+```bash
+./livox_lidar_quick_start ../../../samples/livox_lidar_quick_start/mid360_config.json
+```
+
+### 2.3 删除的指令
 
 ```bash
 sudo rm -rf /usr/local/lib/liblivox_lidar_sdk_*
@@ -67,7 +79,9 @@ sudo rm -rf /usr/local/include/livox_lidar_*
 ```bash
 cd src
 git clone https://github.com/Livox-SDK/livox_ros_driver2.git
-cd ..
+cd livox_ros_driver2
+cp package_ROS1.xml package.xml
+cd ../..
 catkin_make -DCATKIN_WHITELIST_PACKAGES="livox_ros_driver2"  -DROS_EDITION=ROS1
 ```
 
@@ -85,7 +99,15 @@ roslaunch livox_ros_driver2 rviz_MID360.launch
 
 ## 4. 安装fast-lio2
 
-### 4.1 下载fast-lio2
+### 4.0 下载修改后的fast-lio2
+
+```bash
+git clone https://github.com/BIT-Jiang-Group/FAST_LIO.git
+cd FAST_LIO
+git submodule update --init
+```
+
+### 4.1 下载原版fast-lio2
 
 ```bash
 git clone https://github.com/hku-mars/FAST_LIO.git
@@ -93,14 +115,14 @@ cd FAST_LIO
 git submodule update --init
 ```
 
-### 4.2 修改项目源代码
+修改项目源代码
 
 1. 将`FAST_LIO/CMakeLists.txt`的`livox_ros_driver`改成`livox_ros_driver2`；在`find_package`尾部加上`genmsg`
 2. 将`FAST_LIO/package.xml`的`livox_ros_driver`改成`livox_ros_driver2`
 3. 将`FAST_LIO/src/preprocess.h`和`FAST_LIO/src/laserMapping.cpp`中`livox_ros_driver`头文件改为`livox_ros_driver2`
 4. 将`FAST_LIO/src/preprocess.h` `FAST_LIO/src/preprocess.cpp` `FAST_LIO/src/laserMapping.cpp`中的`livox_ros_driver::`命名空间改为`livox_ros_driver2::`
 
-### 4.3 编译代码
+### 4.2 编译代码
 
 ```bash
 catkin_make -DCATKIN_WHITELIST_PACKAGES="fast_lio"  
