@@ -84,6 +84,32 @@ uv remove numpy
 uv tree
 ```
 
+### 2.5 创建虚拟环境
+
+创建一个虚拟环境，并指定`Python`版本
+
+```bash
+uv venv my-name --python 3.11
+```
+
+### 2.6 激活虚拟环境
+
+```bash
+source .venv/bin/activate
+```
+
+### 2.7 退出虚拟环境
+
+```bash
+deactivate
+```
+
+### 2.8 在uv中使用pip
+
+```bash
+uv pip install
+```
+
 ## 3. 换源
 
 uv换源包括两个方面一个是依赖包的源另一个是python的源
