@@ -148,3 +148,43 @@ fi
 ```bash
 source ~/.bashrc
 ```
+
+## 3. 使用图形转发
+
+### 3.1 开启X11
+
+修改远程主机的`ssh`配置
+
+```bash
+
+sudo vim /etc/ssh/sshd_config
+
+# 取消这一行的注释——如果没有这一行则手动添加
+
+X11Forwrding yes
+
+# 重启sshd服务
+
+sudo service ssh restart
+
+```
+
+### 3.2 使用带X11的ssh服务
+
+```bash
+
+ssh -X user@192.168.x.xx　
+
+```
+
+### 3.3 常见问题
+
+1. root用户无法获取X11信息
+
+解决方法：加上`-E`参数如
+
+```bash
+
+sudo -E ./install-tl -gui
+
+```

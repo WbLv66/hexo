@@ -112,9 +112,9 @@ uv pip install
 
 ## 3. 换源
 
-uv换源包括两个方面一个是依赖包的源另一个是python的源
+`uv`换源包括三个方面一个是依赖包的源一个是`python`的源还有一个是`pip`的源
 
-在.zshrc中更换python源
+在`.zshrc`中更换`python`源
 
 ```bash
 export UV_PYTHON_INSTALL_MIRROR=https://ghproxy.cn/https://github.com/indygreg/python-build-standalone/releases/download
@@ -125,6 +125,29 @@ export UV_PYTHON_INSTALL_MIRROR=https://ghproxy.cn/https://github.com/indygreg/p
 ```toml
 [tool.uv]
 index-url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+```
+
+创建文件`~/.pip/pip.conf`
+
+```bash
+mkdir ~/.pip
+
+touch ~/.pip/pip.conf
+```
+
+打开配置文件，修改如下
+
+```toml
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn
+```
+
+查看 镜像地址：
+
+```bash
+pip3 config list
 ```
 
 ## 4. 安装pytorch
