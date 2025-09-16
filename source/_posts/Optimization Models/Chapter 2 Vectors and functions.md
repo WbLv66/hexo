@@ -74,12 +74,60 @@ $$\sum_{i=1}^m\alpha_i \mathbf{x}_i = \mathbf{0}\Longrightarrow \alpha = 0$$
 
 仿射集(affine sets)被定义为子空间的平移
 
-$$ \mathcal{A} = \{ \mathbf{x} | \mathbf{x} = \mathbf{v} + \mathbf{y}, \mathbf{v} \in \mathcal{V} \} $$
+$$ \mathcal{A} = \{ \mathbf{x} \mid \mathbf{x} = \mathbf{v} + \mathbf{y}, \mathbf{v} \in \mathcal{V} \} $$
 
 其中$\mathbf{y}$是给定的点，$\mathcal{V}$是给定的子空间.仿射集必定经过$\mathbf{y}$
 
 一个直线可以由两个元素描述：一个是直线上的点和一个表示直线方向的向量
 
-$$ \mathcal{L} = \{ \mathbf{x} | \mathbf{x} = \mathbf{x}_0 + \mathbf{v} \} $$
+$$ \mathcal{L} = \{ \mathbf{x} \mid \mathbf{x} = \mathbf{x}_0 + \mathbf{v} \} $$
 
 ## 2. 范数和内积
+
+### 2.1 欧几里得长度和一般的$L_p$范数
+
+向量的欧几里得长度是对所有元素的平方和取平方根，它代表了从原点到达点$\mathbf{x}$的直线距离。当沿着正交网格从原点到达点$\mathbf{x}$的时候，距离为向量所有元素的绝对值之和
+
+由于向量空间中由不同的长度度量，由此产生了向量范数(norm)的概念
+
+范数是一个具有特殊性质的实值函数，它将向量映射为一个实数$\lVert \mathbf{x} \rVert$，它满足的特殊性质如下
+
+$$\forall \mathbf{x} \in \mathcal{X} ,\lVert \mathbf{x} \rVert \ge 0 ,and\lVert \mathbf{x} \rVert = 0 \text{ if and only if } \lVert \mathbf{x} \rVert = \mathbf{0}$$
+
+$$\forall \mathbf{x}, \mathbf{y} \in \mathcal{X} ,\lVert \mathbf{x}+\mathbf{y} \rVert \le \lVert \mathbf{x} \rVert + \lVert \mathbf{y} \rVert (\text{triangle inequality})$$
+
+$$\forall \mathbf{x} \in \mathcal{X} ,\lVert \alpha \mathbf{x} \rVert = \lvert \alpha \rvert \lVert \mathbf{x} \rVert $$
+
+$L_p$范数被定义为
+
+$$ \lVert \mathbf{x} \rVert \coloneqq \left(\sum_{k=1}^n \lvert x_k \rvert ^p\right)^{1/p} $$
+
+如果$p=2$我们便得到了欧几里得长度
+
+$$\lVert \mathbf{x} \rVert_2 \coloneqq \sqrt{\sum_{k=1}^n x_k^2}$$
+
+如果$p=1$我们便得到了在正交网格中的长度
+
+$$\lVert \mathbf{x} \rVert_1 \coloneqq \sum_{k=1}^n \lvert x_k \rvert$$
+
+如果$p=\infty$我们便得到了最大绝对值范数
+
+$$\lVert \mathbf{x} \rVert_\infty \coloneqq \max_{k=1,\dots,n} \lvert x_k \rvert$$
+
+除了范数函数外，还有一些函数可以表示向量的大小，如基数函数(cardinality function)，表示非零元素的个数
+
+$$\operatorname{card}( \mathbf{x} ) \coloneqq \sum_{k=1}^n\mathbb{I}(x_k \neq 0),\quad\text{where}\quad\mathbb{I}(x_k \neq 0) \coloneqq \left\{
+\begin{array}
+{ll}1 & \text{if }x_k \neq 0 \\
+0 & \text{otherwise}
+\end{array}\right.$$
+
+向量的基数也经常被称为$L_0$范数，写为$\lVert \mathbf{x} \rVert_0$，但它并不是严格意义上的范数，因为它不满足范数的性质
+
+单位$L_p$范数球(norm ball)是指由所有$L_p$范数小于等于$1$的向量组成的集合
+
+$$ \mathcal{B}_p = \{ \mathbf{x} \mid  \lVert \mathbf{x} \rVert _p \le 1 \} $$
+
+$L_2$范数类似由于一个球，因此它是旋转不变的，这意味着一个固定长度的向量如果任意旋转，将保持相同的$L_2$范数
+
+
