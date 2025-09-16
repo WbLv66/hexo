@@ -62,7 +62,7 @@ $$\alpha_1 \mathbf{x}^{(1)} + \alpha_2 \mathbf{x}^{(2)} + \alpha_3 \mathbf{x}^{(
 1. 由单向量$\mathcal{S}=\{ x^{(1)} \}$生成的子空间是一条过原点的直线
 2. 由不共线的两个向量$\mathcal{S}=\{ x^{(1)},x^{(2)} \}$生成的子空间是一个过原点的平面
 
-当两个子空间的交集只有零向量的时候，i.e. $\mathcal{X}\cap \mathcal{Y} = \mathbf{0}$，那么这两个子空间的和称为直和(direct sum)，定义为$\mathcal{X} \oplus \mathcal{Y}$
+当两个子空间的交集只有零向量的时候，i.e. $\mathcal{X}\cap \mathcal{Y} = \mathbf{0}$，那么这两个子空间的和称为直和(direct sum)，定义为$\mathcal{X} \oplus \mathcal{Y}$。子空间的和并非单纯的元素合并而是基合并后进行线性组合形成的子空间
 
 如果向量集合中的任何一个向量都无法表示为其他向量的线性组合，那么这个集合是线性无关的(linearly independent)，充要条件为
 
@@ -129,5 +129,31 @@ $$\operatorname{card}( \mathbf{x} ) \coloneqq \sum_{k=1}^n\mathbb{I}(x_k \neq 0)
 $$ \mathcal{B}_p = \{ \mathbf{x} \mid  \lVert \mathbf{x} \rVert _p \le 1 \} $$
 
 $L_2$范数类似由于一个球，因此它是旋转不变的，这意味着一个固定长度的向量如果任意旋转，将保持相同的$L_2$范数
+
+实数向量空间的内积(inner product)是一个实值函数，将两个向量映射为一个标量，记为$\langle \mathbf{x},\mathbf{y} \rangle$，内积满足以下条件：$\text{for any }\mathbf{x},\mathbf{y},\mathbf{z} \in \mathcal{X} \text{and scalar }\alpha$
+
+$$ \begin{aligned}
+& \langle \mathbf{x},\mathbf{y} \rangle \ge 0; \\
+& \langle \mathbf{x},\mathbf{x} \rangle = 0 \text{ if and only if }\mathbf{x} = \mathbf{0}; \\
+& \langle \mathbf{x} + \mathbf{y},\mathbf{z}\rangle = \langle \mathbf{x},\mathbf{z} \rangle + \langle \mathbf{y},\mathbf{z} \rangle; \\
+ & \langle \alpha\mathbf{x},\mathbf{y} \rangle = \alpha \langle \mathbf{x},\mathbf{y} \rangle; \\
+ & \langle \mathbf{x},\mathbf{y} \rangle= \langle \mathbf{y},\mathbf{x} \rangle.
+\end{aligned}$$
+
+配备了内积操作的向量空间被称为内积空间(inner product space)
+
+标准内积是两个向量的“行列”积
+
+$$ \langle \mathbf{x},\mathbf{y} \rangle =  \mathbf{x} ^\top \mathbf{y} = \sum^n_{k=1} x_k y_k$$
+
+除了标准内积，我们还可以定义其他内积，并且在矩阵空间中内积也有很好的定义
+
+在内积空间中$\sqrt{\langle \mathbf{x},\mathbf{x} \rangle}$是一个范数，经常被简写为$\lVert \mathbf{x} \rVert$
+
+标准向量积和两个向量的夹角有关，定义$\theta$为$\mathbf{0} \mathbf{x}$和$\mathbf{0} \mathbf{y}$的夹角，通过几何关系可以得到
+
+$$ \cos \theta = \frac{\mathbf{x} ^\top \mathbf{y}}{\lVert \mathbf{x} \rVert_2 \lVert \mathbf{y} \rVert_2} $$
+
+当两个向量内积为$0$时说明两个线是正交的(orthogonal)；当$\theta$为$0^\circ$或者$\pm180^\circ$时两直线平行(parallel)，这时标准内积的绝对值最大，为二者绝对值的乘积
 
 

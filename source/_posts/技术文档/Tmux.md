@@ -54,3 +54,15 @@ set-option -g mouse on
 ## 3. 使用
 
 tmux的使用可参考[博客](https://www.cnblogs.com/zhiminyu/p/17457933.html)
+
+## 4. 多窗口同步操作
+
+修改~/目录下的.tmux.conf
+
+```bash
+vim ~/.tmux.conf
+bind-key s setw synchronize-panes
+source ~/.tmux.conf
+```
+
+便可以通过按`Ctrl+b s`来切换同步输入
