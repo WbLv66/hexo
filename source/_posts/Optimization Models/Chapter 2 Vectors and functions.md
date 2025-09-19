@@ -150,10 +150,34 @@ $$ \langle \mathbf{x},\mathbf{y} \rangle =  \mathbf{x} ^\top \mathbf{y} = \sum^n
 
 在内积空间中$\sqrt{\langle \mathbf{x},\mathbf{x} \rangle}$是一个范数，经常被简写为$\lVert \mathbf{x} \rVert$
 
+$$ \lVert \mathbf{x} - \mathbf{y} \rVert^2_2 = \left( \mathbf{x} - \mathbf{y} \right)^\top \left( \mathbf{x} - \mathbf{y} \right) = \mathbf{x}^\top \mathbf{x} + \mathbf{y}^\top \mathbf{y} - 2 \mathbf{x}^\top \mathbf{y} $$
+
 标准向量积和两个向量的夹角有关，定义$\theta$为$\mathbf{0} \mathbf{x}$和$\mathbf{0} \mathbf{y}$的夹角，通过几何关系可以得到
 
 $$ \cos \theta = \frac{\mathbf{x} ^\top \mathbf{y}}{\lVert \mathbf{x} \rVert_2 \lVert \mathbf{y} \rVert_2} $$
 
 当两个向量内积为$0$时说明两个线是正交的(orthogonal)；当$\theta$为$0^\circ$或者$\pm180^\circ$时两直线平行(parallel)，这时标准内积的绝对值最大，为二者绝对值的乘积
 
+通过推导可以得到$\mathbf{x} ^\top \mathbf{y}=\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$，由于$\lvert \theta \rvert \le 1$，因此可以得到柯西不等式(Cauchy–Schwarz inequality)
 
+$$\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert $$
+
+将这个不等式推广到$L_p$范数称为霍尔德不等式(Holder)：$\text{for any }p,q \le 1 \text{ such that } 1/p + 1/q = 1, \text{ it holds that}$
+
+$$\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \sum^n_{k=1} \lvert x_k y_k \rvert \le \lVert \mathbf{x} \rVert_p \lVert \mathbf{y} \rVert_p $$
+
+考虑到一个非零向量$\mathbf{y} \in \mathbb{R}^n$，寻找某个向量$\mathbf{x} \in \mathcal{B}_p$（在$L_p$范数下的单位球）使得内积$\mathbf{x}^\top\mathbf{y}$ 最大化的问题-，即
+
+$$ \max_{ \lVert \mathbf{x} \rVert_p \le 1} \mathbf{x}^\top\mathbf{y} $$
+
+当$p=2$时最优解可以从几何意义$\mathbf{x} ^\top \mathbf{y}=\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$中得到，即$\mathbf{x}$与$\mathbf{y}$对齐(aligned)/平行(parallel)，同时范数取最大值$1$时为最优解。唯一解是
+
+$$ \mathbf{x}_2^*=\frac{\mathbf{y}}{\lVert \mathbf{y} \rVert} $$
+
+此时最大值为$\max_{ \lVert \mathbf{x} \rVert_2 \le 1} \mathbf{x}^\top\mathbf{y} =\lVert \mathbf{y} \rVert_2$
+
+当$p=\infin$时最优解可以从定义$\mathbf{x} ^\top \mathbf{y} = \sum^n_{k=1} x_k y_k$中得到，由于$\mathbf{x}$中的每个元素的绝对值都小于等于$1$，那么令$x_i = \mathrm{sgn}\left( y_i \right)$可以使求和为最大值，此时$x_iy_i=\lve--rt y_i \rvert$，最优解为
+
+$$ \mathbf{x}_{\infin}^*=\mathrm{sgn}\left( \mathbf{y} \right) $$
+
+此时最大值为$\max_{ \lVert \mathbf{x} \rVert_{\infin} \le 1} \mathbf{x}^\top\mathbf{y} =\sum_{i=1}^n\lvert y_i \rvert = \lVert \mathbf{y} \rVert_1$。最优解并非唯一，因为
