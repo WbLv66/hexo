@@ -128,6 +128,8 @@ $$\operatorname{card}( \mathbf{x} ) \coloneqq \sum_{k=1}^n\mathbb{I}(x_k \neq 0)
 
 $$ \mathcal{B}_p = \{ \mathbf{x} \mid  \lVert \mathbf{x} \rVert _p \le 1 \} $$
 
+![2.11](https://minio.wblv66.top/optimization-models/2.11 "2.11")
+
 $L_2$范数类似由于一个球，因此它是旋转不变的，这意味着一个固定长度的向量如果任意旋转，将保持相同的$L_2$范数
 
 实数向量空间的内积(inner product)是一个实值函数，将两个向量映射为一个标量，记为$\langle \mathbf{x},\mathbf{y} \rangle$，内积满足以下条件：$\text{for any }\mathbf{x},\mathbf{y},\mathbf{z} \in \mathcal{X} \text{and scalar }\alpha$
@@ -176,8 +178,22 @@ $$ \mathbf{x}_2^*=\frac{\mathbf{y}}{\lVert \mathbf{y} \rVert} $$
 
 此时最大值为$\max_{ \lVert \mathbf{x} \rVert_2 \le 1} \mathbf{x}^\top\mathbf{y} =\lVert \mathbf{y} \rVert_2$
 
-当$p=\infin$时最优解可以从定义$\mathbf{x} ^\top \mathbf{y} = \sum^n_{k=1} x_k y_k$中得到，由于$\mathbf{x}$中的每个元素的绝对值都小于等于$1$，那么令$x_i = \mathrm{sgn}\left( y_i \right)$可以使求和为最大值，此时$x_iy_i=\lve--rt y_i \rvert$，最优解为
+当$p=\infin$时最优解可以从定义$\mathbf{x} ^\top \mathbf{y} = \sum^n_{k=1} x_k y_k$中得到，由于$\mathbf{x}$中的每个元素的绝对值都小于等于$1$，那么令$x_i = \mathrm{sgn}\left( y_i \right)$可以使求和为最大值，此时$x_iy_i=\lvert y_i \rvert$，最优解为
 
 $$ \mathbf{x}_{\infin}^*=\mathrm{sgn}\left( \mathbf{y} \right) $$
 
-此时最大值为$\max_{ \lVert \mathbf{x} \rVert_{\infin} \le 1} \mathbf{x}^\top\mathbf{y} =\sum_{i=1}^n\lvert y_i \rvert = \lVert \mathbf{y} \rVert_1$。最优解并非唯一，因为
+此时最大值为$\max_{ \lVert \mathbf{x} \rVert_{\infin} \le 1} \mathbf{x}^\top\mathbf{y} =\sum_{i=1}^n\lvert y_i \rvert = \lVert \mathbf{y} \rVert_1$。最优解并非唯一，因为$y_i=0$时任意$x_i \in \left[ -1,1 \right]$都能满足最优目标
+
+当$p=1$时内积定义$\mathbf{x} ^\top \mathbf{y} = \sum^n_{k=1} x_k y_k$可以被解释为$y_i$的加权平均，其中$x_i$是权重且绝对值相加为$1$。首先找到绝对值最大的$y_i$，将它的索引设为$m$，也就是说对于所有$i=1,\dots,n$有$\lvert y_i \rvert \le \lvert y_m \rvert$，最优解为
+
+$$ \left[ \mathbf{x}^*_1 \right]_i = \left\{
+\begin{array}
+{ll}\text{sgn}\left( y_i \right) & \text{if }i = m \\
+0 & \text{otherwise}
+\end{array}\right. ,\quad i=1,\dots,n $$
+
+此时最大值为$\max_{ \lVert \mathbf{x} \rVert_{1} \le 1} \mathbf{x}^\top\mathbf{y} \max_i\lvert y_i \rvert = \lVert \mathbf{y} \rVert_{\infin}$。最优解并非唯一，因为当$\mathbf{y}$有多个相同最大绝对值的元素时$m$可以选择这些元素的任意索引
+
+---
+
+未完待续

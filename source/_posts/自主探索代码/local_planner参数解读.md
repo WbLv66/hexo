@@ -31,23 +31,18 @@ top_img: transparent
 
 `pathFolder` 存放离线待选路径的位置
 
-`vehicleLength` 机器人车体长度
+`vehicleLength,/vehicleWidth` 车辆尺寸，用于近距离旋转碰撞检测
 
-`vehicleWidth` 机器人车体宽度
+`sensorOffsetX / sensorOffsetY` 传感器转换到车辆参考点
 
-`sensorOffsetX` 传感器相对于车辆中心的 X 轴偏移量​，右手坐标系
-
-`sensorOffsetY` 传感器相对于车辆中心的 Y 轴偏移量​
 
 `twoWayDrive` 能否倒车行驶
 
-`laserVoxelSize` 激光雷达点云的降采样体素网格大小
-
-`terrainVoxelSize` 地形点云的降采样体素网格大小
+`laserVoxelSize / terrainVoxelSize` 激光雷达点云/地形点云的降采样体素网格大小。`较大值会更强下采样，减少点云量，提高速度但丢细节；较小值保留更多点但计算量增大。`
 
 `useTerrainAnalysis` 是否启用地形分析，决定了是使用​原始激光雷达点云​还是​预处理后的地形点云​进行障碍物检测和路径决策
 
-`checkObstacle` 是否启用障碍物检测，决定了是使用​原始激光雷达点云​还是​预处理后的地形点云​进行障碍物检测和路径决策
+`checkObstacle` 是否启用障碍物检测
 
 `checkRotObstacle` 是否检测车辆旋转时车身与障碍物的碰撞风险
 
