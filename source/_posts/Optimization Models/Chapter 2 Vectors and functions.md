@@ -188,7 +188,7 @@ $$ \mathbf{x}_{\infin}^*=\mathrm{sgn}\left( \mathbf{y} \right) $$
 
 $$ \left[ \mathbf{x}^*_1 \right]_i = \left\{
 \begin{array}
-{ll}\text{sgn}\left( y_i \right) & \text{if }i = m \\
+{ll}\operatorname{sgn}\left( y_i \right) & \text{if }i = m \\
 0 & \text{otherwise}
 \end{array}\right. ,\quad i=1,\dots,n $$
 

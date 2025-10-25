@@ -27,7 +27,30 @@ top_img: transparent
 # noticeOutdate:
 ---
 
-1. 在fast_lio项目中的`laserMapping.cpp`的`"camera_init"`改为`"map"`,`"body"`改为`"sensor"`
-2. 设置AEDE项目中的`loam_interface/launch/loam_interface.launch`文件`stateEstimationTopic =/Odometry, registeredScanTopic = /cloud_registered, flipStateEstimation = false, flipRegisteredScan = false`
-3. 设置AEDE项目中的`local_planner/launch/local_planner.launch`文件`maxSpeed`改为`0.5`
-4. `far_planner`配置文件中将`is_static_env`设为`false`以清除动态障碍物
+## 1. 2025-10某项目
+
+### 1.1 室内测试指标参数设置
+
+ `local_planner/launch/local_planner.launch`参数设置
+
+1. `sensorOffsetX`设为`0.2`
+2. `maxSpeed`设为`1.0`
+3. `autonomySpeed`设为`1.0`
+4. `joyToSpeedDelay`设为`1.0`
+5. `vehicleLength`设为`0.4`
+6. `vehicleWidth`设为`0.25`
+7. `dirWeight`设为`0.05`，使规划的路径尽量不转向
+
+`terrain_analysis/launch/terrain_analysis.launch`参数设置
+
+1. `useSorting`参数设为`true`，减少路面点云分割错误率
+2. `considerDrop`参数设为`false`，不考虑路面出现深坑情况
+3. `vehicleHeight`参数设为`0.2`
+4. `voxelPointUpdateThre`参数设为`50`，加快体素更新
+5. `voxelTimeUpdateThre`参数设为`1.0`，加快体素更新
+6. `minRelZ`参数设为`-0.1`，舍弃激光雷达`z`轴`-0.1`米以下所有点云，放弃地面点云
+7. `maxRelZ`参数设为`0.15`，舍弃激光雷达`z`轴`0.15`米以上所有点云，放弃过高点云
+
+`vehicle_simulator/launch/system_real_robot.launch`参数设置
+
+1. `vehicleX`参数设为`-0.2`，因为车辆起点相对于原点后退了`sensorOffsetX`，故而初始目标点也要后退相应的距离

@@ -181,11 +181,11 @@ $$ \bm{AB} =  \left[
 
 对于向量空间$\mathbb{R}^{m,n}$，可以赋予一个标准内积
 
-$$ \langle \bm{A},\bm{B} \rangle = \text{trace} ( \bm{A}^\top \bm{B} ) $$
+$$ \langle \bm{A},\bm{B} \rangle = \operatorname{trace} ( \bm{A}^\top \bm{B} ) $$
 
-其中$\text{trace}(\bm{X})$是方阵的迹(trace)，定义为方阵主对角线上元素的和。这个内积引出了所谓的Frobenius范数
+其中$\operatorname{trace}(\bm{X})$是方阵的迹(trace)，定义为方阵主对角线上元素的和。这个内积引出了所谓的Frobenius范数
 
-$$ \sqrt{ \langle \bm{A} , \bm{A} \rangle} = \sqrt{ \text{trace}\bm{AA}^\top} = \lVert\bm{A}\rVert_F \coloneqq \sqrt{\sum_{ij} a_{ij}^2}  $$
+$$ \sqrt{ \langle \bm{A} , \bm{A} \rangle} = \sqrt{ \operatorname{trace}\bm{AA}^\top} = \lVert\bm{A}\rVert_F \coloneqq \sqrt{\sum_{ij} a_{ij}^2}  $$
 
 我们的选择与向量情况下的选择是一致的。实际上，上述内积表示的是通过将矩阵$\bm{A},\bm{B}$的所有列依次首尾相连展开得到的两个向量之间的标量积；因此，Frobenius范数就是矩阵向量化形式的欧几里得范数。
 
@@ -194,9 +194,9 @@ $$ \sqrt{ \langle \bm{A} , \bm{A} \rangle} = \sqrt{ \text{trace}\bm{AA}^\top} = 
 $$
 \begin{gather*}
 
-\text{trace}  \bm{A}  = \text{trace} \bm{A}^\top \\
+\operatorname{trace}  \bm{A}  = \operatorname{trace} \bm{A}^\top \\
 
-\text{trace} \bm{AB} = \text{trace} \bm{BA}
+\operatorname{trace} \bm{AB} = \operatorname{trace} \bm{BA}
 \end{gather*}
 $$
 
@@ -254,9 +254,9 @@ $$ \Delta^2 f ( \bm{x}_0 ) \coloneqq
 
 $$ \mathcal{R} ( \bm{A} ) = \{ \bm{A} \bm{x} \mid  \bm{x} \in \mathbb{R}^n \} $$
 
-列空间是一个子空间。$\mathcal{R} ( \bm{A} )$的维数称为$\bm{A}$的秩(rank)，记作$\text{rank}( \bm{A} )$根据定义，秩表示$\bm{A}$线性无关的列数量，根据证明秩也等于线性无关的行数量。因此矩阵的秩等于它转置的秩
+列空间是一个子空间。$\mathcal{R} ( \bm{A} )$的维数称为$\bm{A}$的秩(rank)，记作$\operatorname{rank}( \bm{A} )$根据定义，秩表示$\bm{A}$线性无关的列数量，根据证明秩也等于线性无关的行数量。因此矩阵的秩等于它转置的秩
 
-$$ \text{rank} ( \bm{A} )  = \text{rank} ( \bm{A}^\top )  $$
+$$ \operatorname{rank} ( \bm{A} )  = \operatorname{rank} ( \bm{A}^\top )  $$
 
 > **证明**
 >
@@ -266,7 +266,7 @@ $$ \text{rank} ( \bm{A} )  = \text{rank} ( \bm{A}^\top )  $$
 
 因此我们可以提出一个约束
 
-$$ 0 \leq \text{rank} ( \bm{A} )   \leq \min ( m,n )  $$
+$$ 0 \leq \operatorname{rank} ( \bm{A} )   \leq \min ( m,n )  $$
 
 矩阵$\bm{A}$的零空间(nullspace)是输入空间中被映射到$\bm{0}$的向量组成的集合，记作$\mathcal{N} ( \bm{A} )$
 
@@ -301,8 +301,8 @@ $$
 
 $$
 \begin{gather*}
-\dim\mathcal{N}(\bm{A}) + \text{rank}{A} = n \\
-\dim\mathcal{N}(\bm{A}^\top) + \text{rank}{A} = m
+\dim\mathcal{N}(\bm{A}) + \operatorname{rank}{A} = n \\
+\dim\mathcal{N}(\bm{A}^\top) + \operatorname{rank}{A} = m
 \end{gather*}
 $$
 
@@ -579,9 +579,9 @@ $$ n+(n-1)+\cdots+1 = \frac{n(n+1)}{2} $$
 
 ### 4.4 对角矩阵
 
-对角矩阵(diagonal matrices)是指除对角线上以外的元素全为0的方阵。一个$n \times n$的对角矩阵可以表示为$\bm{A} = \text{diag}(\bm{a})$，其中$\bm{a}$是一个包含$\bm{A}$对角元素的$n$维向量
+对角矩阵(diagonal matrices)是指除对角线上以外的元素全为0的方阵。一个$n \times n$的对角矩阵可以表示为$\bm{A} = \operatorname{diag}(\bm{a})$，其中$\bm{a}$是一个包含$\bm{A}$对角元素的$n$维向量
 
-$$ \bm{A} = \text{diag}(a_1,\cdots,a_n) =
+$$ \bm{A} = \operatorname{diag}(a_1,\cdots,a_n) =
 \begin{bmatrix}
 a_1&&\\
 &\ddots&\\
