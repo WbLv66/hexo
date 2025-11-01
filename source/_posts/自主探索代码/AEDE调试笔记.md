@@ -31,12 +31,12 @@ top_img: transparent
 
 ### 1.1 室内测试指标参数设置
 
- `local_planner/launch/local_planner.launch`参数设置
+`local_planner/launch/local_planner.launch`参数设置
 
 1. `sensorOffsetX`设为`0.2`
-2. `maxSpeed`设为`1.0`
-3. `autonomySpeed`设为`1.0`
-4. `joyToSpeedDelay`设为`1.0`
+2. `maxSpeed`设为`2.0`
+3. `autonomySpeed`设为`2.0`
+4. `joyToSpeedDelay`设为`2.0`
 5. `vehicleLength`设为`0.4`
 6. `vehicleWidth`设为`0.25`
 7. `dirWeight`设为`0.05`，使规划的路径尽量不转向

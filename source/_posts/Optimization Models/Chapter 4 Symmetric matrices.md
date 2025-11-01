@@ -86,8 +86,10 @@ $$ \frac{\partial g_i(\bm{x})}{\partial x_j} = - \frac{z_iz_j}{Z^2} $$
 $$ \nabla ^2 \operatorname{lse}(x) =
 \begin{bmatrix}
 
-\frac{z_i^2(Z-z_i)^2}{Z^4} & \frac{z_i^2z_j(Z-z_i)}{Z^4} \\
+\frac{Zz_1-z_1^2}{Z^2} & \frac{-z_1z_2}{Z^2} \\
+
+\frac{-z_2z_1}{Z^2} & \frac{Zz_2-z_2^2}{Z^2}
 
 \end{bmatrix}
 
-\frac{1}{Z^2}() $$
+= \frac{1}{Z^2}\big( Z\operatorname{diag}(z)-zz^\top \big) $$

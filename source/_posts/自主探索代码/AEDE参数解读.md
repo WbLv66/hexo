@@ -35,7 +35,6 @@ top_img: transparent
 
 `sensorOffsetX / sensorOffsetY` 传感器转换到车辆参考点
 
-
 `twoWayDrive` 能否倒车行驶
 
 `laserVoxelSize / terrainVoxelSize` 激光雷达点云/地形点云的降采样体素网格大小。`较大值会更强下采样，减少点云量，提高速度但丢细节；较小值保留更多点但计算量增大。`
