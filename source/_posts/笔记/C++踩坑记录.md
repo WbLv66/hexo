@@ -43,3 +43,14 @@ top_img: transparent
 参考文章[C++ 整数提升与移位陷阱](https://www.cnblogs.com/sprinining/p/18994484)
 
 参考文章[C++移位运算符详解](https://www.cnblogs.com/shrimp-can/p/5145351.html)
+
+## 3. 判断两个`double`类型是否相等
+
+由于浮点数储存的精度问题，直接使用相等运算符（==）判断两个`double`类型的数是否相等可能会导致意外的结果，因此可以设置一个极小的阈值作为两数相差的上限
+
+```cpp
+bool isEqual(double a, double b) {
+       const double epsilon = 1e-9; // 自定义的阈值
+       return std::abs(a - b) < epsilon;
+   }
+```

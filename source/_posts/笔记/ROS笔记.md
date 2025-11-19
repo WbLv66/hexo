@@ -52,3 +52,14 @@ top_img: transparent
 ## 3. 回调函数
 
 回调函数中不要设置阻塞（如循环判断），因为所有的回调函数共享同一个线程，一个回调函数阻塞，其他回调函数也无法进行
+
+## 4. 使用param获取参数
+
+### 4.1 获取话题名称
+
+使用param获取话题名称时不要初始化构造subscribe/advertise，如
+
+```cpp
+cloud_topic_{kNHPrivate->param("cloud_topic",
+                                         std::string("/cloud_registered"))},
+
