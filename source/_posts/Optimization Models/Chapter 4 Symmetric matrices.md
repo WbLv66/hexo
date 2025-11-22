@@ -265,6 +265,7 @@ $$
 > **证明**
 >
 > **第一部分**
+>
 > 让$\lambda ,\bm{u}$为$\bm{A}$的任意特征值和特征向量对。则
 > $$ \bm{Au} = \lambda \bm{u} $$
 > 对两边取厄米共轭
@@ -279,7 +280,57 @@ $$
 > $$ \bm{u}^\dagger (\bm{A}-\bm{A}^\top ) \bm{u} = (\lambda - \lambda ^\dagger )\lVert \bm{u} \rVert^2_2 $$
 > 因为$\bm{A}$是对称矩阵，所以$\bm{A} - \bm{A}^\top = \bm{0}$，可以得到
 > $$ \lambda - \lambda ^\dagger =0 $$
-> 这意味着$\lambda$一定为实数。注意，相关的特征向量$\bm{u}$也总可以选择为实向量。如果一个复向量$\bm{u}$满足\bm{Au} = \lambda \bm{u}，且$\bm{A},\lambda$为实数，那么我们也有$\operatorname{Re}(\bm{Au}) = \bm{A}\operatorname{Re}(\bm{u}) = \lambda \operatorname{Re}(\bm{u})$，这意味着$\operatorname{Re}(\bm{u})$是与$\lambda$相关联的特征向量
+> 这意味着$\lambda$一定为实数。注意，相关的特征向量$\bm{u}$也总可以选择为实向量。如果一个复向量$\bm{u}$满足$\bm{Au} = \lambda \bm{u}$，且$\bm{A},\lambda$为实数，那么我们也有$\operatorname{Re}(\bm{Au}) = \bm{A}\operatorname{Re}(\bm{u}) = \lambda \operatorname{Re}(\bm{u})$，这意味着$\operatorname{Re}(\bm{u})$是与$\lambda$相关联的特征向量
 >
 > **第二部分**
+>
 > 令$\bm{v}_i \in \mathcal{\phi}_i,\bm{v}_j \in \mathcal{\phi}_j,i \neq j$因为$\bm{Av}_i = \lambda _i \bm{v}_i,\bm{Av}_j = \lambda _j \bm{v}_j$，我们可以得到
+>
+> $$ \bm{v}_j^\top \bm{Av}_i = \lambda _i \bm{v}_j^\top\bm{v}_i $$
+>
+> 并且
+>
+> $$ \bm{v}_j^\top \bm{Av}_i =  \bm{v}_i^\top \bm{A}^\top \bm{v}_j = \bm{v}_i^\top \bm{A} \bm{v}_j = \lambda _j \bm{v}_i^\top\bm{v}_j = \lambda _j \bm{v}_j^\top\bm{v}_i $$
+>
+> 将两式相减可以得到
+>
+> $$ (\lambda _i - \lambda _j) \bm{v}_j^\top\bm{v}_i = 0$$
+>
+> 由于假设$\lambda _i \neq \lambda _j$，因此必须有$\bm{v}_j^\top\bm{v}_i = 0$，即$\bm{v}_j$和$\bm{v}_i$是正交的
+>
+> **第三部分**
+>
+> 令$\lambda$为$\bm{A}$的特征值，令$\mu \geq 1$为它的代数重数，令$v$为$\mathcal{\phi}_i = \mathcal{N}(\lambda_i \bm{I}_n − \bm{A})$的维数。一般情况下，$v \leq \mu$，也就是说，几何重数（即特征空间的维数）不大于代数重数，参见Section3.3.5
+>
+> 接下来我们将证明，对于对称矩阵，实际上有 $ν = \mu$。
+>
+> 设$\bm{B}$为对称的$m \times m$矩阵，$\lambda$是$\bm{B}$的一个特征值，$\bm{u}$为$\bm{B}$对应的单位范数特征向量，即$\bm{Bu} = \lambda \bm{u}$， $\lVert \bm{u} \rVert^2 = 1$。取$\bm{Q}$为一个矩阵，其列为$\mathcal{R}(\bm{u})$的正交补的正交基，因此$\bm{U} = [\bm{u} \quad \bm{Q}] \in \mathbb{R} ^{m,m},\bm{Q} \in \mathbb{R} ^{m,m-1}$是一个正交矩阵，满足$\bm{U}^\top \bm{U} = \bm{I}_m$。由此我们可以得到
+>
+> $$
+> \begin{gather*}
+>  \bm{u}^\top \bm{B} = \lambda \bm{u}^\top \\
+> \bm{u}^\top \bm{Q} = \bm{Q}^\top \bm{u} = \bm{0}
+>\end{gather*}
+> $$
+>
+> 那么
+>
+> $$ \bm{U}^\top \bm{BU} =
+> \begin{bmatrix}
+>   \lambda & \bm{0} \\
+>   \bm{0} & \bm{B}_1
+> \end{bmatrix},
+> \bm{B}_1 = \bm{Q}^\top \bm{BQ} \in \mathcal{S}^{m-1}
+> $$
+>
+> 现在对$\bm{A} \in \mathcal{S}^n$应用此结论：存在一个正交矩阵$\bm{U}_1 = [\bm{u}_1 \quad \bm{Q}_1] \in \mathbb{R} ^{n,n}$，使得$\bm{Au}_1 = \lambda \bm{u}_1$，并且
+>
+> $$ \bm{U}^\top_1 \bm{AU}_1 =
+> \begin{bmatrix}
+>   \lambda & \bm{0} \\
+>   \bm{0} & \bm{A}_1
+> \end{bmatrix},
+> \bm{A}_1 = \bm{Q}^\top_1 \bm{AQ}_1 \in \mathcal{S}^{m-1}
+> $$
+>
+> 现在，如果$\lambda  = 1$，我们就完成了证明，因为我们找到了一个$\mathcal{\phi}$的一维子空间（这个子空间是$\mathcal{R}(\bm{u}_1)$）。如果$\lambda  \geq 1$，那么由于$\bm{U}^\top_1 \bm{AU}_1$矩阵具有块对角结构并且与$\bm{A}$相似，我们可以得到$\lambda$是$\bm{A}_1$的一个特征值，重数为$\mu − 1$。因此，我们将相同的推理应用到对称矩阵$\bm{A}_1 \in \mathcal{S}^{n-1}$：存在一个正交矩阵，使得一个
