@@ -105,7 +105,7 @@ theme: butterfly
 deploy:
   type: git
   #repo改为repo: git@你的域名:/var/repo/hexo.git
-  repo: git@wblv66.top:/var/repo/hexo.git
+  repo: wblv66.top:/var/repo/hexo.git
   branch: master
 # katex
 markdown:

@@ -1064,6 +1064,7 @@ inject:
   # 图标
    - <link rel="stylesheet" href="/css/iconfont.css">
    - <link rel="stylesheet" href="/css/fontSetting.css">
+   - <link rel="stylesheet" href="/css/transpancy.css">
   #  - <link rel="stylesheet" href="/self/duotone.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:

@@ -59,17 +59,20 @@ $$
 
 一个二阶可微的函数$f:\mathbb{R} ^n \rightarrow \mathbb{R}$在点$x \in \operatorname{dom} f$处的海森(Hessian)矩阵是包含该点函数二阶导数的矩阵。海森矩阵的元素为
 
-$$ \bm{H}_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j},  1 \leq i,j \leq n $$
-
+$$
+\bm{H}_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j},  1 \leq i,j \leq n
+$$
 海森矩阵也经常写为$\nabla^2f(x)$。由于二阶导数与求导的顺序无关，因此对于每一对$(i, j)$，都有$\bm{H}_{ij} = \bm{H}_{ji}$，因此海森矩阵总是对称矩阵
 
 考虑一个二次函数(quadratic function)（多项式函数的单项最高次数为二）
 
-$$ q(x) = x_1^2 + 2x_1x_2+3x_2^2+4x_1+5x_2+6 $$
-
+$$
+q(x) = x_1^2 + 2x_1x_2+3x_2^2+4x_1+5x_2+6
+$$
 它的海森矩阵可以写为
 
-$$ \bm{H} = \left[ \frac{\partial^2 q(x)}{\partial x_i \partial x_j} \right]_{1 \leq i,j \leq 2} =
+$$
+\bm{H} = \left[ \frac{\partial^2 q(x)}{\partial x_i \partial x_j} \right]_{1 \leq i,j \leq 2} =
 \begin{bmatrix}
     \frac{\partial^2 q(x)}{\partial x_1^2 } & \frac{\partial^2 q(x)}{\partial x_1  \partial x_1} \\
     \frac{\partial^2 q(x)}{\partial x_2x_1 } & \frac{\partial^2 q(x)}{\partial x_2^2 }
@@ -77,20 +80,22 @@ $$ \bm{H} = \left[ \frac{\partial^2 q(x)}{\partial x_i \partial x_j} \right]_{1 
 \begin{bmatrix}
     2 & 2 \\
     2 & 6
-\end{bmatrix}$$
-
+\end{bmatrix}
+$$
 对于二次函数来说，海森矩阵是一个常数，与$x$点的取值无关。函数$q(x)$的二次项也可以写为
-
-$$ x_1^2 + 2x_1x_2+3x_2^2 = \frac{1}{2} \bm{x}^\top \bm{H} \bm{x} $$
-
+$$
+x_1^2 + 2x_1x_2+3x_2^2 = \frac{1}{2} \bm{x}^\top \bm{H} \bm{x}
+$$
 因此**二次函数可以写为包含海森矩阵的二次项和仿射项的和**
 
-$$ q(x) = \frac{1}{2} \bm{x}^\top \bm{H} \bm{x} + \bm{c}^\top \bm{x} + d,\quad  \bm{c}^\top = [ 4 \quad 5 ],\quad d = 6 $$
-
+$$
+q(x) = \frac{1}{2} \bm{x}^\top \bm{H} \bm{x} + \bm{c}^\top \bm{x} + d,\quad  \bm{c}^\top = [ 4 \quad 5 ],\quad d = 6
+$$
 考虑指数之和的对数函数(log-sum-exp) $\operatorname{lse}:\mathbb{R} ^n \rightarrow \mathbb{R}$
 
-$$ \operatorname{lse}(\bm{x}) = \ln \sum_{i=1}^{n} \mathrm{e}^{x_i} $$
-
+$$
+\operatorname{lse}(\bm{x}) = \ln \sum_{i=1}^{n} \mathrm{e}^{x_i}
+$$
 首先定义$\bm{z} = [\mathrm{e}^{x_1} \cdots \mathrm{e}^{x_n}],\quad Z = \sum_{i=1}^{n} z_i$，那么我们可以确定$x$点处的梯度$\nabla \operatorname{lse}(\bm{x}) = [\tfrac{\partial f(x)}{\partial x_1} \cdots \tfrac{\partial f(x)}{\partial x_n}]^\top$，定义$g_i(\bm{x})$为梯度的第$i$项
 
 $$ \nabla \operatorname{lse}(\bm{x}) =  \frac{1}{Z} \bm{z} $$
@@ -146,7 +151,6 @@ $$
 \vdots \\
 \bm{x}^{(d) \top} \bm{x}
 \end{bmatrix}
-
 $$
 
 左侧的系数矩阵是一个对称矩阵，被称为Gram矩阵，满足$\bm{G} = \bm{X}^\top \bm{X} \in \mathcal{S}^{n}$
@@ -305,32 +309,30 @@ $$
 > 接下来我们将证明，对于对称矩阵，实际上有 $ν = \mu$。
 >
 > 设$\bm{B}$为对称的$m \times m$矩阵，$\lambda$是$\bm{B}$的一个特征值，$\bm{u}$为$\bm{B}$对应的单位范数特征向量，即$\bm{Bu} = \lambda \bm{u}$， $\lVert \bm{u} \rVert^2 = 1$。取$\bm{Q}$为一个矩阵，其列为$\mathcal{R}(\bm{u})$的正交补的正交基，因此$\bm{U} = [\bm{u} \quad \bm{Q}] \in \mathbb{R} ^{m,m},\bm{Q} \in \mathbb{R} ^{m,m-1}$是一个正交矩阵，满足$\bm{U}^\top \bm{U} = \bm{I}_m$。由此我们可以得到
->
-> $$
+>$$
 > \begin{gather*}
->  \bm{u}^\top \bm{B} = \lambda \bm{u}^\top \\
-> \bm{u}^\top \bm{Q} = \bm{Q}^\top \bm{u} = \bm{0}
->\end{gather*}
-> $$
->
+> \bm{u}^\top \bm{B} = \lambda \bm{u}^\top \\
+>  \bm{u}^\top \bm{Q} = \bm{Q}^\top \bm{u} = \bm{0}
+> \end{gather*}
+>$$
 > 那么
 >
 > $$ \bm{U}^\top \bm{BU} =
-> \begin{bmatrix}
->   \lambda & \bm{0} \\
->   \bm{0} & \bm{B}_1
-> \end{bmatrix},
-> \bm{B}_1 = \bm{Q}^\top \bm{BQ} \in \mathcal{S}^{m-1}
+>\begin{bmatrix}
+> \lambda & \bm{0} \\
+> \bm{0} & \bm{B}_1
+>   \end{bmatrix},
+>   \bm{B}_1 = \bm{Q}^\top \bm{BQ} \in \mathcal{S}^{m-1}
 > $$
->
+> 
 > 现在对$\bm{A} \in \mathcal{S}^n$应用此结论：存在一个正交矩阵$\bm{U}_1 = [\bm{u}_1 \quad \bm{Q}_1] \in \mathbb{R} ^{n,n}$，使得$\bm{Au}_1 = \lambda \bm{u}_1$，并且
 >
 > $$ \bm{U}^\top_1 \bm{AU}_1 =
-> \begin{bmatrix}
->   \lambda & \bm{0} \\
->   \bm{0} & \bm{A}_1
-> \end{bmatrix},
-> \bm{A}_1 = \bm{Q}^\top_1 \bm{AQ}_1 \in \mathcal{S}^{m-1}
+>\begin{bmatrix}
+> \lambda & \bm{0} \\
+> \bm{0} & \bm{A}_1
+>   \end{bmatrix},
+>   \bm{A}_1 = \bm{Q}^\top_1 \bm{AQ}_1 \in \mathcal{S}^{m-1}
 > $$
->
+> 
 > 现在，如果$\lambda  = 1$，我们就完成了证明，因为我们找到了一个$\mathcal{\phi}$的一维子空间（这个子空间是$\mathcal{R}(\bm{u}_1)$）。如果$\lambda  \geq 1$，那么由于$\bm{U}^\top_1 \bm{AU}_1$矩阵具有块对角结构并且与$\bm{A}$相似，我们可以得到$\lambda$是$\bm{A}_1$的一个特征值，重数为$\mu − 1$。因此，我们将相同的推理应用到对称矩阵$\bm{A}_1 \in \mathcal{S}^{n-1}$：存在一个正交矩阵，使得一个
