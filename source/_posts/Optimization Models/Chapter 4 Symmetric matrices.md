@@ -98,21 +98,28 @@ $$
 $$
 首先定义$\bm{z} = [\mathrm{e}^{x_1} \cdots \mathrm{e}^{x_n}],\quad Z = \sum_{i=1}^{n} z_i$，那么我们可以确定$x$点处的梯度$\nabla \operatorname{lse}(\bm{x}) = [\tfrac{\partial f(x)}{\partial x_1} \cdots \tfrac{\partial f(x)}{\partial x_n}]^\top$，定义$g_i(\bm{x})$为梯度的第$i$项
 
-$$ \nabla \operatorname{lse}(\bm{x}) =  \frac{1}{Z} \bm{z} $$
+$$
+\nabla \operatorname{lse}(\bm{x}) =  \frac{1}{Z} \bm{z}
+$$
 
-$$ g_i(\bm{x}) = \frac{\partial f(x)}{\partial x_i} = \frac{\partial \ln Z}{\partial z_i} \frac{\partial  z_i}{\partial x_i} = \frac{z_i}{Z} $$
+$$
+g_i(\bm{x}) = \frac{\partial f(x)}{\partial x_i} = \frac{\partial \ln Z}{\partial z_i} \frac{\partial  z_i}{\partial x_i} = \frac{z_i}{Z}
+$$
 
 再次求梯度
 
-$$ \frac{\partial g_i(\bm{x})}{\partial x_i} = \frac{z_i}{Z} - \frac{z_i^2}{Z^2}$$
-
+$$
+\frac{\partial g_i(\bm{x})}{\partial x_i} = \frac{z_i}{Z} - \frac{z_i^2}{Z^2}
+$$
 对于$i \neq j$
 
-$$ \frac{\partial g_i(\bm{x})}{\partial x_j} = - \frac{z_iz_j}{Z^2} $$
-
+$$
+\frac{\partial g_i(\bm{x})}{\partial x_j} = - \frac{z_iz_j}{Z^2}
+$$
 因此
 
-$$ \nabla ^2 \operatorname{lse}(x) =
+$$
+\nabla ^2 \operatorname{lse}(x) =
 \begin{bmatrix}
 
 \frac{Zz_1-z_1^2}{Z^2} & \frac{-z_1z_2}{Z^2} \\
@@ -121,8 +128,8 @@ $$ \nabla ^2 \operatorname{lse}(x) =
 
 \end{bmatrix}
 
-= \frac{1}{Z^2}\big( Z\operatorname{diag}(z)-zz^\top \big) $$
-
+= \frac{1}{Z^2}\big( Z\operatorname{diag}(z)-zz^\top \big)
+$$
 假设给出$d$个线性无关的向量$\bm{x}^{(1)},\cdots,\bm{x}^{(d)} \in \mathbb{R}^n$和另一个向量$\bm{x} \in \mathbb{R}$，我们计算$\bm{x}$向$\bm{x}^{(1)},\cdots,\bm{x}^{(d)}$张成子空间的投影$\bm{x}^*$，根据Section 2.3.2.3，投影可以写为
 
 $$
@@ -262,6 +269,7 @@ $$
 因此对于一般的矩阵，特征值可以是实数或复数（以复共轭对出现），同样，相应的特征向量可以是实数或复数。然而，对于对称矩阵来说，特征值和特征向量均为实数。而且对于每个不同的特征值$\lambda _i$，特征空间$\mathcal{\phi}_i = \mathcal{N}(\lambda_i \bm{I}_n − \bm{A})$的维数与该特征值的代数重数相同
 
 > **定理4.1（对称矩阵的特征值分解）**：设$\bm{A} \in \mathbb{R}^{n,n}$是对称矩阵。令$\lambda _i,i=1, \cdots,k \leq n$是$\bm{A}$的互异特征值。进一步记$\mu _i,i = 1, \cdots, k$，表示$\lambda _i$的代数重数，并记$\mathcal{\phi}_i = \mathcal{N}(\lambda_i \bm{I}_n − \bm{A})$。那么，对所有$i = 1, \cdots , k$ 有
+>
 > 1. $\lambda _i \in \mathbb{R}$
 > 2. $\mathcal{\phi}_i \perp \mathcal{\phi}_j,i \neq j$
 > 3.  $\dim \mathcal{\phi}_i = \mu _i$
@@ -271,35 +279,47 @@ $$
 > **第一部分**
 >
 > 让$\lambda ,\bm{u}$为$\bm{A}$的任意特征值和特征向量对。则
-> $$ \bm{Au} = \lambda \bm{u} $$
+> $$
+> \bm{Au} = \lambda \bm{u}
+> $$
 > 对两边取厄米共轭
-> $$ \bm{u}^\dagger \bm{A}^\dagger = \lambda ^\dagger \bm{u}^\dagger $$
+> $$
+> \bm{u}^\dagger \bm{A}^\dagger = \lambda ^\dagger \bm{u}^\dagger
+> $$
 > 对第一个方程左乘$\bm{u}^\dagger$，对第二个方程右乘$\bm{u}$可以得到
-> $$\begin{gather*}
+> $$
+> \begin{gather*}
 > \bm{u}^\dagger\bm{Au} = \lambda \bm{u}^\dagger\bm{u} \\
 > \bm{u}^\dagger \bm{A}^\dagger \bm{u} = \lambda ^\dagger \bm{u}^\dagger \bm{u}
 > \end{gather*}
 > $$
 > 已知$\bm{u}^\dagger\bm{u} = \lVert \bm{u} \rVert^2_2 \neq 0$，因为$\bm{A}$为实数那么$\bm{A}^\dagger = \bm{A}^\top$，将上式相减可以得到
-> $$ \bm{u}^\dagger (\bm{A}-\bm{A}^\top ) \bm{u} = (\lambda - \lambda ^\dagger )\lVert \bm{u} \rVert^2_2 $$
+> $$
+> \bm{u}^\dagger (\bm{A}-\bm{A}^\top ) \bm{u} = (\lambda - \lambda ^\dagger )\lVert \bm{u} \rVert^2_2
+> $$
 > 因为$\bm{A}$是对称矩阵，所以$\bm{A} - \bm{A}^\top = \bm{0}$，可以得到
-> $$ \lambda - \lambda ^\dagger =0 $$
+> $$
+> \lambda - \lambda ^\dagger =0
+> $$
 > 这意味着$\lambda$一定为实数。注意，相关的特征向量$\bm{u}$也总可以选择为实向量。如果一个复向量$\bm{u}$满足$\bm{Au} = \lambda \bm{u}$，且$\bm{A},\lambda$为实数，那么我们也有$\operatorname{Re}(\bm{Au}) = \bm{A}\operatorname{Re}(\bm{u}) = \lambda \operatorname{Re}(\bm{u})$，这意味着$\operatorname{Re}(\bm{u})$是与$\lambda$相关联的特征向量
 >
 > **第二部分**
 >
 > 令$\bm{v}_i \in \mathcal{\phi}_i,\bm{v}_j \in \mathcal{\phi}_j,i \neq j$因为$\bm{Av}_i = \lambda _i \bm{v}_i,\bm{Av}_j = \lambda _j \bm{v}_j$，我们可以得到
 >
-> $$ \bm{v}_j^\top \bm{Av}_i = \lambda _i \bm{v}_j^\top\bm{v}_i $$
->
+> $$
+> \bm{v}_j^\top \bm{Av}_i = \lambda _i \bm{v}_j^\top\bm{v}_i
+> $$
 > 并且
 >
-> $$ \bm{v}_j^\top \bm{Av}_i =  \bm{v}_i^\top \bm{A}^\top \bm{v}_j = \bm{v}_i^\top \bm{A} \bm{v}_j = \lambda _j \bm{v}_i^\top\bm{v}_j = \lambda _j \bm{v}_j^\top\bm{v}_i $$
->
+> $$
+> \bm{v}_j^\top \bm{Av}_i =  \bm{v}_i^\top \bm{A}^\top \bm{v}_j = \bm{v}_i^\top \bm{A} \bm{v}_j = \lambda _j \bm{v}_i^\top\bm{v}_j = \lambda _j \bm{v}_j^\top\bm{v}_i
+> $$
 > 将两式相减可以得到
 >
-> $$ (\lambda _i - \lambda _j) \bm{v}_j^\top\bm{v}_i = 0$$
->
+> $$
+> (\lambda _i - \lambda _j) \bm{v}_j^\top\bm{v}_i = 0
+> $$
 > 由于假设$\lambda _i \neq \lambda _j$，因此必须有$\bm{v}_j^\top\bm{v}_i = 0$，即$\bm{v}_j$和$\bm{v}_i$是正交的
 >
 > **第三部分**
@@ -309,30 +329,152 @@ $$
 > 接下来我们将证明，对于对称矩阵，实际上有 $ν = \mu$。
 >
 > 设$\bm{B}$为对称的$m \times m$矩阵，$\lambda$是$\bm{B}$的一个特征值，$\bm{u}$为$\bm{B}$对应的单位范数特征向量，即$\bm{Bu} = \lambda \bm{u}$， $\lVert \bm{u} \rVert^2 = 1$。取$\bm{Q}$为一个矩阵，其列为$\mathcal{R}(\bm{u})$的正交补的正交基，因此$\bm{U} = [\bm{u} \quad \bm{Q}] \in \mathbb{R} ^{m,m},\bm{Q} \in \mathbb{R} ^{m,m-1}$是一个正交矩阵，满足$\bm{U}^\top \bm{U} = \bm{I}_m$。由此我们可以得到
->$$
+> $$
 > \begin{gather*}
 > \bm{u}^\top \bm{B} = \lambda \bm{u}^\top \\
->  \bm{u}^\top \bm{Q} = \bm{Q}^\top \bm{u} = \bm{0}
+> \bm{u}^\top \bm{Q} = \bm{Q}^\top \bm{u} = \bm{0}
 > \end{gather*}
->$$
+> $$
 > 那么
 >
-> $$ \bm{U}^\top \bm{BU} =
->\begin{bmatrix}
+> $$
+> \bm{U}^\top \bm{BU} =
+> \begin{bmatrix}
 > \lambda & \bm{0} \\
 > \bm{0} & \bm{B}_1
->   \end{bmatrix},
->   \bm{B}_1 = \bm{Q}^\top \bm{BQ} \in \mathcal{S}^{m-1}
+> \end{bmatrix},
+> \bm{B}_1 = \bm{Q}^\top \bm{BQ} \in \mathcal{S}^{m-1}
 > $$
-> 
-> 现在对$\bm{A} \in \mathcal{S}^n$应用此结论：存在一个正交矩阵$\bm{U}_1 = [\bm{u}_1 \quad \bm{Q}_1] \in \mathbb{R} ^{n,n}$，使得$\bm{Au}_1 = \lambda \bm{u}_1$，并且
+> 现在对$\bm{A} \in \mathcal{S}^n$应用此结论：因为$\bm{A}$为对称矩阵，因此特征向量可以选择为实向量，故存在一个正交矩阵$\bm{U}_1 = [\bm{u}_1 \quad \bm{Q}_1] \in \mathbb{R} ^{n,n}$，使得$\bm{Au}_1 = \lambda \bm{u}_1$，并且
 >
-> $$ \bm{U}^\top_1 \bm{AU}_1 =
->\begin{bmatrix}
+> $$
+> \bm{U}^\top_1 \bm{AU}_1 =
+> \begin{bmatrix}
 > \lambda & \bm{0} \\
 > \bm{0} & \bm{A}_1
->   \end{bmatrix},
->   \bm{A}_1 = \bm{Q}^\top_1 \bm{AQ}_1 \in \mathcal{S}^{m-1}
+> \end{bmatrix},
+> \bm{A}_1 = \bm{Q}^\top_1 \bm{AQ}_1 \in \mathcal{S}^{n-1}
+> $$
+> 现在，如果$\lambda  = 1$，我们就完成了证明，因为我们找到了一个$\mathcal{\phi}$的一维子空间（这个子空间是$\mathcal{R}(\bm{u}_1)$）。如果$\lambda  \geq 1$，那么由于$\bm{U}^\top_1 \bm{AU}_1$矩阵具有块对角结构并且与$\bm{A}$相似，我们可以得到$\lambda$是$\bm{A}_1$的一个特征值，重数为$\mu − 1$，参见Section2.3.5。因此，我们将相同的推理应用到对称矩阵$\bm{A}_1 \in \mathcal{S}^{n-1}$：存在一个正交矩阵$\bm{U}_2 = [\hat{\bm{u}}_2\quad \bm{Q}_2] \in \mathbb{R}^{n-1,n-1}$，使得$\bm{A}_1\hat{\bm{u}}_2 = \lambda \hat{\bm{u}}_2$，$\lVert \hat{\bm{u}}_2 \rVert^2 = 1$
+> $$
+> \bm{U}_2^\top \bm{A}_1 \bm{U}_2 = 
+> \begin{bmatrix}
+> \lambda & \bm{0} \\
+> \bm{0} & \bm{A}_2
+> \end{bmatrix},
+> \bm{A}_2 = \bm{Q}^\top_2 \bm{A}_1 \bm{Q}_2 \in \mathcal{S}^{n-2}
+> $$
+> 接下来可以得到
+> $$
+> \bm{u}_2 = \bm{U}_1
+> \begin{bmatrix}
+> 0 \\
+> \hat{\bm{u}}_2
+> \end{bmatrix}
+> $$
+> 是矩阵$\bm{A}$的单位范数特征向量并且和$\bm{u}_1$正交，证明如下
+> $$
+> \bm{Au}_2 = \bm{U}_1
+> \begin{bmatrix}
+> \lambda & \bm{0} \\
+> \bm{0} & \bm{A}
+> \end{bmatrix}
+> \bm{U}_1 ^\top\bm{U}_1
+> \begin{bmatrix}
+> 0 \\
+> \hat{\bm{u}}_2
+> \end{bmatrix}
+> = \bm{U}_1
+> \begin{bmatrix}
+> 0 \\
+> \bm{A}\hat{\bm{u}}_2
+> \end{bmatrix}
+> = \bm{U}_1
+> \begin{bmatrix}
+> 0 \\
+> \lambda\hat{\bm{u}}_2
+> \end{bmatrix}
+> =\lambda \bm{u}_2
+> $$
+> 此外
+> $$
+> \lVert \bm{u}_2 \rVert^2 = \bm{u}_2^\top \bm{u}_2 = 
+> \begin{bmatrix}
+> 0 \\
+> \hat{\bm{u}}_2
+> \end{bmatrix}^\top
+> \bm{U}_1^\top \bm{U}_1
+> \begin{bmatrix}
+> 0 \\
+> \hat{\bm{u}}_2
+> \end{bmatrix}
+> =\lVert \hat{\bm{u}}_2 \rVert^2 =1
+> $$
+>
+> $$
+> \bm{u}_1^\top \bm{u}_2 = \bm{u}_1^\top [\bm{u}_1 \bm{Q}_1]\begin{bmatrix}
+> 0 \\
+> \hat{\bm{u}}_2
+> \end{bmatrix} =0
+> $$
+>
+> 因此$\bm{u}_2$与$\bm{u}_1$正交。如果$\lambda=2$，那么证明就完成了，因为我们已经找到了$\mathcal{\phi}$的二维正交标准基$\bm{u}_2$与$\bm{u}_1$。如果$\lambda>2$，我们对矩阵$\bm{A}_2$应用同样的推理迭代，并找到一个与$\bm{u}_2,\bm{u}_1$正交的特征向量$\bm{u}_3$。我们可以以这种方式继续，直到达到$\mu$，此时我们以由恰好 $\mu$个向量组成的$\mathcal{\phi}$的正交标准基结束该证明过程
+
+### 2.2 谱定理
+
+结合定理 4.1 （对称矩阵的特征空间维数与特征值重数相同；对称矩阵各个特征空间彼此正交）和定理 3.4（如果矩阵特征空间维数与特征值重数相同那么它与对角矩阵相似，且实现相似的变换矩阵由特征空间的基组成，对角矩阵的对角线为特征值），我们很容易得出任何对称矩阵都与对角矩阵正交相似。这在以下所谓的对称矩阵谱定理中有所说明
+
+> **定理4.2（谱定理）**：设 $\bm{A} \in \mathbb{R}^{n,n}$为对称矩阵，设$\lambda_i \in \mathbb{R},i=1,\cdots,n$为$\bm{A}$的特征值（按重数计数）。那么，存在一组正交归一向量$\bm{u}_i \in \mathbb{R}^n,i=1,\cdots,n$，使得$\bm{Au}_i = \lambda_i \bm{u}_i$。等价地，存在一个正交矩阵$\bm{U} = [\bm{u}_1,\cdots,\bm{u}_n]$（i.e.,$\bm{UU}^\top = \bm{U}^\top\bm{U} = \bm{I}_n$）使得
+> $$
+> \bm{A} = \bm{U \Lambda U}^\top =\sum_{i=1}^n \lambda_i\bm{u}_i \bm{u}_i^\top,\Lambda=\operatorname{diag}(\lambda_1,\cdots,\lambda_n)
 > $$
 > 
-> 现在，如果$\lambda  = 1$，我们就完成了证明，因为我们找到了一个$\mathcal{\phi}$的一维子空间（这个子空间是$\mathcal{R}(\bm{u}_1)$）。如果$\lambda  \geq 1$，那么由于$\bm{U}^\top_1 \bm{AU}_1$矩阵具有块对角结构并且与$\bm{A}$相似，我们可以得到$\lambda$是$\bm{A}_1$的一个特征值，重数为$\mu − 1$。因此，我们将相同的推理应用到对称矩阵$\bm{A}_1 \in \mathcal{S}^{n-1}$：存在一个正交矩阵，使得一个
+
+谱定理还表明，任何对称矩阵都可以分解为简单的秩一矩阵（并矢）$\bm{u}_i\bm{u}_i^\top$的加权和，其中权重由特征值 $\lambda_i$给出
+
+## 3. 谱分解与优化
+
+在本节中，我们将说明如何利用对称矩阵的谱分解来解决特定类型的优化问题，即那些涉及在欧几里得球上对二次型进行最大化或最小化的问题
+
+### 3.1 特征值的变分刻画
+
+我们首先把对称矩阵的特征值表示为某些优化问题的最优值。由于$\bm{A}\in \mathbb{S}^n$的特征值是实数，我们可以将它们按降序排列：
+$$
+\lambda_{\max}(\bm{A}) = \lambda_{1}(\bm{A}) \geq   \lambda_{2}(\bm{A}) \geq \cdots \geq \lambda_{n}(\bm{A}) = \lambda_{\min}(\bm{A})
+$$
+极值特征值是$\bm{A}$在单位欧几里得球面上诱导的二次型所达到的最小值和最大值。对于$\bm{x} \neq \bm{0}$，下面的比值被称为瑞利商(Rayleigh quotient)
+$$
+\frac{\bm{x}^\top \bm{Ax}}{\bm{x}^\top \bm{x}}
+$$
+
+> **定理4.3（瑞利商）**：对于$\bm{A}\in \bm{S}^n$，有
+> $$
+> \lambda_{\min}(\bm{A}) \leq \frac{\bm{x}^\top \bm{Ax}}{\bm{x}^\top \bm{x}} \leq \lambda_{\max}(\bm{A}),\forall \bm{x}\leq \bm{0}
+> $$
+> 另外
+> $$
+> \begin{gather*}
+> \lambda_{\max}(\bm{A}) = \max_{\bm{x}: \lVert \bm{x} \rVert _2 = 1}\bm{x}^\top \bm{Ax} \\
+> \lambda_{\min}(\bm{A}) = \min_{\bm{x}: \lVert \bm{x} \rVert _2 = 1}\bm{x}^\top \bm{Ax}
+> \end{gather*}
+> $$
+> 最大值和最小值分别在$\bm{x} = \bm{u}_1$和 $\bm{x} = \bm{u}_n$处取得，其中$\bm{u}_1$和$\bm{u}_n$是$\bm{A}$的单位范数特征向量，分别对应最大、最小特征值
+
+> **证明**
+>
+> 证明基于对称矩阵的谱定理以及欧几里得范数在正交变换下的不变性。设$\bm{A}= \bm{U \Lambda U}^\top$为$\bm{A}$的谱分解，其中$\Lambda$的对角线为按顺序排列的特征值，$\bm{U}$为正交矩阵。定义$\overline{\bm{x}} \coloneqq \bm{U}^\top \bm{x}$
+> $$
+> \bm{x}^\top \bm{Ax} = \bm{x}^\top \bm{U \Lambda U}^\top\bm{x} = \overline{\bm{x}}^\top\bm{\Lambda}\overline{\bm{x}} = \sum_{i=1}^n \lambda_i \overline{x}_i^2
+> $$
+> 注意到
+> $$
+> \lambda_{\min} \sum_{i=1}^n \overline{x}_i^2 \leq \sum_{i=1}^n \lambda_i \overline{x}_i^2 \leq \lambda_{\max} \sum_{i=1}^n \overline{x}_i^2
+> $$
+> 考虑到$\sum_{i=1}^{n} \overline{x}_i^2 = \lVert \overline{\bm{x}} \rVert^2_2 =\lVert \bm{U}^\top \bm{x} \rVert^2_2 =\lVert \bm{x} \rVert^2_2$参考Section3.4.6
+> $$
+> \lambda_{\min} \lVert \bm{x} \rVert_2^2 \leq \bm{x}^\top \bm{Ax} \leq \lambda_{\max} \lVert \bm{x} \rVert_2^2 
+> $$
+> 由此可以得出第一个结论。此外，很容易验证，上述不等式中的上界和下界实际上分别在$\bm{x} = \bm{u}_1$（$\bm{U}$的第一列）和$\bm{x} = \bm{u}_n$（$\bm{U}$的最后一列）处取得(代入既可证明)
+
+### 3.2 极大极小定理(Minimax principle)
+
