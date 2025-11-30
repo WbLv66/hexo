@@ -272,7 +272,7 @@ $$
 >
 > 1. $\lambda _i \in \mathbb{R}$
 > 2. $\mathcal{\phi}_i \perp \mathcal{\phi}_j,i \neq j$
-> 3.  $\dim \mathcal{\phi}_i = \mu _i$
+> 3. $\dim \mathcal{\phi}_i = \mu _i$
 
 > **证明**
 >
@@ -357,7 +357,7 @@ $$
 > $$
 > 现在，如果$\lambda  = 1$，我们就完成了证明，因为我们找到了一个$\mathcal{\phi}$的一维子空间（这个子空间是$\mathcal{R}(\bm{u}_1)$）。如果$\lambda  \geq 1$，那么由于$\bm{U}^\top_1 \bm{AU}_1$矩阵具有块对角结构并且与$\bm{A}$相似，我们可以得到$\lambda$是$\bm{A}_1$的一个特征值，重数为$\mu − 1$，参见Section2.3.5。因此，我们将相同的推理应用到对称矩阵$\bm{A}_1 \in \mathcal{S}^{n-1}$：存在一个正交矩阵$\bm{U}_2 = [\hat{\bm{u}}_2\quad \bm{Q}_2] \in \mathbb{R}^{n-1,n-1}$，使得$\bm{A}_1\hat{\bm{u}}_2 = \lambda \hat{\bm{u}}_2$，$\lVert \hat{\bm{u}}_2 \rVert^2 = 1$
 > $$
-> \bm{U}_2^\top \bm{A}_1 \bm{U}_2 = 
+> \bm{U}_2^\top \bm{A}_1 \bm{U}_2 =
 > \begin{bmatrix}
 > \lambda & \bm{0} \\
 > \bm{0} & \bm{A}_2
@@ -398,7 +398,7 @@ $$
 > $$
 > 此外
 > $$
-> \lVert \bm{u}_2 \rVert^2 = \bm{u}_2^\top \bm{u}_2 = 
+> \lVert \bm{u}_2 \rVert^2 = \bm{u}_2^\top \bm{u}_2 =
 > \begin{bmatrix}
 > 0 \\
 > \hat{\bm{u}}_2
@@ -422,13 +422,13 @@ $$
 
 ### 2.2 谱定理
 
-结合定理 4.1 （对称矩阵的特征空间维数与特征值重数相同；对称矩阵各个特征空间彼此正交）和定理 3.4（如果矩阵特征空间维数与特征值重数相同那么它与对角矩阵相似，且实现相似的变换矩阵由特征空间的基组成，对角矩阵的对角线为特征值），我们很容易得出任何对称矩阵都与对角矩阵正交相似。这在以下所谓的对称矩阵谱定理中有所说明
+结合**定理4.1**（对称矩阵的特征空间维数与特征值重数相同；对称矩阵各个特征空间彼此正交）和**定理3.4**（如果矩阵特征空间维数与特征值重数相同那么它与对角矩阵相似，且实现相似的变换矩阵由特征空间的基组成，对角矩阵的对角线为特征值），我们很容易得出任何对称矩阵都与对角矩阵正交相似。这在以下所谓的对称矩阵谱定理中有所说明
 
 > **定理4.2（谱定理）**：设 $\bm{A} \in \mathbb{R}^{n,n}$为对称矩阵，设$\lambda_i \in \mathbb{R},i=1,\cdots,n$为$\bm{A}$的特征值（按重数计数）。那么，存在一组正交归一向量$\bm{u}_i \in \mathbb{R}^n,i=1,\cdots,n$，使得$\bm{Au}_i = \lambda_i \bm{u}_i$。等价地，存在一个正交矩阵$\bm{U} = [\bm{u}_1,\cdots,\bm{u}_n]$（i.e.,$\bm{UU}^\top = \bm{U}^\top\bm{U} = \bm{I}_n$）使得
 > $$
 > \bm{A} = \bm{U \Lambda U}^\top =\sum_{i=1}^n \lambda_i\bm{u}_i \bm{u}_i^\top,\Lambda=\operatorname{diag}(\lambda_1,\cdots,\lambda_n)
 > $$
-> 
+>
 
 谱定理还表明，任何对称矩阵都可以分解为简单的秩一矩阵（并矢）$\bm{u}_i\bm{u}_i^\top$的加权和，其中权重由特征值 $\lambda_i$给出
 
@@ -472,9 +472,28 @@ $$
 > $$
 > 考虑到$\sum_{i=1}^{n} \overline{x}_i^2 = \lVert \overline{\bm{x}} \rVert^2_2 =\lVert \bm{U}^\top \bm{x} \rVert^2_2 =\lVert \bm{x} \rVert^2_2$参考Section3.4.6
 > $$
-> \lambda_{\min} \lVert \bm{x} \rVert_2^2 \leq \bm{x}^\top \bm{Ax} \leq \lambda_{\max} \lVert \bm{x} \rVert_2^2 
+> \lambda_{\min} \lVert \bm{x} \rVert_2^2 \leq \bm{x}^\top \bm{Ax} \leq \lambda_{\max} \lVert \bm{x} \rVert_2^2
 > $$
 > 由此可以得出第一个结论。此外，很容易验证，上述不等式中的上界和下界实际上分别在$\bm{x} = \bm{u}_1$（$\bm{U}$的第一列）和$\bm{x} = \bm{u}_n$（$\bm{U}$的最后一列）处取得(代入既可证明)
 
-### 3.2 极大极小定理(Minimax principle)
+### 3.2 极大极小原理(Minimax principle)
 
+**定理4.3**实际上是更一般原理的一个特例，这一原理称为对称矩阵特征值的极小极大原理。我们先陈述一下结果
+
+> **定理4.4（庞加莱不等式）**：设$\bm{A} \in \mathcal{S}^n$并且设$\mathcal{V}$为$\mathbb{R} ^n$的任意$k$维子空间，$1 \leq k \leq n$。存在向量$\bm{x},\bm{y}\in \mathcal{V}$满足$\lVert \bm{x} \rVert_2 = \lVert \bm{y} \rVert_2 = 1$，使得
+> $$
+> \bm{x}^\top \bm{Ax} \leq \lambda _k(\bm{A}),\bm{y}^\top \bm{Ay} \geq \lambda _{n-k+1}(\bm{A})
+> $$
+>
+> **证明**
+>
+> 设$\bm{A} = \bm{U \Lambda U}^\top$为$\bm{A}$的谱分解，并记$\mathcal{Q} = \mathcal{R}(\bm{U}_k)$为由$\bm{U}_k = [\bm{u}_k,\cdots \bm{u}_n]$的列生成的子空间。由于$\mathcal{Q}$的维度为$n − k + 1$，而$\mathcal{V}$的维度为$k$，因此交集$\mathcal{V} \cap \mathcal{Q}$必然非空（否则直和$\mathcal{V} \oplus \mathcal{Q}$的维度将大于$n$）。然后取一个单位范数向量$\bm{x} \in \mathcal{V} \cap \mathcal{Q}$。则$\bm{x} = \bm{U}_k \bm{\xi}$，对于某个满足$\lVert \bm{\xi} \rVert_2 = 1$的$\bm{\xi}$使得
+> $$
+> \bm{x}^\top \bm{Ax} = \bm{\xi}^\top \bm{U}_k^\top \bm{U \Lambda U}^\top \bm{U}_k \bm{\xi} = \sum_{i=k}^{n} \lambda _i(\bm{A})\xi _i^2 \leq \lambda _k(\bm{A})\sum_{i=k}^{n} \xi_i^2 = \lambda _k(\bm{A})
+> $$
+> 这证明了第一个命题。第二个命题可以通过同理证明，只需将相同的推理应用到$-\bm{A}$
+>
+从庞加莱不等式可以推导出接下来所述的极小极大原理，这也被称为特征值的变分刻画
+
+> **推论4.1（极大极小原理）**：设$\bm{A} \in \mathcal{S}^n$，且设$\mathcal{V}$表示$\mathbb{
+> R} ^n$的一个子空间。则对于$k \in \{1, \cdots ,n \}$，有
