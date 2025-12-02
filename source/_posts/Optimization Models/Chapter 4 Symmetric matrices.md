@@ -248,6 +248,8 @@ $$
 
 ## 2. 谱定理(The spectral theorem)
 
+矩阵的谱，指矩阵所有特征值的集合
+
 ### 2.1 对称矩阵的特征值分解
 
 我们回顾一下Section3.3中方阵特征值和特征向量的定义。设$\bm{A}$为一个$n \times n$矩阵。如果存在一个非零向量$\bm{u}$使得
@@ -449,7 +451,7 @@ $$
 
 > **定理4.3（瑞利商）**：对于$\bm{A}\in \bm{S}^n$，有
 > $$
-> \lambda_{\min}(\bm{A}) \leq \frac{\bm{x}^\top \bm{Ax}}{\bm{x}^\top \bm{x}} \leq \lambda_{\max}(\bm{A}),\forall \bm{x}\leq \bm{0}
+> \lambda_{\min}(\bm{A}) \leq \frac{\bm{x}^\top \bm{Ax}}{\bm{x}^\top \bm{x}} \leq \lambda_{\max}(\bm{A}),\forall \bm{x}\neq \bm{0}
 > $$
 > 另外
 > $$
@@ -480,11 +482,11 @@ $$
 
 **定理4.3**实际上是更一般原理的一个特例，这一原理称为对称矩阵特征值的极小极大原理。我们先陈述一下结果
 
-> **定理4.4（庞加莱不等式）**：设$\bm{A} \in \mathcal{S}^n$并且设$\mathcal{V}$为$\mathbb{R} ^n$的任意$k$维子空间，$1 \leq k \leq n$。存在向量$\bm{x},\bm{y}\in \mathcal{V}$满足$\lVert \bm{x} \rVert_2 = \lVert \bm{y} \rVert_2 = 1$，使得
+> **定理4.4（庞加莱不等式）**：设$\bm{A} \in \mathcal{S}^n$并且设$\mathcal{V}$为$\mathbb{R} ^n$的任意$k$维子空间，$1 \leq k \leq n$。**存在**向量$\bm{x},\bm{y}\in \mathcal{V}$满足$\lVert \bm{x} \rVert_2 = \lVert \bm{y} \rVert_2 = 1$，使得
 > $$
 > \bm{x}^\top \bm{Ax} \leq \lambda _k(\bm{A}),\bm{y}^\top \bm{Ay} \geq \lambda _{n-k+1}(\bm{A})
 > $$
->
+
 > **证明**
 >
 > 设$\bm{A} = \bm{U \Lambda U}^\top$为$\bm{A}$的谱分解，并记$\mathcal{Q} = \mathcal{R}(\bm{U}_k)$为由$\bm{U}_k = [\bm{u}_k,\cdots \bm{u}_n]$的列生成的子空间。由于$\mathcal{Q}$的维度为$n − k + 1$，而$\mathcal{V}$的维度为$k$，因此交集$\mathcal{V} \cap \mathcal{Q}$必然非空（否则直和$\mathcal{V} \oplus \mathcal{Q}$的维度将大于$n$）。然后取一个单位范数向量$\bm{x} \in \mathcal{V} \cap \mathcal{Q}$。则$\bm{x} = \bm{U}_k \bm{\xi}$，对于某个满足$\lVert \bm{\xi} \rVert_2 = 1$的$\bm{\xi}$使得
@@ -497,3 +499,120 @@ $$
 
 > **推论4.1（极大极小原理）**：设$\bm{A} \in \mathcal{S}^n$，且设$\mathcal{V}$表示$\mathbb{
 > R} ^n$的一个子空间。则对于$k \in \{1, \cdots ,n \}$，有
+> $$
+> \begin{align*}
+>  \lambda_k(\bm{A}) &= \max _{\dim \mathcal{V}=k} \min _{\bm{x} \in \mathcal{V}, \lVert \bm{x} \rVert_2 = 1 } \bm{x}^\top \bm{Ax} \\
+> &=  \min _{\dim \mathcal{V}=n-k+1} \max _{\bm{x} \in \mathcal{V}, \lVert \bm{x} \rVert_2 = 1 } \bm{x}^\top \bm{Ax}
+> \end{align*}
+> $$
+
+> **证明**
+>
+> 根据庞加莱不等式，如果$\mathcal{V}$是$\mathbb{R} ^n$ 的任意$k$维子空间，那么存在$\bm{x} \in \mathcal{V},\lVert \bm{x} \rVert_2 = 1$满足$\bm{x}^\top \bm{Ax} \leq \lambda _k(\bm{A})$，即$\min _{\bm{x} \in \mathcal{V},\lVert \bm{x} \rVert_2 = 1} \bm{x}^\top \bm{Ax} \leq \lambda _k(\bm{A})$。特别地，如果我们取$\mathcal{V}$为$\left\{ \bm{u}_1,\cdots ,\bm{u}_k\right\}$张成的空间，则可以实现等号（参考**定理4.4**的证明过程），从而证明第一个结论。第二个结论通过将第一个结论应用于矩阵$-\bm{A}$得出
+
+矩阵增益(matrix gain)给定一个矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，我们考虑与$\bm{A}$相关的线性函数，该函数将输入向量$\bm{x} \in \mathbb{R} ^n$映射到输出向量$\bm{y} \in \mathbb{R} ^m$
+$$
+\bm{y} = \bm{Ax}
+$$
+给定一个向量范数，矩阵增益或算子范数定义为输出的大小（范数）与输入的大小（范数）之比$\lVert \bm{Ax} \rVert / \lVert \bm{x} \rVert$的最大值，参见Section3.6。特别地，相对于欧几里得范数的增益定义为
+$$
+\lVert \bm{A} \rVert_2 = \max _{\bm{x} \neq \bm{0}} \frac{\lVert \bm{Ax} \rVert_2}{\lVert \bm{x} \rVert_2}
+$$
+并且它通常被称为$\bm{A}$的谱范数(spectral norm)。在欧几里得范数下，输入输出比的平方是
+$$
+\frac{\lVert \bm{Ax} \rVert_2^2}{\lVert \bm{x} \rVert_2^2} = \frac{\bm{x}^\top (\bm{A}^\top \bm{A})\bm{x}}{\bm{x}^\top \bm{x}}
+$$
+根据**定理4.3**，我们可以看到该量分别被对称矩阵$\bm{A}^\top \bm{A} \in \mathcal{S}^n$的最大特征值和最小特征值上下界定：
+$$
+\lambda_{\min }(\bm{A}^\top \bm{A}) \leq  \frac{\lVert \bm{Ax} \rVert_2^2}{\lVert \bm{x} \rVert_2^2} \leq \lambda_{\max }(\bm{A}^\top \bm{A})
+$$
+（顺便注意，一个矩阵$\bm{A}^\top \bm{A}$的所有特征值$\lambda _i(\bm{A}^\top \bm{A}),i=1,\cdots n$都是非负的，因为$\bm{A}^\top \bm{A}$是一个半正定矩阵，下一节中将讨论此点）。我们还从**定理4.3**中知道，当$\bm{x}$分别等于$\bm{A}^\top \bm{A}$的最大和最小特征值对应的特征向量时等号成立。因此
+$$
+\lVert \bm{A} \rVert_2 = \max _{\bm{x} \neq \bm{0}} \frac{\lVert \bm{Ax} \rVert_2}{\lVert \bm{x} \rVert_2} = \sqrt[]{\lambda _{\max }(\bm{A}^\top \bm{A})}
+$$
+极大极小原理的一个重要结果是将矩阵$\bm{A},\bm{B}$的有序特征值与$\bm{A}+\bm{B}$的有序特征值进行比较的下列结论
+
+> **推论4.2**：令$\bm{A},\bm{B} \in \mathcal{S}^n$，对每个$k=1,\cdots ,n$我们有
+> $$
+> \lambda _k(\bm{A}) + \lambda _{\min }(\bm{B}) \leq \lambda _k(\bm{A}+\bm{B}) \leq \lambda _k(\bm{A})+\lambda _{\max }(\bm{B})
+> $$
+
+> **证明**
+>
+> 根据**推论4.1**我们可以得到
+> $$
+> \begin{align*}
+> \lambda _k(\bm{A}+\bm{B})& = \min _{\dim \mathcal{V} = n -k +1} \max _{\bm{x} \in \mathcal{V}, \lVert \bm{x} \rVert_2 =1}(\bm{x}^\top \bm{Ax} + \bm{x}^\top \bm{Bx}) \\
+> &\geq \min _{\dim \mathcal{V} = n -k +1} \max _{\bm{x} \in \mathcal{V}, \lVert \bm{x} \rVert_2 =1}\bm{x}^\top \bm{Ax} +\lambda _{\min }(\bm{B}) \qquad \text{放缩}\\
+> &= \lambda _k(\bm{A})+\lambda _{\min }(\bm{B})
+>\end{align*}
+>$$
+> 这证明了左边的不等式；右边的不等式可以通过类似的推理得到
+
+**推论4.2**的一个特殊情形出现在当对称矩阵$\bm{A} \in \mathcal{S}^n$施加扰动，即加入一个秩为一的矩阵$\bm{B}=\bm{qq}^\top$时。由于$\lambda _{\max}(\bm{qq}^\top )=\lVert \bm{q} \rVert_2^2$并且$\lambda _{\min }(\bm{qq}^\top )=0$（参考Section3.4.7），我们可以得到
+$$
+\lambda _k (\bm{A}) \leq \lambda _k(\bm{A}+\bm{qq}^\top )\leq \lambda _k(\bm{A})+\lVert \bm{q} \rVert_2^2,k=1,\cdots ,n
+$$
+
+## 4. 半正定矩阵
+
+### 4.1 定义
+
+一个对称矩阵$\bm{A} \in \mathcal{S}^n$其关联的二次型非负，则被称为半正定(positive semidefinite, PSD)，
+$$
+\bm{x}^\top \bm{Ax} \geq 0, \forall \bm{x} \in \mathbb{R} ^n
+$$
+如果
+$$
+\bm{x}^\top \bm{Ax} > 0, \forall  0 \neq \bm{x} \in \mathbb{R} ^n
+$$
+那么$\bm{A}$被称为正定(positive definite, PD)。为了表示一个对称的半正定/正定矩阵，我们使用符号$\bm{A} \succ 0$ /$\bm{A} \succeq 0$。如果$-\bm{A} \succeq 0$，我们说$\bm{A}$是半负定的(negative semidefinite, NSD)，记作$\bm{A} \preceq 0$；同样地，如果$-\bm{A} \succ 0$，我们说$\bm{A}$是负定的(negative definite, ND)，记作$\bm{A} \prec 0$。可以看出，当且仅当一个半正定矩阵是可逆的，它实际上才是正定矩阵
+> **证明**
+>
+> 根据**定理4.3**有
+> $$
+> \lambda _{\min }(\bm{A}) = \frac{\bm{x}^\top \bm{Ax}}{\lVert \bm{x} \rVert_2^2} \vert _{\bm{x} = \bm{u}_n}
+> $$
+> $\bm{A}$为半正定则$\bm{x}^\top \bm{Ax} \geq 0$，那么$\lambda _{\min }(\bm{A}) \geq 0$，即所有特征值均大于等于零
+>
+> 同理，$\bm{A}$为正定则$\bm{x}^\top \bm{Ax} > 0$，那么$\lambda _{\min }(\bm{A}) > 0$，即所有特征值均大于零
+>
+> 参考Section3.3.3，矩阵可逆则特征值全不为零。那么半正定矩阵（特征值大于等于零）+矩阵可逆（特征值不为零）=矩阵正定（特征值大于零）
+
+在$\mathbb{R} ^{n,n}$中，实半正定矩阵集合记作
+$$
+\mathcal{S}^n_+ = \left\{ \bm{A} \in \mathcal{S}^n : \bm{A} \succeq  0 \right\}
+$$
+相似地，$\mathcal{S}^n_{++}$代表$\mathbb{R} ^{n,n}$中正定矩阵的集合
+
+> **备注4.1**：PSD矩阵的主子矩阵。设$\mathcal{I} = \left\{ i_1 , \cdots ,i_m \right\}$是下标集合$\left\{ 1,\cdots ,n \right\}$的一个子集，并记$\bm{A}_{\mathcal{I}}$为从$\bm{A} \in \mathbb{R} ^{n,n}$中取出下标属于$\mathcal{I}$的行和列所得的子矩阵（这称为$\bm{A}$的$m \times m$维主子矩阵）
+> $$
+> \bm{A} \succeq 0 \Rightarrow \bm{A}_{\mathcal{I}} \succeq 0 , \forall \mathcal{I}
+> $$
+> 同样地，$\bm{A} \succ 0$意味着$\bm{A}_{\mathcal{I}} \succ 0$。这一点能够成立，是因为形成$\bm{x}_{\mathcal{I}}^\top \bm{A}_{\mathcal{I}} \bm{x}_{\mathcal{I}}$相当于向量$\bm{x}$形成$\bm{x}^\top \bm{Ax}$时$\bm{x}$的元素$x_i$只有在$i \in \mathcal{I}$时才非零。根据这个结论我们可以知道$\bm{A} \succeq 0$意味着对角元素$a_{ii} \geq 0,i = 1,\cdots, n$（每一个对角线上的元素都是一个主子矩阵）；同样地，$\bm{A} \succ 0$意味着$a_{ii} > 0,i = 1,\cdots, n$
+
+### 4.2 半正定矩阵的特征值
+
+如果将一个半正定矩阵$\bm{B}$加到矩阵$\bm{A} \in \mathcal{S}^m$上，矩阵$\bm{A}$的特征值不会减少。如果$\bm{B} \succeq 0$，那么$\lambda _{\min }(\bm{B}) \geq 0$，根据**推论4.2**可以得出
+$$
+\bm{B} \succeq 0 \Rightarrow \lambda _k(\bm{A}+\bm{B}) \geq \lambda _k(\bm{A})+\lambda _{\min }(\bm{B}) \geq \lambda _k(\bm{A}) ,k=1,\cdots, n
+$$
+
+### 4.3 全等变化
+
+> **定理4.5**：设$\bm{A} \in \mathcal{S}^n,\bm{B}\in \mathbb{R} ^{n,m}$并且考虑其乘积
+> $$
+> \bm{C} = \bm{B}^\top \bm{AB} \in \mathcal{S}^m
+> $$
+>
+> 1. 如果$\bm{A} \succeq 0$那么$\bm{C} \succeq 0$
+> 2. 如果$\bm{A} \succ 0$那么$\bm{C} \succ 0$当且仅当$\operatorname{rank}\bm{B} = m$
+> 3. 如果$\bm{B}$是方阵并且可逆，那么$\bm{A} \succ 0$/$\bm{A} \succeq 0$当且仅当$\bm{C} \succ 0$/$\bm{C} \succeq 0$
+
+> **证明**
+>
+> 对于第一点，我们有，对于所有$\bm{x}\in \mathbb{R} ^m$
+> $$
+> \bm{x}^\top \bm{Cx} = \bm{x}^\top \bm{B}^\top \bm{ABx} = \bm{z}^\top \bm{Az} \geq 0
+> $$
+> 令$\bm{z} = \bm{Bx}$，因此$\bm{C} \succeq 0$。

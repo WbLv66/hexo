@@ -144,7 +144,6 @@ $$
 ( \bm{A}_1 \bm{A}_2 \cdots \bm{A}_p )^\top = \bm{A}_p^\top \cdots \bm{A}_2^\top  \bm{A}_1^\top
 $$
 
-
 ### 1.3 块矩阵乘积
 
 只要保证块(block)大小一致，矩阵代数可以推广到块。首先考虑矩阵$\bm{A}$与向量$\bm{x}$的乘积，其中矩阵和向量都是分块的
@@ -265,7 +264,6 @@ $$
 \operatorname{rank} ( \bm{A} )  = \operatorname{rank} ( \bm{A}^\top )
 $$
 
-
 > **证明**
 >
 > 假设$\bm{A} \in \mathbb{R}^{m,n}$的列秩为$c$，行秩为$r$，尝试将它拆分为$\bm{BC}$两个矩阵，其中$\bm{B}$矩阵由$\bm{A}$中线性独立的列向量组成，因为$\bm{A}$的每一列都可以通过$\bm{B}$中的列向量线性组合得到，根据矩阵乘积的定义得知拆分是合理的。此时$\bm{B}\in\mathbb{R}^{m,c},\bm{C}\in\mathbb{R}^{c,n}$。同时$\bm{A}$的每一行都可以看成由$\bm{C}$矩阵中的行向量线性组合得到的，因此$\bm{A}$的行空间维数不大于$\bm{C}$的行数，i.e. $r \leq c$
@@ -301,7 +299,6 @@ $$
 $$
  \mathbb{R}^m = \mathcal{R}(\bm{A}) \oplus \mathcal{R}(\bm{A})^\perp = \mathcal{R}(\bm{A}) \oplus \mathcal{N}(\bm{A}^\top)
 $$
-
 
 > **定理3.1（线性代数基本定理）**：对于任意矩阵$\bm{A} \in \mathbb{R}^{m,n}$，有$\mathcal{N}(\bm{A}^\top) \perp \mathcal{R}(\bm{A}),\mathcal{N}(\bm{A}) \perp \mathcal{R}(\bm{A}^\top)$，因此
 
@@ -448,6 +445,51 @@ $$
 
 如果$\bm{AA}^{pi} \bm{A} = \bm{A}$，则称矩阵$\bm{A}^{pi}$为$\bm{A}$的伪逆。左逆、右逆和伪逆将在Chapter 5中进一步讨论
 
+根据逆矩阵的定义可以初步得出推论：
+
+1. 矩阵可逆是行列式不为零的充要条件；
+2. 矩阵可逆是特征值全不为零的充要条件；
+
+> **证明**
+>
+> 1. 矩阵可逆则行列式不为零
+>
+> 由可逆的定义，存在$\bm{A}^{-1}$使得$\bm{AA}^{-1}=\bm{I}$，对等式两边取行列式
+> $$
+\begin{align*}
+   \det (\bm{AA}^{-1}) &= \det (\bm{I}) \\
+   \det (\bm{A})\det (\bm{A}^{-1})  &= 1 \\
+\end{align*}
+> $$
+> 若行列式为零，则左边为$0$，与等式右边$1$矛盾
+>
+> 2. 行列式不为零则矩阵可逆
+>
+> 对于任意n阶方阵$\bm{A}$，其伴随矩阵$\bm{A}^\ast$满足
+> $$
+> \bm{AA}^\ast = \bm{A}^\ast\bm{A} = \det (\bm{A})\bm{I}
+> $$
+> 因为行列式不为零，将两边都除以$\det (\bm{A})$
+> $$
+> \bm{A}\frac{\bm{A}^\ast}{\det (\bm{A})}=  \frac{\bm{A}^\ast}{\det (\bm{A)}}\bm{A}  = \bm{I}
+> $$
+> $\tfrac{\bm{A}^\ast}{\det (\bm{A})}$即为逆矩阵
+>
+> 3. 矩阵可逆$\Leftrightarrow$特征值全不为零
+>
+> 根据Section3.3.5中的结论可知特征值之积等于行列式，矩阵可逆则行列式不为零，那么特征值之积便不为零，那么特征值全不为零；反之亦然
+
+结合Section3.3.2中关于奇异矩阵的结论，我们可以得到更加全面的结论
+
+> **结论**
+>
+> 对于$\bm{A} \in \mathbb{R}^{n,n}$有
+>
+> 矩阵奇异 $\Leftrightarrow$ 特征值为零 $\Leftrightarrow$ 零空间不平凡（零空间不只有零点） $\Leftrightarrow$ 矩阵不可逆 $\Leftrightarrow$ 存在特征值为零
+>
+> 矩阵非奇异 $\Leftrightarrow$ 特征值不为零 $\Leftrightarrow$ 零空间平凡（零空间只有零点） $\Leftrightarrow$ 矩阵可逆 $\Leftrightarrow$ 特征值全不为零
+
+>
 ### 3.4 相似矩阵
 
 如果存在一个非奇异矩阵$\bm{P}\in \mathbb{R}^{n,n}$，使得两个矩阵$\bm{A},\bm{B}\in \mathbb{R}^{n,n}$满足如下条件，则称它们是相似(similar)的
@@ -484,16 +526,17 @@ $$
 或者等价形式
 
 $$
- (\lambda \bm{I}_n - \bm{A}) \bm{u} = \bm{0}, \bm{u} \neq \bm{0} 
+ (\lambda \bm{I}_n - \bm{A}) \bm{u} = \bm{0}, \bm{u} \neq \bm{0}
 $$
 方程表明为了使$(\lambda , \bm{u})$成为特征值/特征向量对，必须满足以下条件：
+
 1. $\lambda$的取值要使矩阵$\lambda \bm{I}_n - \bm{A}$奇异
 2. $\bm{u}$位于$\lambda \bm{I}_n - \bm{A}$的零空间中
 
 由于$\lambda \bm{I}_n - \bm{A}$当且仅当其行列式为零时是奇异的，因此特征值可以很容易地被描述为满足下述方程的实数或复数
 
 $$
- \det (\lambda \bm{I}_n - \bm{A}) = 0 
+ \det (\lambda \bm{I}_n - \bm{A}) = 0
 $$
 $p(\lambda ) \coloneqq \det (\lambda \bm{I}_n - \bm{A})$是关于$\lambda$的$n$次多项式，被称为矩阵$\bm{A}$的特征多项式(characteristic polynomial)。因此，矩阵的特征值就是特征多项式的根。其中一些特征值确实可以是特征多项式的“重根”。此外，一些特征值可能是复数，具有非零的虚部，在这种情况下，它们成共轭复数对出现。下列定理成立
 
@@ -515,7 +558,7 @@ $p(\lambda ) \coloneqq \det (\lambda \bm{I}_n - \bm{A})$是关于$\lambda$的$n$
 >
 > 为了反证法的目的，假设存在一个$\bm{u}^{(i)}$（例如不失一般性，取第一个，$\bm{u}^{(1)}$可以表示为其他特征向量的线性组合：
 > $$
->  \bm{u}^{(1)} = \sum_{i=2}^{k} \alpha_i \bm{u}^{(i)} 
+>  \bm{u}^{(1)} = \sum_{i=2}^{k} \alpha_i \bm{u}^{(i)}
 > $$
 > 然后我们有两个恒等式
 >
@@ -528,7 +571,7 @@ $p(\lambda ) \coloneqq \det (\lambda \bm{I}_n - \bm{A})$是关于$\lambda$的$n$
 > 比较两个方程可以得到
 >
 > $$
->  \sum_{i=2}^{k} \alpha_i (\lambda_i- \lambda_1)\bm{u}^{(i)} = \bm{0} 
+>  \sum_{i=2}^{k} \alpha_i (\lambda_i- \lambda_1)\bm{u}^{(i)} = \bm{0}
 > $$
 > 其中$\lambda_i - \lambda _1 \neq 0$，因为根据假设，特征值是互异的。这意味着$\sum_{i=2}^{k}\alpha _i \bm{u}^{(i)}$为零，所以$\bm{u}^{(2)},\cdots , \bm{u}^{(k)}$是线性相关的。因此至少有一个向量，比如说不失一般性，$\bm{u}^{(2)}$，可以表示为其他向量$\bm{u}^{(3)},\cdots , \bm{u}^{(k)}$的线性组合。在此基础上，通过重复最初的推理，我们也会得出$\bm{u}^{(3)},\cdots , \bm{u}^{(k)}$是线性相关的。以此类推，我们最终会得出$\bm{u}^{(k-1)}, \bm{u}^{(k)}$是线性相关的结论。根据我们前面的证明，这是不可能的。因此，我们得出假设与事实矛盾，从而该命题得证
 >
@@ -573,13 +616,13 @@ $$
 
 由于**相似矩阵具有相同的特征值集合（包括重数）**，并且**分块上三角矩阵的特征值集合是对角块特征值的并集**，观察上式可以发现左上角矩阵特征值的重数为$v_i$，因此总体的特征值重数$\mu_i$必须总是满足$v_i \leq \mu_i$，最终可以得出结论：**互异特征值对应的特征空间维数总是小于等于特征值重数**
 
-> **补充证明**
+> **证明**
 >
 > **1. 相似矩阵具有相同的特征值集合（包括重数）**
 >
 > 证明核心为：相似矩阵的特征多项式相等。设$\bm{A},\bm{B} \in \mathbb{R}^{n,n}$为相似矩阵，即$\bm{B}=\bm{P}^{-1}\bm{A}\bm{P}$，$\bm{B}$的特征多项式为
 > $$
-> \begin{align}
+> \begin{align*}
 > f_{\bm{B}}(\lambda) &= \det(\lambda \bm{I}-\bm{B})\\
 > &= \det(\lambda \bm{I}-\bm{P}^{-1}\bm{A}\bm{P}) \\
 > &= \det(\bm{P}^{-1}\bm{P}\lambda \bm{I}-\bm{P}^{-1}\bm{P}\bm{P}^{-1}\bm{A}\bm{P}) \\
@@ -590,7 +633,7 @@ $$
 > &= \det (\bm{P}^{-1}\bm{P})\det(\lambda\bm{I} - \bm{A} ) \\
 > &=\det(\lambda\bm{I} - \bm{A}) \\
 > &=f_{\bm{A}}(\lambda)
-> \end{align}
+> \end{align*}
 > $$
 > **2. 分块上三角矩阵的特征值集合是对角块特征值的并集**
 >
@@ -615,6 +658,37 @@ $$
 > \end{bmatrix}
 > $$
 > 对$\lambda \bm{I}-\bm{M}$应用此结论，可得到$\det(\lambda \bm{I}-\bm{M}) = \det(\lambda \bm{I}-\bm{A}_{11}) \cdot \det(\lambda \bm{I}-\bm{A}_{22}) \cdot \dots \cdot \det(\lambda \bm{I}-\bm{A}_{kk} )$，即$f_{\bm{M}}(\lambda) = f_{\bm{A}_{11}}(\lambda)f_{\bm{A}_{22}}(\lambda)\cdots f_{\bm{A}_{kk}}(\lambda)$
+
+对于特征值我们有结论：**特征值之和等于迹，特征值之积等于行列式**
+
+> **证明**
+>
+> 证明需要用到**韦达定理的推广定理**
+>
+> 1. 所有根之和为$n-1$次项系数与$n$次项系数之比的相反数
+> 2. 所有根之积为常数项与$n$次项系数之比再乘以$(-1)^n$
+>
+> 设$\bm{A} \in \mathbb{R} ^{n,n}$，其特征多项式为
+> $$
+> f_{\bm{A}}(\lambda ) =
+> \begin{vmatrix}
+> \lambda - a_{11} & -a_{12} & \cdots & -a_{1n} \\
+> -a_{21} & \lambda -a_{22} & \cdots & -a_{2n} \\
+> \vdots & \vdots & \ddots  & \vdots \\
+> -a_{n1} & -a_{n2} & \cdots & \lambda -a_{nn}
+> \end{vmatrix}
+> $$
+> 特征多项式的常数项等于多项式在$0$处的值，即
+> $$
+> f(0) = \lvert -\bm{A} \rvert  = (-1)^n\lvert \bm{A} \rvert
+> $$
+> 因为行列式中，只有主对角线元素含有$\lambda$，因此在行列式的所有乘积项中，除了主对角线的$n$个元素的乘积，其余的乘积项中$\lambda$的次数不会超过$n-2$次。所以$f_{\bm{A}}(\lambda )$中$\lambda ^n$和$\lambda ^{n-1}$的系数只需考虑$(\lambda - a_{11})(\lambda -a_{22})\cdots(\lambda -a_{nn})$项。因此$\lambda ^n$的系数为$1$，$\lambda ^{n-1}$的系数为$-\sum_{i=1}^{n}a_{ii}$，根据韦达定理知
+> $$
+> \begin{gather*}
+> \lambda _1 + \lambda _2 + \cdots +\lambda _n = \sum_{i=1}^{n}a_{ii} = \operatorname{trace} (\bm{A}) \\
+> \lambda _1 \lambda _2 \cdots \lambda _n = \lvert \bm{A} \rvert
+> \end{gather*}
+> $$
 
 ### 3.6 可对角化矩阵
 
@@ -643,7 +717,7 @@ $$
 > 再将不同特征值的等式写进一个矩阵
 >
 > $$
->  \bm{AU} = \bm{U \Lambda } 
+>  \bm{AU} = \bm{U \Lambda }
 > $$
 > 将等式两边同时右乘$\bm{U}^{-1}$，可得到所证
 
@@ -698,7 +772,7 @@ $$
 a_{11} & \cdots & a_{1n} \\
  & \ddots & \vdots \\
  & & a_{nn}
-\end{bmatrix} 
+\end{bmatrix}
 $$
 下三角矩阵(lower-triangular matrix)为
 
@@ -707,7 +781,7 @@ $$
 a_{11}&& \\
 \vdots & \ddots & \\
 a_{n1} & \cdots & a_{nn}
-\end{bmatrix} 
+\end{bmatrix}
 $$
 与对角矩阵类似，**三角矩阵的特征值是对角线上的元素**，并且**行列式值为对角线上的元素乘积**。两个上（resp. 下）三角矩阵的乘积仍然是上（resp. 下）三角矩阵。非奇异上（resp. 下）三角矩阵的逆矩阵仍然是上（resp. 下）三角矩阵
 
@@ -720,7 +794,7 @@ $$
 \begin{array}
 {ll}1 & \mathrm{if}\quad i=j, \\
 0 & \mathrm{otherwise}.
-\end{array}\right. 
+\end{array}\right.
 $$
 因此$\bm{U}^\top \bm{U} = \bm{U} \bm{U}^\top = \bm{I}_n$，还可以得到$\bm{U}^\top = \bm{U}^{-1}$。正交矩阵保持长度和角度。对于任意向量$\bm{x}$
 
@@ -748,14 +822,14 @@ $$
 并矢的每一行(resp. 每一列)都是$\bm{v}$(resp. $\bm{u}$)的缩放版本，缩放的系数由向量$\bm{u}$(resp. $\bm{v}$)给出。而矩阵与向量的乘积可以看成对矩阵列元素的线性组合。综上，并矢与向量的乘积可以看成对$\bm{u}$的缩放
 
 $$
- \bm{Ax} = (\bm{uv}^\top )\bm{x}=(\bm{v}^\top \bm{x})\bm{u} 
+ \bm{Ax} = (\bm{uv}^\top )\bm{x}=(\bm{v}^\top \bm{x})\bm{u}
 $$
 并矢与向量的乘积输出总是指向相同的方向$\bm{u}$，无论输入$\bm{x}$是什么。因此输出总是$\bm{u}$的一个简单缩放版本。缩放的量取决于$\bm{v}^\top \bm{x}$
 
 如果$\bm{u}$和$\bm{v}$都非零，则并矢的秩为一，因为它的值域是由$\bm{u}$生成的直线。一个方形并矢只有一个非零特征值$\lambda = \bm{v}^\top\bm{u}$，对应的特征向量为$\bm{u}$。我们总可以对并矢进行归一化：
 
 $$
- \bm{A} = \bm{uv}^\top = (\lVert \bm{u} \rVert_2 \lVert \bm{v} \rVert_2) \frac{\bm{u}}{\lVert \bm{u} \rVert_2} \frac{\bm{v}^\top }{\lVert \bm{v} \rVert_2} = \sigma \tilde{\bm{u}} \tilde{\bm{v}}^\top 
+ \bm{A} = \bm{uv}^\top = (\lVert \bm{u} \rVert_2 \lVert \bm{v} \rVert_2) \frac{\bm{u}}{\lVert \bm{u} \rVert_2} \frac{\bm{v}^\top }{\lVert \bm{v} \rVert_2} = \sigma \tilde{\bm{u}} \tilde{\bm{v}}^\top
 $$
 其中$\sigma$为两个向量的范数乘积，$\lVert \tilde{\bm{u}} \rVert_2 = \lVert \tilde{\bm{v}} \rVert_2 = 1$
 
@@ -768,10 +842,8 @@ $$
     \bm{A}_{11} & \bm{A}_{12}\\
     \bm{A}_{21} & \bm{A}_{22}
 \end{bmatrix}
- 
+
 $$
-
-
 
 ---
 未完待续
