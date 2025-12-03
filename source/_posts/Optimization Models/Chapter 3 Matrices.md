@@ -301,22 +301,19 @@ $$
 $$
 
 > **定理3.1（线性代数基本定理）**：对于任意矩阵$\bm{A} \in \mathbb{R}^{m,n}$，有$\mathcal{N}(\bm{A}^\top) \perp \mathcal{R}(\bm{A}),\mathcal{N}(\bm{A}) \perp \mathcal{R}(\bm{A}^\top)$，因此
-
-$$
-\begin{gather*}
-\mathcal{R}(\bm{A}^\top) \oplus \mathcal{N}(\bm{A}) = \mathbb{R}^n \\
-\mathcal{R}(\bm{A}) \oplus \mathcal{N}(\bm{A}^\top) = \mathbb{R}^m
-\end{gather*}
-$$
-
-并且
-
-$$
-\begin{gather*}
-\dim\mathcal{N}(\bm{A}) + \operatorname{rank}{A} = n \\
-\dim\mathcal{N}(\bm{A}^\top) + \operatorname{rank}{A} = m
-\end{gather*}
-$$
+> $$
+> \begin{gather*}
+> \mathcal{R}(\bm{A}^\top) \oplus \mathcal{N}(\bm{A}) = \mathbb{R}^n \\
+> \mathcal{R}(\bm{A}) \oplus \mathcal{N}(\bm{A}^\top) = \mathbb{R}^m
+> \end{gather*}
+> $$
+> 并且
+> $$
+> \begin{gather*}
+> \dim\mathcal{N}(\bm{A}) + \operatorname{rank}{A} = n \\
+> \dim\mathcal{N}(\bm{A}^\top) + \operatorname{rank}{A} = m
+> \end{gather*}
+> $$
 
 因此，我们可以将任意向量$\bm{x}$分解为两个互相正交的向量的和，一个在$\bm{A}^\top$的值域中，另一个在$\bm{A}$的零空间中：
 
@@ -540,7 +537,7 @@ $$
 $$
 $p(\lambda ) \coloneqq \det (\lambda \bm{I}_n - \bm{A})$是关于$\lambda$的$n$次多项式，被称为矩阵$\bm{A}$的特征多项式(characteristic polynomial)。因此，矩阵的特征值就是特征多项式的根。其中一些特征值确实可以是特征多项式的“重根”。此外，一些特征值可能是复数，具有非零的虚部，在这种情况下，它们成共轭复数对出现。下列定理成立
 
-**定理3.2（代数学基本定理）**：任意矩阵$\bm{A} \in \mathbb{R}^{n,n}$都有$n$个特征值，按重数计算。
+> **定理3.2（代数学基本定理）**：任意矩阵$\bm{A} \in \mathbb{R}^{n,n}$都有$n$个特征值，按重数计算。
 
 我们称不考虑重数的特征值为互异特征值(distinct eigenvalues)，每个互异特征值都有一个对应的代数重数(algebraic multiplicity)$\mu_i \geq 1$，定义为该特征值作为特征多项式根出现的次数。因此$\sum_{i=1}^{k} \mu_i = n$
 

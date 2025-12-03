@@ -57,7 +57,7 @@ $$
 \sigma ^2 = \sum_{i=1}^{m}(w^\top \bm{x}^{(i)} - \hat{\bm{s}})^2 = \sum_{i=1}^{m}\big(\bm{w}^\top (\bm{x}^{(i)} - \hat{\bm{x}})\big)^2 = \bm{w}^\top \Sigma \bm{w}
 $$
 
-一个二阶可微的函数$f:\mathbb{R} ^n \rightarrow \mathbb{R}$在点$x \in \operatorname{dom} f$处的海森(Hessian)矩阵是包含该点函数二阶导数的矩阵。海森矩阵的元素为
+一个二阶可微的函数$f \colon \mathbb{R} ^n \rightarrow \mathbb{R}$在点$x \in \operatorname{dom} f$处的海森(Hessian)矩阵是包含该点函数二阶导数的矩阵。海森矩阵的元素为
 
 $$
 \bm{H}_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j},  1 \leq i,j \leq n
@@ -91,7 +91,7 @@ $$
 $$
 q(x) = \frac{1}{2} \bm{x}^\top \bm{H} \bm{x} + \bm{c}^\top \bm{x} + d,\quad  \bm{c}^\top = [ 4 \quad 5 ],\quad d = 6
 $$
-考虑指数之和的对数函数(log-sum-exp) $\operatorname{lse}:\mathbb{R} ^n \rightarrow \mathbb{R}$
+考虑指数之和的对数函数(log-sum-exp) $\operatorname{lse} \colon \mathbb{R} ^n \rightarrow \mathbb{R}$
 
 $$
 \operatorname{lse}(\bm{x}) = \ln \sum_{i=1}^{n} \mathrm{e}^{x_i}
@@ -164,7 +164,7 @@ $$
 
 ### 1.2 二次函数
 
-二次函数$q : \mathbb{R} \rightarrow \mathbb{R}$是关于$x$的二阶多元多项式，包含所有不超过二次的单项式的线性组合的函数。因此，这样的函数可以表示为
+二次函数$q \colon \mathbb{R} \rightarrow \mathbb{R}$是关于$x$的二阶多元多项式，包含所有不超过二次的单项式的线性组合的函数。因此，这样的函数可以表示为
 
 $$
 q(x) = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}x_i x_j + \sum_{i=1}^{n}c_i x_i + d
@@ -278,7 +278,7 @@ $$
 
 > **证明**
 >
-> **第一部分**
+> **第一点**
 >
 > 让$\lambda ,\bm{u}$为$\bm{A}$的任意特征值和特征向量对。则
 > $$
@@ -305,7 +305,7 @@ $$
 > $$
 > 这意味着$\lambda$一定为实数。注意，相关的特征向量$\bm{u}$也总可以选择为实向量。如果一个复向量$\bm{u}$满足$\bm{Au} = \lambda \bm{u}$，且$\bm{A},\lambda$为实数，那么我们也有$\operatorname{Re}(\bm{Au}) = \bm{A}\operatorname{Re}(\bm{u}) = \lambda \operatorname{Re}(\bm{u})$，这意味着$\operatorname{Re}(\bm{u})$是与$\lambda$相关联的特征向量
 >
-> **第二部分**
+> **第二点**
 >
 > 令$\bm{v}_i \in \mathcal{\phi}_i,\bm{v}_j \in \mathcal{\phi}_j,i \neq j$因为$\bm{Av}_i = \lambda _i \bm{v}_i,\bm{Av}_j = \lambda _j \bm{v}_j$，我们可以得到
 >
@@ -324,7 +324,7 @@ $$
 > $$
 > 由于假设$\lambda _i \neq \lambda _j$，因此必须有$\bm{v}_j^\top\bm{v}_i = 0$，即$\bm{v}_j$和$\bm{v}_i$是正交的
 >
-> **第三部分**
+> **第三点**
 >
 > 令$\lambda$为$\bm{A}$的特征值，令$\mu \geq 1$为它的代数重数，令$v$为$\mathcal{\phi}_i = \mathcal{N}(\lambda_i \bm{I}_n − \bm{A})$的维数。一般情况下，$v \leq \mu$，也就是说，几何重数（即特征空间的维数）不大于代数重数，参见Section3.3.5
 >
@@ -605,14 +605,65 @@ $$
 > \bm{C} = \bm{B}^\top \bm{AB} \in \mathcal{S}^m
 > $$
 >
-> 1. 如果$\bm{A} \succeq 0$那么$\bm{C} \succeq 0$
-> 2. 如果$\bm{A} \succ 0$那么$\bm{C} \succ 0$当且仅当$\operatorname{rank}\bm{B} = m$
-> 3. 如果$\bm{B}$是方阵并且可逆，那么$\bm{A} \succ 0$/$\bm{A} \succeq 0$当且仅当$\bm{C} \succ 0$/$\bm{C} \succeq 0$
+> 1. $\bm{A} \succeq 0 \Rightarrow \bm{C} \succeq 0$
+> 2. 如果$\bm{A} \succ 0$，那么$\operatorname{rank}\bm{B} = m \Leftrightarrow  \bm{C} \succ 0$
+> 3. 如果$\bm{B}$是方阵并且可逆，那么$\bm{A} \succ 0 /\bm{A} \succeq 0 \Leftrightarrow \bm{C} \succ 0/\bm{C} \succeq 0$
 
 > **证明**
 >
-> 对于第一点，我们有，对于所有$\bm{x}\in \mathbb{R} ^m$
+> **第一点**
+>
+> 对于所有$\bm{x}\in \mathbb{R} ^m$有
 > $$
 > \bm{x}^\top \bm{Cx} = \bm{x}^\top \bm{B}^\top \bm{ABx} = \bm{z}^\top \bm{Az} \geq 0
 > $$
-> 令$\bm{z} = \bm{Bx}$，因此$\bm{C} \succeq 0$。
+> 令$\bm{z} = \bm{Bx}$，因此$\bm{C} \succeq 0$
+>
+> **第二点**
+>
+> 注意到，由于$\bm{A} \succ 0$，那么$\bm{x} \neq \bm{0}$时，$\bm{z} \neq \bm{0}$必成立$\Leftrightarrow \bm{C} \succ 0$，因为当$\bm{z}= \bm{0}$时$\bm{z}^\top \bm{Az} > 0$不一定成立。故需要$\bm{Bx} \neq \bm{0}$对所有$\bm{x} \neq \bm{0}$成立，即$\operatorname{dim}\mathcal{N}(\bm{B}) = 0$时。根据**定理3.1**，有$\dim \mathcal{N}(\bm{B}) + \operatorname{rank}(\bm{B}) = m$，由此可得结论
+>
+> **第三点**
+>
+> 根据第二点可知，$\bm{A} \succ 0 \Rightarrow \bm{C} \succ 0$。为了证明$\bm{C} \succ 0 \Rightarrow \bm{A} \succ 0$，先令$\bm{C} \succ 0$，并为了反证法假设$\bm{A} \nsucc 0$。则存在$\bm{z} \neq \bm{0}$使得$\bm{z}^\top \bm{Az} \leq  0$。由于$\bm{B}$可逆，令$\bm{x} = \bm{B}^{-1}\bm{z}$，则
+> $$
+> 0 \geq  \bm{z}^\top \bm{Az} =\bm{x}^\top \bm{B}^\top \bm{ABx} =\bm{x}^\top \bm{Cx}  
+> $$
+> 这与$\bm{C} \succ 0$C矛盾。使用类似的论证可以证明$\bm{A} \succeq 0 \Leftrightarrow \bm{C} \succeq 0$
+
+当$\bm{B}$是方阵且可逆时，$\bm{C} = \bm{B}^\top \bm{AB} \in \mathcal{S}^m$定义了所谓的合同变换( congruence transformation)，并且$\bm{A},\bm{C}$称为合同矩阵。对称矩阵$\bm{A}\in \mathcal{S}^n$的惯性(inertia) $\operatorname{In}(\bm{A}) = (\operatorname{npos}(A), \operatorname{nneg}(A), \operatorname{nzero}(A))$被定义为一个非负整数三元组，分别表示$\bm{A}$正特征值的数量、负特征值的数量和零特征值的数量（计入重数）。可以证明，当且仅当（等价于充要条件）矩阵$\bm{A}\in \mathcal{S}^n$和$\bm{C}\in \mathcal{S}^n$是合同矩阵时，它们才具有相同的惯性
+
+由于**单位矩阵是正定的**，那么将**定理4.5**中的$\bm{A}$设为单位矩阵可以得到以下推论
+
+> **推论4.3**：对于任意矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，有如下结论
+>
+> 1. $\bm{A}^\top \bm{A} \succeq 0$并且$\bm{AA}^\top \succeq 0$
+> 2. $\bm{A}^\top \bm{A} \succ 0 \Leftrightarrow \bm{A}$是列满秩矩阵，即$\operatorname{rank}\bm{A} = n$
+> 3. $\bm{AA}^\top \succ 0 \Leftrightarrow \bm{A}$是行满秩矩阵，即$\operatorname{rank}\bm{A} = m$
+
+> **定理4.6（通过合同进行联合对角化）**：设$\bm{A}_1,\bm{A}_2 \in \mathcal{S}^n$，并且存在某些标量$\alpha 1, \alpha _2$使得
+> $$
+> \bm{A} = \alpha _1 \bm{A}_1 + \alpha _2 \bm{A}_2 \succ 0
+> $$
+> 那么存在一个非奇异矩阵$\bm{B} \in \mathbb{R} ^{n,n}$，使得$\bm{B}^\top \bm{A}_1 \bm{B}$和$\bm{B}^\top \bm{A}_2 \bm{B}$都是对角矩阵
+
+这说明当两个对称矩阵的线性组合满足正定，那么他们可以通过适当的合同变换同时“对角化”
+
+> **证明**
+>
+> 不失一般性地假设$\alpha _2 > 0$。由于$\bm{A} \succ 0,\bm{I}_n \succ 0$那么$\bm{B}_1$零空间平凡，又$\bm{B}_1$为方阵，那么它可逆，故$\bm{A}$与单位矩阵合同，即存在某个非奇异矩阵$\bm{B}_1$使得$\bm{B}_1^\top \bm{AB}_1 = \bm{I}_n$。由于$\bm{B}_1^\top \bm{A}_1 \bm{B}_1$是对称的，根据谱定理，存在一个正交矩阵$\bm{W}$使得$\bm{B}_1^\top \bm{A}_1 \bm{B}_1 = \bm{WDW}^\top$，变换可得$\bm{W}^\top \bm{B}_1^\top \bm{A}_1 \bm{B}_1\bm{W} = \bm{D}$，其中$\bm{D}$为对角矩阵。取$\bm{B} = \bm{B}_1 \bm{W}$，我们可以得到
+> $$
+> \begin{gather*}
+> \bm{B}^\top \bm{AB} = \bm{W}^\top \bm{B}_1^\top \bm{AB}_1\bm{W} = \bm{W}^\top \bm{I}_n \bm{W}  = \bm{I} \\
+> \bm{B}^\top \bm{A}_1 \bm{B} = \bm{D}
+> \end{gather*}
+> $$
+> 由于$\bm{A}_2 = (\bm{A} - \alpha _1 \bm{A}_1) / \alpha _2$，因此$\bm{B}_1^\top \bm{A}_2 \bm{B}_1$也是对角矩阵，证明完成
+
+从**定理4.6**的证明过程，我们可以得到以下推论
+
+> **推论4.4**：设$\bm{A} \succ 0$且$\bm{C} \in \mathcal{S}^n$。则存在一个非奇异矩阵$\bm{B}$，使得$\bm{B}^\top \bm{CB}$为对角矩阵，且$\bm{B}^\top \bm{AB} = \bm{I}_n$
+
+### 4.4 矩阵平方根和Cholesky分解
+
+设$\bm{A} \in \mathcal{S}^n$，那么
