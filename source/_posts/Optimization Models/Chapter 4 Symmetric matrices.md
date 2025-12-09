@@ -667,3 +667,46 @@ $$
 ### 4.4 矩阵平方根和Cholesky分解
 
 设$\bm{A} \in \mathcal{S}^n$，那么
+$$
+\begin{align*}
+  \bm{A} \succeq 0 \Leftrightarrow \exists \bm{B} \succeq 0 \colon \bm{A} = \bm{B}^2 \\
+  \bm{A} \succ 0 \Leftrightarrow \exists \bm{B} \succ 0 \colon \bm{A} = \bm{B}^2 \\
+\end{align*}
+$$
+实际上，任何$\bm{A} \in  \mathcal{S}^n$都可以进行谱分解$\bm{A} = \bm{U \Lambda U}^\top$，其中$\bm{U}$是正交矩阵，$\bm{\Lambda} = \operatorname{diag}(\lambda _1, \cdots , \lambda _n)$，因为$\bm{A} \succeq  0$，因此$\lambda _i \geq 0,i=1,\cdots ,n$。定义$\Lambda ^{1/2} = \operatorname{diag}(\sqrt{\lambda _1},\cdots ,\sqrt{\lambda _n})$并且$\bm{B} = \bm{U \Lambda}^{1/2}\bm{U}^\top$，我们可以得到
+$$
+\bm{B}^2 = \bm{U \Lambda}^{1/2}\bm{U}^\top \bm{U \Lambda}^{1/2}\bm{U}^\top = \bm{U \Lambda}\bm{U}^\top = \bm{A}
+$$
+此时$\bm{B}$最小的特征值仍然为负，故而$\bm{B}\succeq 0$。相反，如果对于某个对称矩阵$\bm{B}$有$\bm{A} = \bm{B}^\top \bm{B} = \bm{B}^2$，那么根据**推论4.3**可得$\bm{A} \succeq 0$，第一个等式的证明完成。第二个等式的证明类似。此外，可以证明两式中的**矩阵$\bm{B}$是唯一(unique)的，该矩阵称为$\bm{A}$的平方根矩阵(square-root)：$\bm{B} = \bm{A}^{1/2}$**
+
+如果设$\bm{B} = \Lambda ^{1/2}\bm{U}^\top$并将前面的推理重复一遍，我们也可以得出结论
+$$
+\begin{align*}
+  \bm{A} \succeq 0 \Leftrightarrow \exists \bm{B}  \colon \bm{A} = \bm{B}^\top \bm{B} \\
+  \bm{A} \succ 0 \Leftrightarrow \exists \bm{B} \text{非奇异} \colon \bm{A} = \bm{B}^2 \\
+\end{align*}
+$$
+根据定义可知$\bm{B}$为方阵，根据**定理4.5**可证明第二个等式。从上式可知，**只有当矩阵$\bm{A}$与单位矩阵相合同的时候，$\bm{A}$才是正定的**
+
+进一步注意，每个方阵$\bm{B}$有一个QR分解：$\bm{B} = \bm{QR}$，其中$\bm{Q}$是正交矩阵，$\bm{R}$是上三角矩阵，其秩与$\bm{B}$同（见Section 7.3）。那么，对于任意$\bm{A} \neq \bm{0}$我们有
+$$
+\bm{A} = \bm{B}^\top \bm{B} = \bm{R}^\top \bm{Q}^\top \bm{QR} = \bm{R}^\top \bm{R}
+$$
+也就是说，**任何PSD矩阵都可以分解为$\bm{R}^\top \bm{R}$的形式，其中$\bm{R}$是上三角矩阵。此外，$\bm{R}$可以选择为非负对角线元素。如果$\bm{A}\succ 0$，那么这些对角线元素为正。在这种情况下，这种分解是唯一的，称为$\bm{A}$的Cholesky分解**
+
+利用矩阵平方根，我们可以证明以下结果，它将$\bm{B}$和$\bm{AB}$的特征值联系起来，其中$\bm{B}$为对称矩阵，且$\bm{A}\succ 0$
+
+> **推论4.5**：设$\bm{A},\bm{B} \in \mathcal{S}^n$，且$\bm{A} \succ 0$。则矩阵$\bm{AB}$可对角化，具有纯实特征值，并且其惯性与$\bm{B}$相同
+
+> **证明**
+>
+> 设$\bm{A}^{1/2}\succ 0$为矩阵$\bm{A}$的平方根。那么
+> $$
+> \bm{A}^{-1/2}\bm{ABA}^{1/2} = \bm{A}^{1/2}\bm{BA}^{1/2}
+> $$
+> 通过观察可以得知，$\bm{AB}$与$\bm{A}^{1/2}\bm{BA}^{1/2}$是相似的，因此二者有相同的特征值。由于后者为对称矩阵，因此它的特征值为实数，并且它是可对角化的，即$\bm{A}^{1/2}\bm{BA}^{1/2} = \bm{U \Lambda}\bm{U}^\top$，那么$\bm{AB} = \bm{A}^{1/2}\bm{U \Lambda}\bm{U}^\top \bm{A}^{-1/2} = (\bm{A}^{1/2}\bm{U}) \bm{\Lambda}(\bm{A}^{1/2}\bm{U})^{-1}$，所以$\bm{AB}$是可对角化的。此外，$\bm{A}^{1/2}\bm{BA}^{1/2}$与$\bm{B}$是合同的，因此它具有与$\bm{B}$相同的惯性。因此，$\bm{AB}$具有与$\bm{B}$相同的惯性
+
+### 4.5 正定矩阵与椭球体(ellipsoids)
+
+---
+未完待续

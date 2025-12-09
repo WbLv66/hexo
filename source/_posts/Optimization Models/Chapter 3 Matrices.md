@@ -486,7 +486,6 @@ $$
 >
 > 矩阵非奇异 $\Leftrightarrow$ 特征值不为零 $\Leftrightarrow$ 零空间平凡（零空间只有零点） $\Leftrightarrow$ 矩阵可逆 $\Leftrightarrow$ 特征值全不为零
 
->
 ### 3.4 相似矩阵
 
 如果存在一个非奇异矩阵$\bm{P}\in \mathbb{R}^{n,n}$，使得两个矩阵$\bm{A},\bm{B}\in \mathbb{R}^{n,n}$满足如下条件，则称它们是相似(similar)的
