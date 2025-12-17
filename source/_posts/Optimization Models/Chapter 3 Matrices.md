@@ -287,7 +287,7 @@ $$
 线性代数基本定理建立了矩阵的零空间与其转置的值域之间的重要联系。首先我们可以发现$\bm{A}^\top$值域中的任意向量都和$\bm{A}$零空间的任意向量正交，i.e. $\bm{x}^\top \bm{z} = 0,\forall \bm{x} \in \mathcal{R} ( \bm{A}^\top ), \forall \bm{z}\in \mathcal{N} ( \bm{A} )$。根据值域的定义，$\mathcal{R} ( \bm{A}^\top )$中的所有向量都可以写为$\bm{A}$中的行向量的线性组合，因此
 
 $$
-\bm{x}^\top \bm{z} = ( \bm{A}^\top \bm{y} )^\top \bm{z} = \bm{y}^\top \bm{A} \bm{z} = ( \bm{y}^\top \bm{A} ) \bm{z} = 0
+\bm{x}^\top \bm{z} = ( \bm{A}^\top \bm{y} )^\top \bm{z} = \bm{y}^\top \bm{A} \bm{z} =  \bm{y}^\top (\bm{A}  \bm{z}) = 0
 $$
 因此$\mathcal{R} ( \bm{A}^\top )$和$\mathcal{N} ( \bm{A} )$是正交子空间，i.e. $\mathcal{N}(\bm{A}) \perp \mathcal{R}(\bm{A}^\top)$或者写为$\mathcal{N}(\bm{A}) = \mathcal{R}(\bm{A}^\top)^\perp$。回顾Section 2.2.3，子空间和其正交补的直和等于整个空间
 
@@ -498,7 +498,7 @@ $$
 $$
 \bm{y} = \bm{Ax}
 $$
-由于$\bm{P}$是非奇异的，其列向量是线性无关的，因此它们代表了$\mathbb{R}^{n,n}$的一组基。向量$\bm{y}$和$\bm{x}$可以在该基下表示为$\bm{P}$列向量的线性组合
+由于$\bm{P}$是非奇异的，其列向量是线性无关的，因此它们代表了$\mathbb{R}^n$的一组基。向量$\bm{y}$和$\bm{x}$可以在该基下表示为$\bm{P}$列向量的线性组合
 
 $$
 \begin{gather*}
@@ -585,7 +585,7 @@ $$
 $$
 其中对角线上的矩阵为方阵
 
-设$v_i$为$\mathcal{V}_i$的维数，并设一个矩阵$\bm{U}^{(i)}=[\bm{u}_1^{(i)}\quad \dots \quad \bm{u}_{v_i}^{(i)}]$，其列为$\mathcal{V}_i$的一组基。在不失一般性的情况下，该矩阵可以选择为列正交归一的矩阵。实际上，可以先选任意一组基，并对该基应用Gram–Schmidt正交化过程（见Section2.3.3），即可得到标准正交基。通过这种选择，有$\bm{U}^{(i)\top}  \bm{U}^{(i)} = \bm{I}_{v_i}$。进一步设$\bm{Q}^{(i)}$为一个$n \times  (n − v_i)$矩阵，其列标准正交并张成与$\mathcal{R}(\bm{U}^{(i)})$ 正交的子空间
+设$v_i$为$\mathcal{V}_i$的维数，并设一个矩阵$\bm{U}^{(i)}=[\bm{u}_1^{(i)}\quad \dots \quad \bm{u}_{v_i}^{(i)}]$，其列为$\mathcal{V}_i$的一组基。在不失一般性的情况下，该矩阵可以选择为列标准正交的矩阵。实际上，可以先选任意一组基，并对该基应用Gram–Schmidt正交化过程（见Section2.3.3），即可得到标准正交基。通过这种选择，有$\bm{U}^{(i)\top}  \bm{U}^{(i)} = \bm{I}_{v_i}$。进一步设$\bm{Q}^{(i)}$为一个$n \times  (n − v_i)$矩阵，其列标准正交并张成与$\mathcal{R}(\bm{U}^{(i)})$ 正交的子空间
 
 > **推论3.1**：任意矩阵$\bm{A} \in \mathbb{R}^{n,n}$都与一个分块三角矩阵相似，该矩阵在对角线上具有块$\lambda _i \bm{I}_{v_i}$，其中$\lambda _i$是$\bm{A}$的一个互异特征值，$v_i$是对应特征空间的维数
 
