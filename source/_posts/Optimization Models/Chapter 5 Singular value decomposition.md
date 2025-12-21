@@ -248,7 +248,10 @@ $$
 $$
 为了证明这一点，首先注意到，由于$\Sigma \bm{V}_r^\top \in \mathbb{R} ^{r,n}$，且$r \leq n$，是满行秩的，那么当$\bm{x}$遍历整个$\mathbb{R} ^n$空间时，$\bm{z} = \Sigma \bm{V}_r^\top \bm{x}$张成整个$\mathbb{R} ^r$空间，因此
 $$
-\mathcal{R}(\bm{A}) = \left\{ \bm{y} \colon \bm{y} = \bm{Ax},\bm{x} \in \mathbb{R} ^n \right\} =  \left\{ \bm{y} \colon \bm{y} = \bm{U}_r \Sigma \bm{V}_r^\top \bm{x},\bm{x} \in \mathbb{R} ^n \right\} = \left\{ \bm{y} \colon \bm{y} = \bm{U}_r  \bm{z},\bm{z} \in \mathbb{R} ^r \right\} \equiv \mathcal{R}(\bm{U}_r)
+\begin{align*}
+    \mathcal{R}(\bm{A}) &= \left\{ \bm{y} \colon \bm{y} = \bm{Ax},\bm{x} \in \mathbb{R} ^n \right\} =  \left\{ \bm{y} \colon \bm{y} = \bm{U}_r \Sigma \bm{V}_r^\top \bm{x},\bm{x} \in \mathbb{R} ^n \right\}\\
+    &= \left\{ \bm{y} \colon \bm{y} = \bm{U}_r  \bm{z},\bm{z} \in \mathbb{R} ^r \right\} \equiv \mathcal{R}(\bm{U}_r)
+\end{align*}
 $$
 
 ### 2.2 矩阵范数
@@ -446,3 +449,111 @@ $$
 在本节中，我们将说明如何通过奇异值分解方便地解决某些优化问题。SVD在优化中的进一步应用将在Section第六章中介绍
 
 ### 3.1 低秩矩阵近似(Low-rank matrix approximations)
+
+设$\bm{A} \in \mathbb{R} ^{m,n}$是一个给定矩阵，且$\operatorname{rank}(\bm{A}) = r > 0$。这里我们考虑用低秩矩阵近似$\bm{A}$的问题。具体来说，我们考虑以下秩受限近似问题
+$$
+\begin{gather*}
+    \min _{\bm{A}_k \in  \mathbb{R} ^{m,n}} \lVert \bm{A} - \bm{A}_k \rVert _F^2 \\
+    \text{s.t. :}\operatorname{rank}(\bm{A}_k) = k
+\end{gather*}
+$$
+其中$1 \leq k \leq r$是给定的。令
+$$
+\bm{A} = \bm{U}\tilde{\Sigma}\bm{V}^\top = \sum_{i=1}^{r}\sigma _i \bm{u}_i \bm{v}_i^\top
+$$
+为$\bm{A}$的SVD。接下来我们将证明，上述问题的最优解可以通过将前面的求和截断到第$k$项来简单获得，即
+$$
+\bm{A}_k = \sum_{i=1}^{k}\sigma _i \bm{u}_i \bm{v}_i^\top
+$$
+为了证明上述低秩近似结果，注意到Frobenius范数是幺正不变(unitarily
+invariant)的，这意味着对于所有$\bm{Y} \in \mathbb{R} ^{m,n}$以及任意正交矩阵$\bm{Q} \in \mathbb{R} ^{m,n},\bm{R} \in \mathbb{R} ^{m,n}$，都有$\lVert \bm{Y} \rVert_F = \lVert \bm{QYR} \rVert_F$。因此
+$$
+\lVert \bm{A} - \bm{A}_k \rVert^2_F = \lVert \bm{U}^\top ( \bm{A} - \bm{A}_k V) \rVert^2_F = \lVert \tilde{\Sigma} - \bm{Z} \rVert^2_F
+$$
+其中$\bm{Z} = \bm{U}^\top \bm{A}_k \bm{V}$，通过变量变换，问题可以表述为
+$$
+\begin{gather*}
+    \min _{\bm{Z} \in  \mathbb{R} ^{m,n}} \left\lVert
+    \begin{bmatrix}
+        \operatorname{diag}(\sigma _1,\cdots ,\sigma _r) & \bm{0}_{r,n-r} \\
+        \bm{0}_{m-r,r} & \bm{0}_{m-r,n-r}
+    \end{bmatrix}-\bm{Z}
+     \right\rVert _F^2 \\
+    \text{s.t. :}\operatorname{rank}(\bm{Z}) = k
+\end{gather*}
+$$
+注意，初等变换不会改变矩阵的秩。可以假设$\bm{Z}$是对角矩阵，因为考虑$\bm{Z}$中的非零非对角元素只会使该问题中的Frobenius范数目标变差。因此，目标变为
+$$
+f_0 = \lVert \operatorname{diag}(\sigma _1,\cdots ,\sigma _r) - \operatorname{diag}(z_1,\cdots ,z_r) \rVert _F^2 = \sum_{i=1}^{r}(\sigma _i - z_i)^2
+$$
+由于约束条件$\operatorname{rank}(\bm{Z}) = k$要求对角线上恰好$k$个元素$z_i$非零，最好的选择是设置$z_i = \sigma _i,i = 1,\cdots ,k$并且$z_i =0,i>k$。通过这种方式，前$k$个$z_i$中和了A的最大奇异值，使得目标中的剩余项仅包含$r-k$个最小奇异值，即一个最优解为
+$$
+\bm{Z}^* =
+\begin{bmatrix}
+    \operatorname{diag}(\sigma _1,\cdots ,\sigma _k,0,\cdots ,0) & \bm{0}_{r,n-r} \\
+    \bm{0}_{m-r,r} & \bm{0}_{m-r,n-r}
+\end{bmatrix}
+$$
+最优的目标为
+$$
+f_0^* = \sum_{i=k+1}^{r} \sigma _i^2
+$$
+原问题的最优解可以通过变量变换$\bm{Z} = \bm{U}^\top \bm{A}_k \bm{V}$恢复，得到
+$$
+\bm{A}_k = \bm{U} \bm{Z}^* \bm{V}^\top = \sum_{i=1}^{k} \sigma _i \bm{u}_i \bm{v}_i^\top
+$$
+这确实与我们猜测的一致。按照完全相同的推理，我们实际上可以证明，这个解不仅对于Frobenius范数目标是最优的，对于谱矩阵范数（最大奇异值）也是最优的。也就是说，$\bm{A}_k$对于以下问题也是最优的（谱范数同样是幺正不变的）
+$$
+\begin{gather*}
+    \min _{\bm{A}_k \in  \mathbb{R} ^{m,n}} \lVert \bm{A} - \bm{A}_k \rVert _2^2 \\
+    \text{s.t. :}\operatorname{rank}(\bm{A}_k) = k
+\end{gather*}
+$$
+比率
+$$
+\eta _k = \frac{\lVert \bm{A}_k \rVert_F^2}{\lVert \bm{A}\rVert_F^2} = \frac{\sigma _1^2 + \cdots + \sigma _k^2}{\sigma _1^2 + \cdots + \sigma _r^2}
+$$
+表示$\bm{A}$的秩为$k$的近似在多大程度上解释了$\bm{A}$的总方差（Frobenius范数）。显然，$\eta _k$与相对范数近似误差有关
+$$
+e_k = \frac{\lVert \bm{A} - \bm{A}_k \rVert_F^2}{\lVert \bm{A}\rVert_F^2} = \frac{\sigma _{k+1}^2 + \cdots + \sigma _r^2}{\sigma _1^2 + \cdots + \sigma _r^2} = 1 - \eta _k
+$$
+
+> **备注5.2（到秩亏的最小距离）**：假设$\bm{A}\in \mathbb{R} ^{m,n},m \leq n$，且满秩，即$\operatorname{rank}(\bm{A}) = n$。我们想知道使$\bm{A} +\bm{\delta A}$变为秩亏（非满秩）的最小扰动$\bm{\delta A}$。最小扰动的Frobenius范数（或谱范数）衡量了$\bm{A}$到秩亏的距离。形式上，我们需要解
+> $$
+> \begin{gather*}
+>    \min _{\bm{\delta A} \in  \mathbb{R} ^{m,n}} \lVert  \bm{\delta A}\rVert _F^2 \\
+>    \text{s.t. :}\operatorname{rank}(\bm{A} + \bm{\delta A}) = n-1
+\end{gather*}
+> $$
+> 这个问题等价于低秩矩阵近似，其中$\bm{\delta A} = \bm{A}_k - \bm{A}$。因此解可以很容易得到为
+> $$
+> \bm{\delta A}^* = \bm{A}_k -\bm{A}
+> $$
+> 其中$\bm{A} = \sum_{i=1}^{n}\sigma _i \bm{u}_i \bm{v}_i^\top$是$\bm{A}$的紧凑型奇异值分解并且$\bm{A}_k = \sum_{i=1}^{n-1}\sigma _i \bm{u}_i \bm{v}_i^\top$，因此，我们有
+> $$
+> \bm{\delta A}^* = -\sigma _n \bm{u}_n \bm{v}_n^\top
+> $$
+> 这个结果表明，导致秩亏的最小扰动是一个秩为一的矩阵，而且到秩亏的距离为$\lVert \bm{\delta A}^* \rVert_F = \lVert \bm{\delta A}^* \rVert_2 = \sigma _n$
+
+### 3.2 主成分分析(Principal component analysis)
+
+主成分分析是一种无监督学习技术，广泛用于发现数据集中最重要或最具信息量的方向，也就是数据变化最大方向
+
+考虑下图中的二维数据云：沿着大约45度方向几乎包含了数据的所有变化。相比之下，沿着大约135度方向包含的数据变化很少。这意味着，在这个例子中，数据背后的重要现象本质上沿着45度的方向是一维的。当分析维度大于3的数据时，图形直觉就无济于事，这时主成分分析就显得很有用
+
+![5.5.png](https://minio.wblv66.top/optimization-models/5.5.png)
+
+设$\bm{x}_i \in \mathbb{R} ^n,i=1,\cdots ,m$为希望分析的给定数据点，记数据点的平均值为$\bar{\bm{x}} = \frac{1}{m} \sum_{i=1}^{m}\bm{x}_i$，并设$\tilde{\bm{X}}$是$n \times m$阶矩阵并包含居中后的数据点
+$$
+\tilde{\bm{X}} = [\tilde{\bm{x}}_1 \quad \cdots \tilde{\bm{x}}_m],\tilde{\bm{x}}_i \coloneqq \bm{x}_i - \bar{\bm{x}},i=1,\cdots ,m
+$$
+我们在数据空间中寻找一个归一化方向$\bm{z} \in \mathbb{R} ^n$，满足$\lvert \bm{z} \rvert^2 = 1$，使得中心化数据点在由$\bm{z}$决定的直线上的投影方差最大。我们选择在 $\bm{z}$的归一化中使用欧几里得范数，是因为它不会偏向任何特定方向
+
+沿$\bm{z}$方向的中心化数据的分量由下式给出（参见Section例如第 2.3.1 节）
+$$
+\alpha _i = \tilde{\bm{x}}_i^\top \bm{z},i=1,\cdots ,m
+$$
+注意，αi z 是 i 在 z 的张成空间上的投影。沿着方向 z 的数据均方变化由此给出
+
+---
+未完待续

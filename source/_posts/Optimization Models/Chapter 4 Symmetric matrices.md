@@ -585,7 +585,7 @@ $$
 $$
 相似地，$\mathcal{S}^n_{++}$代表$\mathbb{R} ^{n,n}$中正定矩阵的集合
 
-> **备注4.1**：PSD矩阵的主子矩阵。设$\mathcal{I} = \left\{ i_1 , \cdots ,i_m \right\}$是下标集合$\left\{ 1,\cdots ,n \right\}$的一个子集，并记$\bm{A}_{\mathcal{I}}$为从$\bm{A} \in \mathbb{R} ^{n,n}$中取出下标属于$\mathcal{I}$的行和列所得的子矩阵（这称为$\bm{A}$的$m \times m$维主子矩阵）
+> **备注4.1（PSD矩阵的主子矩阵）**：设$\mathcal{I} = \left\{ i_1 , \cdots ,i_m \right\}$是下标集合$\left\{ 1,\cdots ,n \right\}$的一个子集，并记$\bm{A}_{\mathcal{I}}$为从$\bm{A} \in \mathbb{R} ^{n,n}$中取出下标属于$\mathcal{I}$的行和列所得的子矩阵（这称为$\bm{A}$的$m \times m$维主子矩阵）
 > $$
 > \bm{A} \succeq 0 \Rightarrow \bm{A}_{\mathcal{I}} \succeq 0 , \forall \mathcal{I}
 > $$
