@@ -215,7 +215,7 @@ $\bm{A}$的大部分相关特性都可以从其奇异值分解中推导出来。
 > $$
 > 其中$r = \operatorname{rank} \bm{A}$，$\bm{U}_r = [\bm{u}_1,\cdots ,\bm{u}_r]$满足$\bm{U}_r^\top \bm{U}_r = \bm{I}_r$，$\bm{V}_r = [\bm{v}_1,\cdots ,\bm{v}_r]$满足$\bm{V}_r^\top \bm{V}_r = \bm{I}_r$，并且$\sigma _1 \geq \sigma _2 \geq \cdots \sigma _r > 0$。正数$\sigma _i$称为$\bm{A}$的奇异值(singular value)，向量$\bm{u}_i$称为$\bm{A}$的左奇异向量(left singular vector)，$\bm{v}_i$称为右奇异向量(right singular vector)。这些量满足
 > $$
-> \bm{Av}_i = \sigma _i \bm{u}_i,\bm{u}_i^\top \bm{A} = \sigma _i \bm{v}_i, i = 1,\cdots,r
+> \bm{Av}_i = \sigma _i \bm{u}_i, \bm{A}^\top \bm{u}_i^\top = \sigma _i \bm{v}_i, i = 1,\cdots,r
 > $$
 > 此外，$\sigma _i^2 = \lambda _i(\bm{AA}^\top ) = \lambda _i(\bm{A}^\top \bm{A} ),i=1,\cdots,r$且$\bm{u}_i$是$\bm{AA}^\top$的特征向量；$\bm{v}_i$是$\bm{A}^\top\bm{A}$的特征向量
 
