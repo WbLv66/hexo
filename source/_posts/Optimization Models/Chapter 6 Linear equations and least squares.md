@@ -183,10 +183,10 @@ $$
 >
 > 另外
 > $$
-> \begin{aligned}
+> \begin{align*}
 > \bm{A}^\top \bm{A} \bm{x}^* &= \bm{A}^\top \bm{A} \bm{A}^\dagger \bm{y} = \bm{V}_r \bm{\Sigma} \bm{U}_r^\top \bm{U}_r \bm{\Sigma} \bm{V}_r^\top \bm{V}_r \bm{\Sigma}^{-1} \bm{U}_r^\top \bm{y} \\
 > &= \bm{V}_r \bm{\Sigma} \bm{U}_r^\top \bm{y} = \bm{A}^\top \bm{y}
-> \end{aligned}
+> \end{align*}
 > $$
 > 这表明条件二也得到了满足，因此$\bm{x}^* = \bm{A}^\dagger \bm{y}$为最小二乘问题提供了最小范数的唯一解。总结如下推论
 

@@ -51,13 +51,13 @@ $$
 $$
 对于$\bm{z}$分量的大小，设$\beta _i = w_i / w_1$，我们有
 $$
-\begin{aligned}
+\begin{align*}
 \lVert \bm{z} \rVert_2 =& \left \lVert \sum_{i=2}^{n} \beta _i \left( \frac{\lambda _i}{\lambda _1} \right)^k  \bm{u}_i \right \rVert_2 \leq \sum_{i=2}^{n} \left \lVert  \beta _i \left( \frac{\lambda _i}{\lambda _1} \right)^k  \bm{u}_i \right \rVert_2 \\
 
 =& \sum_{i=2}^{n}  \lvert  \beta _i \rvert \left \lvert \frac{\lambda _i}{\lambda _1} \right \rvert^k \lVert \bm{u}_i \rVert_2 = \sum_{i=2}^{n}  \lvert  \beta _i \rvert \left \lvert \frac{\lambda _i}{\lambda _1} \right \rvert^k \\
 
 \leq & \left \lvert \frac{\lambda _2}{\lambda _1} \right \rvert^k \sum_{i=2}^{n}\lvert  \beta _i \rvert
-\end{aligned}
+\end{align*}
 $$
 最后的不等式是由特征值模的大小顺序得出的。由于$\lvert \lambda _2 / \lambda _1  \rvert < 1$，我们有$\bm{z}$分量的大小在$k \to \infty$时趋于零，收敛速率由比值$\lvert \lambda _2 \rvert / \lvert \lambda _1 \rvert$决定。因此$\bm{A}^k \bm{x} \to \alpha _k \bm{u}_1$，这意味着随着$k \to \infty$，$\bm{A}^k \bm{x}$趋向于与$\bm{u}_1$平行。因此，通过对向量$\bm{A}^k \bm{x}$进行归一化，我们得到
 $$
@@ -73,7 +73,7 @@ $$
 $$
 也就是说，乘积$\bm{x}^\dagger(k)\bm{A} x(k)$会收敛到$\bm{A}$的模最大的特征值
 $$
-\begin{aligned}
+\begin{align*}
     &x^\dagger (k)\bm{A} x(k) \\
     =& \frac{(\bm{A}^k \bm{x})^\dagger\bm{A} (\bm{A}^k \bm{x})}{ \lVert \bm{A}^k \bm{x} \rVert_2^2} \\
     =& \frac{(\alpha _k \bm{u}_1 + \alpha _k \bm{z})^\dagger \bm{A} (\alpha _k \bm{u}_1 + \alpha _k \bm{z})}{(\alpha _k \bm{u}_1 + \alpha _k \bm{z})(\alpha _k \bm{u}_1 + \alpha _k \bm{z})} \\
@@ -81,7 +81,7 @@ $$
     =& \frac{\bm{u}^\dagger _1 \bm{A} \bm{u}_1 + \bm{u}^\dagger _1 \bm{A} \bm{z} + \bm{z}^\dagger \bm{A} \bm{u}_1 + \bm{z}^\dagger \bm{A} \bm{z}}{\bm{u}^\dagger _1  \bm{u}_1 + \bm{u}^\dagger _1  \bm{z} + \bm{z}^\dagger  \bm{u}_1 + \bm{z}^\dagger \bm{z}}  \\
     =& \frac{\bm{u}^\dagger _1 \lambda _1 \bm{u}_1 + \bm{u}^\dagger _1 \bm{A} \bm{z} + \bm{z}^\dagger \lambda _1 \bm{u}_1 + \bm{z}^\dagger \bm{A} \bm{z}}{1 + \bm{u}^\dagger _1  \bm{z} + \bm{z}^\dagger  \bm{u}_1 + \bm{z}^\dagger \bm{z}}  \\
     =& \frac{ \lambda _1 + \bm{u}^\dagger _1 \bm{A} \bm{z} + \bm{z}^\dagger \lambda _1 \bm{u}_1 + \bm{z}^\dagger \bm{A} \bm{z}}{1 + \bm{u}^\dagger _1  \bm{z} + \bm{z}^\dagger  \bm{u}_1 + \bm{z}^\dagger \bm{z}}
-\end{aligned}
+\end{align*}
 $$
 其他项中$\bm{u}_1$和$\bm{A}$均不会随$k$而变化，而$\bm{z}$中含有$\left( \lambda _i / \lambda _1 \right)^k$，因此$k \to \infty$时$\bm{z} \to \bm{0}$。因此$x^\dagger (k)\bm{A} x(k)$会收敛到$\lambda _1$，收敛速度由$\lvert \lambda _2 \rvert / \lvert \lambda _1 \rvert$比例决定，并且以线性速度收敛
 
@@ -127,11 +127,11 @@ $$
 $$
 这里所谓近似是指我们寻找$\sigma _k$，使得方程残差的平方范数最小，即$\min \lVert \bm{x}(k) \sigma _k - \bm{Ax}(k) \rVert$。通过要求该函数对$\sigma _k$的导数为零，我们得到
 $$
-\begin{aligned}
+\begin{align*}
    \frac{\partial \big(\bm{x}(k) \sigma _k - \bm{Ax}(k))^\dagger (\bm{x}(k) \sigma _k - \bm{Ax}(k)\big)}{\partial \sigma_k} &= 0 \\
    \frac{\partial \big(\sigma _k \bm{x}^\dagger (k) \bm{x}(k) \sigma _k   - 2\bm{x}^\dagger (k)\bm{A} \bm{x}(k) \sigma _k \big)}{\partial \sigma_k} &= 0 \\
    \frac{\bm{x}^\dagger (k)\bm{A} \bm{x}(k)}{\bm{x}^\dagger (k) \bm{x}(k)} &= \sigma _k
-\end{aligned}
+\end{align*}
 $$
 这被称为瑞利商(Rayleigh quotient)，参见Section第4.3.1节。如果我们按照在移位-逆幂算法中自适应地选择移位，就得到了所谓的瑞利商迭代法，如下所示。与幂迭代方法不同，瑞利商迭代法可以被证明**具有局部二次收敛性**，也就是说，在经过一定次数迭代后，第$k+1$次迭代中解的收敛差距与第$k$次迭代中解的差距的平方成正比
 
@@ -156,10 +156,10 @@ $\bm{\Lambda }_n$和$\bm{\Lambda }_m$是对角矩阵，其前$r$个对角元素�
 
 接下来，我们将概述如何使用幂迭代法来确定与矩阵最大奇异值对应的左奇异向量和右奇异向量。基本思路是对对称矩阵$\bm{A}^\top \bm{A}$和$\bm{AA}^\top$应用幂迭代，但以隐式方式进行，从而绕过对该矩阵的显式计算，因为该矩阵通常是稠密的
 $$
-\begin{aligned}
+\begin{align*}
     \bm{u}(k+1) &= \frac{\bm{A}\bm{v}(k)}{\lVert \bm{A}\bm{v}(k) \rVert_2} \\
     \bm{v}(k+1) &= \frac{\bm{A}^\top \bm{u}(k+1)}{\lVert \bm{A}^\top \bm{u}(k+1) \rVert_2}
-\end{aligned}
+\end{align*}
 $$
 消去$\bm{u}(k+1)$可以得到
 $$
@@ -342,17 +342,144 @@ $$
 
 接下来我们计算通过高斯消元法解方阵系统所需的基本操作次数。首先考虑高斯消元过程，我们看到在该过程的第一次迭代中，需要$2n+1$次操作来更新矩阵的第二行（$1$次除法和$n$次乘法和减法运算以求出行的新的元素）。因此，为了将第一列中第一个元素以下的所有元素置零，并更新从第二行开始的所有行，需要$(n-1)(2n+1)$次操作。接下来，我们需要$(n-2)(2n-1)$次操作以将第二列置零并更新矩阵；对于第三列，我们需要$(n-3)(2n-3)$次操作，依此类推。这些操作的总和为
 $$
-\begin{aligned}
+\begin{align*}
     & \sum_{i=1}^{n-1} \big(n-i\big)\big(2(n-i+1)+1\big) \\
     =& \sum_{i=1}^{n-1} (n-i)(2n-2i+3) \\
     =& \sum_{k=1}^{n-1} k(2k+3) \\
     =& 2\sum_{k=1}^{n-1} k^2 + 3 \sum_{k=1}^{n-1} k \\
     =&  \frac{n(n-1)(2n-1)}{3} + \frac{3n(n-1)}{2} \\
     =& \sim \frac{2}{3} n^3
-\end{aligned}
+\end{align*}
 $$
 这里的符号$\sim$表示多项式中的首项，这种表示法比通常的$O(\cdot)$表示法更具信息性，因为它指出了首项的系数。我们最终需要对变换后的三角系统应用反向代入，这将额外需要$n^2$次运算。这不会改变主导的复杂度项，因此求解一个一般的非奇异系统所需的总运算次数为$\sim \frac{2}{3} n^3$
 
 ## 3. QR分解
 
-QR 分解是一种线性代数操作，它将一个矩阵分解为一个正交分量，该分量是矩阵行空间的基，以及一个三角分量。在 QR 分解中，矩阵 A ∈ Rm,n，其中 m ≥ n，且 rank(A) = n，因此被分解为：
+QR分解是一种线性代数操作，它将一个矩阵分解为一个正交分量，该分量是矩阵列空间的基，以及一个三角分量。在QR分解中，矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，其中$m \geq n$，且$\operatorname{rank}(\bm{A})$，因此被分解为
+$$
+\bm{A} = \bm{Q} \bm{R}
+$$
+其中$\bm{Q} \in \mathbb{R} ^{m,n}$具有正交列（即$\bm{Q}^\top \bm{Q} = \bm{I}_n$），并且$\bm{R} \in \mathbb{R} ^{n,n}$是上三角矩阵。计算 QR 分解的方法有很多，包括 Householder 变换法、改进的 Gram–Schmidt 算法以及快速 Givens 方法。这里，我们描述基于改进的 Gram–Schmidt 算法(modified Gram–Schmidt, MGS)的方法
+
+### 3.1 改进的Gram–Schmidt过程
+
+我们回忆一下Section第2.3.3节，当给定一组线性无关向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\}$时，Gram–Schmidt(GS)过程会构造一个与原始向量组具有相同张成空间的正交归一向量组$\left\{ \bm{q}^{(1)},\cdots , \bm{q}^{(n)}\right\}$，具体如下：对于$k = 1,\cdots n$
+$$
+\begin{gather*}
+\bm{\zeta}^{(k)} = \bm{a}^{(k)} - \sum_{i=1}^{k-1} \left\langle \bm{a}^{(k)}, \bm{q}^{(i)} \right\rangle\bm{q}^{(i)}   \\
+\bm{q}^{(k)}= \frac{\bm{\zeta}^{(k)}}{\lVert \bm{\zeta}^{(k)} \rVert}
+\end{gather*}
+$$
+设$\mathcal{S}_{k-1} = \operatorname{span}\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\}$，并设其正交补记为$\mathcal{S}_{k-1}^\perp$。在上述方程中，GS 过程计算$\bm{a}^{(k)}$在$\mathcal{S}_{k-1}$上的投影，然后从$\bm{a}^{(k)}$中减去它，从而得到$\bm{a}^{(k)}$在$\mathcal{S}_{k-1}^\perp$上的投影。容易看出，上述方程中的投影运算可以用矩阵形式表示如下
+$$
+\begin{gather*}
+\bm{\zeta}^{(k)} = \mathcal{P}_{\mathcal{S}_{k-1}^\perp} \bm{a}^{(k)} \\
+\mathcal{P}_{\mathcal{S}_{k-1}^\perp} = \bm{I} - \mathcal{P}_{\mathcal{S}_{k-1}} \\
+\mathcal{P}_{\mathcal{S}_{k-1}} = \sum_{i=1}^{k-1} \bm{q}^{(i)} \bm{q}^{(i)\top}
+\end{gather*}
+$$
+其中$\mathcal{P}_{\mathcal{S}_{0}} = 0,\mathcal{P}_{\mathcal{S}_{0}}^\perp = \bm{I}$。此外，**正交投影矩阵$\mathcal{P}_{\mathcal{S}_{k-1}^\perp} = \bm{I} - \mathcal{P}_{\mathcal{S}_{k-1}}$可以表示为投影到各个$\bm{q}^{(1)},\cdots ,\bm{q}^{(k-1)}$的正交子空间的初等投影的乘积**，即
+$$
+\begin{gather*}
+\mathcal{P}_{\mathcal{S}_{k-1}^\perp} = \mathcal{P}_{\bm{q}^{(k-1) ^\perp}} \cdots \mathcal{P}_{\bm{q}^{(1) ^\perp}},k>1 \\
+\mathcal{P}_{\bm{q}^{(i) ^\perp}} =\bm{I} - \bm{q}^{(i)} \bm{q}^{(i)\top}
+\end{gather*}
+$$
+这个事实可以很容易地直接验证：例如取$k=3$（一般情况可以通过相同的论证得出）
+$$
+\begin{align*}
+&\mathcal{P}_{\bm{q}^{(2) ^\perp}}\mathcal{P}_{\bm{q}^{(1) ^\perp}} \\
+=& (\bm{I} - \bm{q}^{(2)} \bm{q}^{(2)\top})(\bm{I} - \bm{q}^{(1)} \bm{q}^{(1)\top}) \\
+=& \bm{I} - \bm{q}^{(2)} \bm{q}^{(2)\top} - \bm{q}^{(1)} \bm{q}^{(1)\top} + \bm{q}^{(2)} \bm{q}^{(2)\top} \bm{q}^{(1)} \bm{q}^{(1)\top} \\
+=& \bm{I} - \bm{q}^{(2)} \bm{q}^{(2)\top} - \bm{q}^{(1)} \bm{q}^{(1)\top} \\
+=& \bm{I} - \mathcal{P}_{\mathcal{S}_{2}} \\
+=& \mathcal{P}_{\mathcal{S}_{2}^\perp}
+\end{align*}
+$$
+在 MGS 中，每个$\bm{\zeta}^{(k)} = \mathcal{P}_{\bm{q}^{(k-1) ^\perp}} \cdots \mathcal{P}_{\bm{q}^{(1) ^\perp}} \bm{I} \bm{a}^{(k)}$按如下方式递归计算（注意以下计算的是一个$\bm{\zeta}$）
+$$
+\begin{align*}
+\bm{\zeta}^{(k)}(1) &= \bm{a}^{(k)}, \\
+\bm{\zeta}^{(k)}(2) &= \mathcal{P}_{\bm{q}^{(1)\perp}} \bm{\zeta}^{(k)}(1) = \left(\bm{I} - \bm{q}^{(1)} \bm{q}^{(1)\top}\right) \bm{\zeta}^{(k)}(1) \\
+&= \bm{\zeta}^{(k)}(1) - \bm{q}^{(1)} \bm{q}^{(1)\top} \bm{\zeta}^{(k)}(1), \\
+\bm{\zeta}^{(k)}(3) &= \mathcal{P}_{\bm{q}^{(2)\perp}} \bm{\zeta}^{(k)}(2) = \bm{\zeta}^{(k)}(2) - \bm{q}^{(2)} \bm{q}^{(2)\top} \bm{\zeta}^{(k)}(2), \\
+&\ \ \vdots \quad \vdots \quad \vdots \\
+\bm{\zeta}^{(k)}(k) &= \mathcal{P}_{\bm{q}^{(k-1)\perp}} \bm{\zeta}^{(k)}(k-1) \\
+&= \bm{\zeta}^{(k)}(k-1) - \bm{q}^{(k-1)} \bm{q}^{(k-1)\top} \bm{\zeta}^{(k)}(k-1).
+\end{align*}
+$$
+虽然两种公式（ GS 和 MGS ）在数学上是等价的，但后者在数值上被证明更稳定。接下来将 MGS 过程形式化为一个算法
+
+![algorithm8.png](https://minio.wblv66.top/optimization-models/algorithm8.png)
+
+对于较大的$m,n$，计算工作主要由算法的最内层循环支配：计算$r_{ij} = \bm{q}^{(i)\top} \bm{\zeta}^{(j)}$需要$m$次乘加运算（实际是$m$次乘法和$m-1$次加法），而计算$\bm{\zeta}^{(j)} = \bm{\zeta}^{(j)} - r_{ij}\bm{q}^{(i)}$需要$m$次乘减运算，因此每个内层循环总计$4m$次操作。因此，算法的总体操作计数大约为
+$$
+\sum_{i=1}^{n} \sum_{j=i+1}^{n} 4m = \sum_{i=1}^{n} (n-i)4m = \big( n^2 - \frac{n(n+1)}{2} \big)4m \sim 2mn^2
+$$
+接下来我们将展示 MGS 算法实际上提供了$\bm{A}$的 QR 分解中的$\bm{Q}$和$\bm{R}$因子。设$\bm{a}^{(1)},\cdots ,\bm{a}^{(n)}$表示$\bm{A}$的各列。由于$\bm{\zeta}^{(1)} = \bm{a}^{(1)}$，并且对于$j >1$
+$$
+\bm{\zeta}^{(j)} = \bm{a}^{(j)} - \sum_{i=1}^{j-1} \bm{q}^{(i)} \bm{q}^{(i)\top} \bm{a}^{(j)}
+$$
+现在设$r_{jj} = \lVert \bm{\zeta}^{(j)} \rVert,r_{ij} = \bm{q}^{(i)\top} \bm{a}^{(j)}$，并回忆$\bm{q}^{(j)}= \bm{\zeta}^{(j)} / r_{jj}$。前面的方程变为
+$$
+r_{jj} \bm{q}^{(j)} = \bm{a}^{(j)} - \sum_{i=1}^{j-1} r_{ij} \bm{q}^{(i)}
+$$
+那也就是说
+$$
+\bm{a}^{(j)} = r_{jj} \bm{q}^{(j)} + \sum_{i=1}^{j-1} r_{ij} \bm{q}^{(i)}
+$$
+这给出了所需的分解$\bm{A} = \bm{Q} \bm{R}$，其中
+$$
+[\bm{a}^{(1)} \cdots \bm{a}^{(n)}] = [\bm{q}^{(1)} \cdots \bm{q}^{(n)}]
+\begin{bmatrix}
+r_{11} & r_{12} & \cdots & r_{1n} \\
+     0 & r_{22} & \cdots & r_{2n} \\
+     \vdots & \vdots & \ddots & \vdots \\
+     0 & 0 & \cdots & r_{nn} \\
+\end{bmatrix}
+$$
+以上推理构成了以下事实的构造性证明
+
+> **定理7.1（QR 分解）**：任意矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，且$m \geq n$，$\operatorname{rank}(\bm{A}) = n$，都可以分解为$\bm{A} = \bm{Q} \bm{R}$，其中$\bm{R} \in \mathbb{R} ^{n,n}$为上三角矩阵且对角线元素为正，$\bm{Q} \in \mathbb{R} ^{m,n}$的列向量标准正交（即满足$\bm{Q}^\top \bm{Q} = \bm{I}_n$）
+
+### 3.2 针对秩亏矩阵的 MGS 和 QR 分解
+
+在标准的 GS 过程中，我们假设向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\},\bm{a}^{(i)} \in \mathbb{R} ^m$是线性无关的，也就是说矩阵$\bm{A} = [\bm{a}^{(1)} \cdots  \bm{a}^{(n)}] \in \mathbb{R} ^{m,n}$是列满秩的。接下来，我们讨论如何将 GS 过程和 QR 分解推广到$\bm{A}$不满秩的情况，即$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\}$线性相关时。在这种情况下，令$k \leq n$为最小整数，使得向量$\bm{a}^{(k)}$可以表示为前面向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(k-1)}\right\}$的线性组合（前$k-1$个向量线性无关，前$k$个向量线性相关），即
+$$
+\bm{a}^{(k)} = \sum_{i=1}^{k-1} \tilde{\alpha }_i \bm{a}^{(i)}
+$$
+$\tilde{\alpha }_i$为标量。可知$\left\{ \bm{q}^{(1)},\cdots , \bm{q}^{(k-1)}\right\}$张成的子空间与 $\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(k-1)}\right\}$相同，我们也有
+$$
+\bm{a}^{(k)} = \sum_{i=1}^{k-1} \alpha_i \bm{q}^{(i)}
+$$
+$\alpha_i$为标量。由于向量$\bm{q}^{(j)},j=1,\dots,k-1$是标准正交的
+$$
+\left\langle \bm{a}^{(k)}, \bm{q}^{(j)} \right\rangle = \sum_{i=1}^{k-1}\alpha_i \left\langle \bm{q}^{(i)}, \bm{q}^{(j)} \right\rangle = \alpha _j
+$$
+因此，根据$\bm{\zeta}^{(k)} = \bm{a}^{(k)} - \sum_{i=1}^{k-1} \left\langle \bm{a}^{(k)}, \bm{q}^{(i)} \right\rangle\bm{q}^{(i)}$可以得到$\bm{\zeta}^{(k)} = \bm{0}$，因此标准程序无法继续。然而，广义程序通过丢弃所有满足$\bm{\zeta}^{(k')} = \bm{0}$的对应向量$\bm{a}^{(k')} ,k' \geq k$，来继续进行，直到程序终止，或者找到一个$\bm{\zeta}^{(k')} \neq \bm{0}$的向量$\bm{a}^{(k')}$。在这种情况下，对应的标准向量$\bm{q}^{(k')}$被加入标准正交集合中，并继续迭代该过程。终止时，该修改后的过程返回一组$r = \operatorname{rank}(\bm{A})$个正交向量$\left\{ \bm{q}^{(1)},\cdots , \bm{q}^{(r)}\right\}$，它们形成$\mathcal{R}(\bm{A})$的标准正交基
+
+这个过程提供了一种广义的 QR 分解，因为$\bm{A}$的每一列都可以表示为$\bm{Q} = [\bm{q}^{(1)}\cdots  \bm{q}^{(r)}]$列的线性组合，并且非零系数的数量是非递减的。具体而言，$\bm{A}$的第一块$n_1 \geq 1$列被表示为$\bm{q}^{(1)}$的线性组合，$\bm{A}$的第二块$n_2 \geq 1$列被表示为$\bm{q}^{(1)},\bm{q}^{(2)}$的线性组合，依此类推，直到$\bm{A}$的第$r$块$n_r$列被表示为$\bm{q}^{(1)},\cdots,\bm{q}^{(r)}$的线性组合，其中$n_1 + n_2 + \cdots +n_r = n$。用公式表示为
+$$
+\bm{A} = \bm{Q} \bm{R} , \bm{R} =
+\begin{bmatrix}
+    \bm{R}_{11} & \bm{R}_{12} & \cdots & \bm{R}_{1r} \\
+    \bm{0} & \bm{R}_{22} & \cdots & \bm{R}_{2r} \\
+    \vdots  & \vdots & \ddots & \vdots \\
+    \bm{0} & \bm{0} & \cdots & \bm{R}_{rr} \\
+\end{bmatrix}
+,\bm{R}_{ij} \in \mathbb{R} ^{1,n_j}
+$$
+矩阵$\bm{R}$是分块上三角形式。然后可以重新排列$\bm{R}$的列，使得$\bm{R}_{ii}$第一个元素所在的列移到第$i$列，构造上三角矩阵。这可以写成
+$$
+\bm{A}=\bm{Q} \bm{R} \bm{E}^\top , \bm{R} = [\tilde{\bm{R}} \quad \bm{M}]
+$$
+其中$\bm{E}$是一个合适的列置换矩阵（注意置换是初等变换，因此矩阵是正交的），$\tilde{\bm{R}} \in \mathbb{R} ^{r,r}$是上三角且可逆的，$\bm{M} \in \mathbb{R} ^{r,n-r}$
+
+QR 分解的另一种完整形式使用$\bm{Q}$矩阵中的所有$m$列：在$\bm{q}^{(1)}\cdots  \bm{q}^{(r)}$的基础上添加$m-r$个正交列，以完成$\mathbb{R} ^m$的一组正交基。因此，在$\bm{R}$矩阵中附加$m-r$个全零的尾行，以得到
+$$
+\bm{A}=\bm{Q} \bm{R} \bm{E}^\top ,\bm{Q} \in \mathbb{R} ^m,\bm{Q}^\top \bm{Q} = \bm{I}_m, \bm{R} =
+\begin{bmatrix}
+    \tilde{\bm{R}} & \bm{M} \\
+    \bm{0}_{m-r,r} & \bm{0}_{m-r,n-r}
+\end{bmatrix}
+$$
