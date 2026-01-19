@@ -832,14 +832,226 @@ $$
 ### 4.8 块结构矩阵
 
 任何矩阵都能被划分为块或子矩阵
-
 $$
  \bm{A} = \begin{bmatrix}
     \bm{A}_{11} & \bm{A}_{12}\\
     \bm{A}_{21} & \bm{A}_{22}
 \end{bmatrix}
+$$
+当$\bm{A}$为方阵，且$\bm{A}_{12} = \bm{0},\bm{A}_{21} = \bm{0}$（这里的$\bm{0}$指的是维度合适的全零矩阵块）时，$\bm{A}$称为块对角矩阵
+$$
+\bm{A} = \begin{bmatrix}
+    \bm{A}_{11} & \bm{0}\\
+    \bm{0} & \bm{A}_{22}
+\end{bmatrix}
+$$
+矩阵$\bm{A}$的特征值集合$\lambda (\bm{A})$是$\bm{A}_{11}$和$\bm{A}_{22}$的特征值集合的并集
+$$
+\lambda (\bm{A}) = \lambda (\bm{A}_{11}) \cup \lambda (\bm{A}_{22}),\bm{A} \text{ is block diagonal}
+$$
+此外，当且仅当对角块可逆时块对角矩阵整体可逆，并且有
+$$
+\begin{bmatrix}
+    \bm{A}_{11} & \bm{0}\\
+    \bm{0} & \bm{A}_{22}
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+    \bm{A}_{11}^{-1} & \bm{0}\\
+    \bm{0} & \bm{A}_{22}^{-1}
+\end{bmatrix}
+$$
+如果矩阵$\bm{A}$为方阵，且$\bm{A}_{21} = \bm{0}$，则称其为分块上三角矩阵；如果$\bm{A}_{12} = \bm{0}$，则称其为分块下三角矩阵
+$$
+\begin{gather*}
+\bm{A} = \begin{bmatrix}
+    \bm{A}_{11} & \bm{0}\\
+    \bm{A}_{21} & \bm{A}_{22}
+\end{bmatrix},\text{block lower triangular} \\
+\bm{A} = \begin{bmatrix}
+    \bm{A}_{11} & \bm{A}_{12}\\
+    \bm{0} & \bm{A}_{22}
+\end{bmatrix},\text{block upper triangular}
+\end{gather*}
+$$
+同样，对于分块三角矩阵，$\bm{A}$的特征值是对角块特征值的并集，即
+$$
+\lambda (\bm{A}) = \lambda (\bm{A}_{11}) \cup \lambda (\bm{A}_{22}),\bm{A} \text{ is block triangular}
+$$
+非奇异块三角矩阵的逆可以表示如下
+$$
+\begin{gather*}
+\begin{bmatrix}
+\bm{A}_{11} & \bm{0} \\
+\bm{A}_{21} & \bm{A}_{22}
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\bm{A}_{11}^{-1} & \bm{0} \\
+-\bm{A}_{22}^{-1}\bm{A}_{21}\bm{A}_{11}^{-1} & \bm{A}_{22}^{-1}
+\end{bmatrix} \\
 
+\begin{bmatrix}
+\bm{A}_{11} & \bm{A}_{12} \\
+\bm{0} & \bm{A}_{22}
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+\bm{A}_{11}^{-1} & -\bm{A}_{11}^{-1}\bm{A}_{12}\bm{A}_{22}^{-1} \\
+\bm{0} & \bm{A}_{22}^{-1}
+\end{bmatrix}
+\end{gather*}
+$$
+这两个公式都可以通过直接验证$\bm{A} \bm{A}^{-1} = \bm{I}$和$\bm{A}^{-1} \bm{A} = \bm{I}$来证明。对于非奇异全块矩阵的逆，也存在两个等效的公式。定义
+$$
+\begin{gather*}
+\bm{S}_1 \coloneqq \bm{A}_{11}-\bm{A}_{12}\bm{A}_{22}^{-1}\bm{A}_{21} \\
+
+\bm{S}_2 \coloneqq \bm{A}_{22}-\bm{A}_{21}\bm{A}_{11}^{-1}\bm{A}_{12}
+\end{gather*}
+$$
+那么
+$$
+\begin{align*}
+\begin{bmatrix}
+\bm{A}_{11} & \bm{A}_{12} \\
+\bm{A}_{21} & \bm{A}_{22}
+\end{bmatrix}
+^{-1}
+&=
+\begin{bmatrix}
+\bm{S}_{1}^{-1} & -\bm{A}_{11}^{-1}\bm{A}_{12}\bm{S}_{2}^{-1} \\
+-\bm{A}_{22}^{-1}\bm{A}_{21}\bm{S}_{1}^{-1} & \bm{S}_{2}^{-1}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\bm{S}_{1}^{-1} & -\bm{S}_{1}^{-1}\bm{A}_{12}\bm{A}_{22}^{-1} \\
+-\bm{S}_{2}^{-1}\bm{A}_{21}\bm{A}_{11}^{-1} & \bm{S}_{2}^{-1}
+\end{bmatrix}
+\end{align*}
+$$
+可以通过使用一个方便的矩阵恒等式（称为矩阵求逆引理(matrix inversion lemma)或Woodbury公式）展开$\bm{S}_{1}$和$\bm{S}_{2}$块的逆，从而得到进一步等价的表达式
+$$
+\left( \bm{A}_{11} - \bm{A}_{12}\bm{A}_{22}^{-1}\bm{A}_{21} \right)^{-1}
+=
+\bm{A}_{11}^{-1} + \bm{A}_{11}^{-1}\bm{A}_{12}\left( \bm{A}_{22} - \bm{A}_{21}\bm{A}_{11}^{-1}\bm{A}_{12} \right)^{-1}\bm{A}_{21}\bm{A}_{11}^{-1}.
 $$
 
----
-未完待续
+### 4.9 秩一扰动
+
+当$\bm{A}_{12}$和$\bm{A}_{21}$是向量时，即将一个秩为一的矩阵（即并矢）加到$\bm{A}_{11}$上，上述方程会出现一个特殊情况。具体来说，对于$\bm{A}_{12} = \bm{u} \in \mathbb{R} ^n,\bm{A}_{21}^\top = \bm{v} \in \mathbb{R} ^n$并且$\bm{A}_{22} = -1$，上述公式变为
+$$
+(\bm{A}_{11} + \bm{u}\bm{v}^\top)^{-1} = \bm{A}_{11}^{-1} - \frac{\bm{A}_{11}^{-1}\bm{u}\bm{v}^\top \bm{A}_{11}^{-1}}{1+\bm{v}^\top \bm{A}_{11}^{-1} \bm{u}}
+$$
+这个公式使我们能够基于$\bm{A}_{11}$本身的逆，轻松计算 $\bm{A}_{11}$的秩一扰动的逆
+
+另一个有趣的性质是，秩一的扰动无法使矩阵的秩改变超过一个单位
+
+> **引理3.1（秩一扰动的秩）**：设$\bm{A} \in \mathbb{R} ^{m,n}$且$\bm{q} \in \mathbb{R} ^m, \bm{p}\in \mathbb{R} ^n$
+> $$
+> \lvert \operatorname{rank} (\bm{A}) - \operatorname{rank} (\bm{A}+\bm{q} \bm{p}^\top ) \rvert \leq 1
+> $$
+
+> **证明**
+>
+> 我们接下来展示$\operatorname{rank} (\bm{A}) \leq \operatorname{rank} (\bm{A}+\bm{q} \bm{p}^\top ) +1$；对称条件$\operatorname{rank} (\bm{A}+\bm{q} \bm{p}^\top ) \leq \operatorname{rank} (\bm{A}) +1$ 可以通过相同的论证方法证明，只需交换$\bm{A}$和$\bm{A}+\bm{q} \bm{p}^\top$矩阵的角色。由于秩与矩阵的值域子空间的维度相同，我们需要证明的是
+> $$
+> \dim \mathcal{R}(\bm{A}) \leq \dim \mathcal{R}(\bm{A}+\bm{q} \bm{p}^\top ) +1
+> $$
+> 根据线性代数基本定理，$\dim \mathcal{R}(\bm{A}) + \dim \mathcal{N}(\bm{A}^\top ) = m$，前述条件也等价于
+> $$
+> \dim \mathcal{N}(\bm{A}^\top +\bm{p} \bm{q}^\top) \leq \dim \mathcal{N}(\bm{A}^\top )+1
+> $$
+> 我们通过反证法证明上式：设$v \coloneqq \dim \mathcal{N}(\bm{A}^\top)$，并为达到反证的目的，假设
+> $$
+> \dim \mathcal{N}(\bm{A}^\top +\bm{p} \bm{q}^\top) > v+1
+> $$
+> 那么将存在$v+2$个线性无关的向量$\bm{v}_1,\cdots ,\bm{v}_{v+2}$，它们都属于$\bm{A}^\top +\bm{p} \bm{q}^\top$的零空间，即$(\bm{A}^\top +\bm{p} \bm{q}^\top) \bm{v}_i = \bm{0},i=1,\cdots ,v+2$，这意味着
+> $$
+> \bm{A}^\top \bm{v}_i = - \alpha _i \bm{p} , \alpha _i \coloneqq \bm{q}^\top \bm{v}_i , i=1,\cdots ,v+2
+> $$
+> 现在，至少有一个标量$\alpha _i$必须非零，否则对于$i=1,\cdots ,v+2$会有$\bm{A}^\top \bm{v}_i = \bm{0}$，这将与$\dim \mathcal{N}(\bm{A}^\top) = v$的事实矛盾，从而结果将立即得到证明。然后讨论至少有一个标量$\alpha _i$非零的情况。假设不失一般性，$\alpha _1 \neq 0$，并定义向量$\bm{w}_i = \bm{v}_{i+1} - ( \alpha_{i+1}/\alpha_1 )\bm{v}_1,  i = 1, \cdots, v+1$。然后可以直接验证
+> $$
+> \bm{A}^\top \bm{w}_i = \bm{A}^\top \bm{v}_{i+1} - \frac{\alpha_{i+1}}{\alpha_1} \bm{A}^\top \bm{v}_1 = -\alpha_{i+1}\bm{p} + \alpha_{i+1}\bm{p} = \bm{0}, i = 1, \cdots, v + 1.
+> $$
+> 那么我们就会有$v+1$个属于$\bm{A}^\top$的零空间的线性无关向量$\bm{w}_i$，这与事实相矛盾，因为$\dim \mathcal{N}(\bm{A}^\top) = v$
+
+## 5. 矩阵分解
+
+理论和数值线性代数中的很大一部分内容致力于矩阵分解问题。也就是说，给定一个矩阵 A ∈ Rm,n，将该矩阵表示为具有特殊结构的两个或多个矩阵的乘积。通常，一旦矩阵适当分解，就可以方便地得到若干感兴趣的数值，后续计算也会大大简化。例如，已知任何方阵 A 都可以表示为一个正交矩阵与一个三角矩阵的乘积，即 A = QR，其中 Q 是正交矩阵，R 是上三角矩阵。一旦获得这种分解，我们就可以立即评估 A 的秩，这仅仅是 R 对角线上非零元素的数量。同样，我们也可以方便地求解类似 Ax = b 类型的线性方程组中的未知向量 x，这将在第 6.4.4.1 节中进一步讨论。从矩阵 A 定义的线性映射来看，分解可以解释为将该映射分解为一系列连续阶段的过程，例如见图 3.12。
+
+### 5.1 正交—三角分解（Orthogonal-triangular decomposition）($\bm{Q} \bm{R}$)
+
+任何方阵$\bm{A} \in \mathbb{R} ^{n,n}$都可以分解为
+$$
+\bm{A} = \bm{Q} \bm{R}
+$$
+其中$\bm{Q}$是一个正交矩阵，$\bm{R}$是一个上三角矩阵。若$\bm{A}$是非奇异矩阵，则当要求$\bm{R}$的对角元素为正数时，分解因子$\bm{Q},\bm{R}$是唯一确定的
+
+如果$\bm{A} \in \mathbb{R}^{m,n}$是矩形的，且$m \geq n$，若矩阵$\bm{A}$满秩，可以分解为
+$$
+\bm{A} = \bm{Q} \bm{R}
+$$
+其中$\bm{Q} \in \mathbb{R} ^{m,n}$有正交列，$\bm{R} \in \mathbb{R} ^{n,n}$是上三角的
+
+$\bm{Q} \bm{R}$分解的另一种完整形式使用$\bm{Q}$矩阵中的所有$m$列：在$\bm{q}^{(1)}\cdots  \bm{q}^{(n)}$的基础上添加$m-n$个正交列，以完成$\mathbb{R} ^m$的一组正交基
+$$
+\bm{A} = \bm{Q}
+\begin{bmatrix}
+\bm{R}_1 \\
+\bm{0}_{m-n,n}
+\end{bmatrix}
+$$
+其中$\bm{Q} \in \mathbb{R} ^{m,m}$是正交的，$\bm{R}_1 \in \mathbb{R} ^{n,n}$是上三角的
+
+若矩阵$\bm{A}$非满秩，可以分解为
+$$
+\bm{A} = \bm{Q} \bm{R} , \bm{R} =
+\begin{bmatrix}
+    \bm{R}_{11} & \bm{R}_{12} & \cdots & \bm{R}_{1r} \\
+    \bm{0} & \bm{R}_{22} & \cdots & \bm{R}_{2r} \\
+    \vdots  & \vdots & \ddots & \vdots \\
+    \bm{0} & \bm{0} & \cdots & \bm{R}_{rr} \\
+\end{bmatrix}
+$$
+其中$\bm{Q} \in \mathbb{R} ^{m,r},r = \operatorname{rank}(\bm{A})$，$\bm{R} \in \mathbb{R} ^{r,n}$是分块上三角矩阵
+
+$\bm{Q} \bm{R}$分解在Section 7.3 节中有详细讨论，具体应用在Section  6.4.4.1  节中有详细讨论
+
+### 5.2 奇异值分解（Singular value decomposition，SVD）
+
+任何非零的$\bm{A} \in \mathbb{R} ^{m,n}$都可以分解为
+$$
+\bm{A}= \bm{U} \tilde{\bm{\Sigma}} \bm{V}^\top
+$$
+其中$\bm{V} \in \mathbb{R} ^{n,n},\bm{U} \in \mathbb{R} ^{m,m}$是正交矩阵，且
+$$
+\tilde{\bm{\Sigma}} =
+\begin{bmatrix}
+    \Sigma & \bm{0}_{r,n-r} \\
+    \bm{0}_{m-r,r} & \bm{0}_{m-r,n-r}
+\end{bmatrix}
+, \Sigma  = \operatorname{diag}(\sigma _1 ,\cdots ,\sigma _r)
+$$
+其中$r$是$\bm{A}$的秩，标量$\sigma _i > 0, i =1,\cdots ,r$被称为$\bm{A}$的奇异值。$\bm{U}$的前$r$列$\bm{u}_1,\cdots ,\bm{u}_r$（或者$\bm{V}$的$\bm{v}_1,\cdots ,\bm{v}_r$）被称为左（或者右）奇异向量，并满足
+$$
+\begin{gather*}
+\bm{A} \bm{v}_i = \sigma _i \bm{u}_i \\
+\bm{A}^\top \bm{u}_i = \sigma _i \bm{v}_i
+\end{gather*}
+$$
+其中$i=1,\cdots,r$。奇异值分解(SVD)是数值线性代数中的一个基本分解，因为它揭示了由矩阵$\bm{A}$描述的线性映射的所有相关信息，例如值域、零空间和秩。SVD 在Section 5.1 节中有详细讨论
+
+### 5.3 可对角化矩阵的特征值分解（Eigenvalue decomposition）
+
+一个可对角化的方阵$\bm{A} \in \mathbb{R} ^{n,n}$可以分解为
+$$
+\bm{A} = \bm{U} \bm{\Lambda} \bm{U}^{-1}
+$$
+其中$\bm{U} \in \mathbb{C} ^{n,n}$是一个可逆矩阵，其列包含$\bm{A}$的特征向量，$\bm{\Lambda}$是一个对角矩阵，其对角线包含$\bm{A}$的特征值$\lambda _1,\cdots ,\lambda _n$。对于一般矩阵，这些特征值可以是实数或复数，复数特征值成共轭复数对出现（Section见第3.3.6节）。$\bm{U}$的列$\bm{u}_1,\cdots ,\bm{u}_n$称为$\bm{A}$的特征向量，并满足
+$$
+\bm{A} \bm{u}_i = \lambda _i \bm{u}_i,i=1,\cdots,n
+$$
+实际上，这些关系可以紧凑地写成$\bm{A} \bm{U} = \bm{\Lambda} \bm{U}$，这等价于$\bm{A} = \bm{U} \bm{\Lambda} \bm{U}^{-1}$
+
+### 5.4 对称矩阵的谱分解（Spectral decomposition）

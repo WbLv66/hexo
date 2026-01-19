@@ -353,13 +353,13 @@ $$
 $$
 这里的符号$\sim$表示多项式中的首项，这种表示法比通常的$O(\cdot)$表示法更具信息性，因为它指出了首项的系数。我们最终需要对变换后的三角系统应用反向代入，这将额外需要$n^2$次运算。这不会改变主导的复杂度项，因此求解一个一般的非奇异系统所需的总运算次数为$\sim \frac{2}{3} n^3$
 
-## 3. QR分解
+## 3. $\bm{Q} \bm{R}$分解
 
-QR分解是一种线性代数操作，它将一个矩阵分解为一个正交分量，该分量是矩阵列空间的基，以及一个三角分量。在QR分解中，矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，其中$m \geq n$，且$\operatorname{rank}(\bm{A})$，因此被分解为
+$\bm{Q} \bm{R}$分解是一种线性代数操作，它将一个矩阵分解为一个正交分量，该分量是矩阵列空间的基，以及一个三角分量。在$\bm{Q} \bm{R}$分解中，矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，其中$m \geq n$，且$\operatorname{rank}(\bm{A})$，因此被分解为
 $$
 \bm{A} = \bm{Q} \bm{R}
 $$
-其中$\bm{Q} \in \mathbb{R} ^{m,n}$具有正交列（即$\bm{Q}^\top \bm{Q} = \bm{I}_n$），并且$\bm{R} \in \mathbb{R} ^{n,n}$是上三角矩阵。计算 QR 分解的方法有很多，包括 Householder 变换法、改进的 Gram–Schmidt 算法以及快速 Givens 方法。这里，我们描述基于改进的 Gram–Schmidt 算法(modified Gram–Schmidt, MGS)的方法
+其中$\bm{Q} \in \mathbb{R} ^{m,n}$具有正交列（即$\bm{Q}^\top \bm{Q} = \bm{I}_n$），并且$\bm{R} \in \mathbb{R} ^{n,n}$是上三角矩阵。计算$\bm{Q} \bm{R}$分解的方法有很多，包括 Householder 变换法、改进的 Gram–Schmidt 算法以及快速 Givens 方法。这里，我们描述基于改进的 Gram–Schmidt 算法(modified Gram–Schmidt, MGS)的方法
 
 ### 3.1 改进的Gram–Schmidt过程
 
@@ -416,7 +416,7 @@ $$
 $$
 \sum_{i=1}^{n} \sum_{j=i+1}^{n} 4m = \sum_{i=1}^{n} (n-i)4m = \big( n^2 - \frac{n(n+1)}{2} \big)4m \sim 2mn^2
 $$
-接下来我们将展示 MGS 算法实际上提供了$\bm{A}$的 QR 分解中的$\bm{Q}$和$\bm{R}$因子。设$\bm{a}^{(1)},\cdots ,\bm{a}^{(n)}$表示$\bm{A}$的各列。由于$\bm{\zeta}^{(1)} = \bm{a}^{(1)}$，并且对于$j >1$
+接下来我们将展示 MGS 算法实际上提供了$\bm{A}$的$\bm{Q} \bm{R}$分解中的$\bm{Q}$和$\bm{R}$因子。设$\bm{a}^{(1)},\cdots ,\bm{a}^{(n)}$表示$\bm{A}$的各列。由于$\bm{\zeta}^{(1)} = \bm{a}^{(1)}$，并且对于$j >1$
 $$
 \bm{\zeta}^{(j)} = \bm{a}^{(j)} - \sum_{i=1}^{j-1} \bm{q}^{(i)} \bm{q}^{(i)\top} \bm{a}^{(j)}
 $$
@@ -440,11 +440,11 @@ r_{11} & r_{12} & \cdots & r_{1n} \\
 $$
 以上推理构成了以下事实的构造性证明
 
-> **定理7.1（QR 分解）**：任意矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，且$m \geq n$，$\operatorname{rank}(\bm{A}) = n$，都可以分解为$\bm{A} = \bm{Q} \bm{R}$，其中$\bm{R} \in \mathbb{R} ^{n,n}$为上三角矩阵且对角线元素为正，$\bm{Q} \in \mathbb{R} ^{m,n}$的列向量标准正交（即满足$\bm{Q}^\top \bm{Q} = \bm{I}_n$）
+> **定理7.1（$\bm{Q} \bm{R}$分解）**：任意矩阵$\bm{A} \in \mathbb{R} ^{m,n}$，且$m \geq n$，$\operatorname{rank}(\bm{A}) = n$，都可以分解为$\bm{A} = \bm{Q} \bm{R}$，其中$\bm{R} \in \mathbb{R} ^{n,n}$为上三角矩阵且对角线元素为正，$\bm{Q} \in \mathbb{R} ^{m,n}$的列向量标准正交（即满足$\bm{Q}^\top \bm{Q} = \bm{I}_n$）
 
-### 3.2 针对秩亏矩阵的 MGS 和 QR 分解
+### 3.2 针对秩亏矩阵的 MGS 和$\bm{Q} \bm{R}$分解
 
-在标准的 GS 过程中，我们假设向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\},\bm{a}^{(i)} \in \mathbb{R} ^m$是线性无关的，也就是说矩阵$\bm{A} = [\bm{a}^{(1)} \cdots  \bm{a}^{(n)}] \in \mathbb{R} ^{m,n}$是列满秩的。接下来，我们讨论如何将 GS 过程和 QR 分解推广到$\bm{A}$不满秩的情况，即$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\}$线性相关时。在这种情况下，令$k \leq n$为最小整数，使得向量$\bm{a}^{(k)}$可以表示为前面向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(k-1)}\right\}$的线性组合（前$k-1$个向量线性无关，前$k$个向量线性相关），即
+在标准的 GS 过程中，我们假设向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\},\bm{a}^{(i)} \in \mathbb{R} ^m$是线性无关的，也就是说矩阵$\bm{A} = [\bm{a}^{(1)} \cdots  \bm{a}^{(n)}] \in \mathbb{R} ^{m,n}$是列满秩的。接下来，我们讨论如何将 GS 过程和$\bm{Q} \bm{R}$分解推广到$\bm{A}$不满秩的情况，即$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(n)}\right\}$线性相关时。在这种情况下，令$k \leq n$为最小整数，使得向量$\bm{a}^{(k)}$可以表示为前面向量$\left\{ \bm{a}^{(1)},\cdots , \bm{a}^{(k-1)}\right\}$的线性组合（前$k-1$个向量线性无关，前$k$个向量线性相关），即
 $$
 \bm{a}^{(k)} = \sum_{i=1}^{k-1} \tilde{\alpha }_i \bm{a}^{(i)}
 $$
@@ -458,7 +458,7 @@ $$
 $$
 因此，根据$\bm{\zeta}^{(k)} = \bm{a}^{(k)} - \sum_{i=1}^{k-1} \left\langle \bm{a}^{(k)}, \bm{q}^{(i)} \right\rangle\bm{q}^{(i)}$可以得到$\bm{\zeta}^{(k)} = \bm{0}$，因此标准程序无法继续。然而，广义程序通过丢弃所有满足$\bm{\zeta}^{(k')} = \bm{0}$的对应向量$\bm{a}^{(k')} ,k' \geq k$，来继续进行，直到程序终止，或者找到一个$\bm{\zeta}^{(k')} \neq \bm{0}$的向量$\bm{a}^{(k')}$。在这种情况下，对应的标准向量$\bm{q}^{(k')}$被加入标准正交集合中，并继续迭代该过程。终止时，该修改后的过程返回一组$r = \operatorname{rank}(\bm{A})$个正交向量$\left\{ \bm{q}^{(1)},\cdots , \bm{q}^{(r)}\right\}$，它们形成$\mathcal{R}(\bm{A})$的标准正交基
 
-这个过程提供了一种广义的 QR 分解，因为$\bm{A}$的每一列都可以表示为$\bm{Q} = [\bm{q}^{(1)}\cdots  \bm{q}^{(r)}]$列的线性组合，并且非零系数的数量是非递减的。具体而言，$\bm{A}$的第一块$n_1 \geq 1$列被表示为$\bm{q}^{(1)}$的线性组合，$\bm{A}$的第二块$n_2 \geq 1$列被表示为$\bm{q}^{(1)},\bm{q}^{(2)}$的线性组合，依此类推，直到$\bm{A}$的第$r$块$n_r$列被表示为$\bm{q}^{(1)},\cdots,\bm{q}^{(r)}$的线性组合，其中$n_1 + n_2 + \cdots +n_r = n$。用公式表示为
+这个过程提供了一种广义的$\bm{Q} \bm{R}$分解，因为$\bm{A}$的每一列都可以表示为$\bm{Q} = [\bm{q}^{(1)}\cdots  \bm{q}^{(r)}]$列的线性组合，并且非零系数的数量是非递减的。具体而言，$\bm{A}$的第一块$n_1 \geq 1$列被表示为$\bm{q}^{(1)}$的线性组合，$\bm{A}$的第二块$n_2 \geq 1$列被表示为$\bm{q}^{(1)},\bm{q}^{(2)}$的线性组合，依此类推，直到$\bm{A}$的第$r$块$n_r$列被表示为$\bm{q}^{(1)},\cdots,\bm{q}^{(r)}$的线性组合，其中$n_1 + n_2 + \cdots +n_r = n$。用公式表示为
 $$
 \bm{A} = \bm{Q} \bm{R} , \bm{R} =
 \begin{bmatrix}
@@ -475,7 +475,7 @@ $$
 $$
 其中$\bm{E}$是一个合适的列置换矩阵（注意置换是初等变换，因此矩阵是正交的），$\tilde{\bm{R}} \in \mathbb{R} ^{r,r}$是上三角且可逆的，$\bm{M} \in \mathbb{R} ^{r,n-r}$
 
-QR 分解的另一种完整形式使用$\bm{Q}$矩阵中的所有$m$列：在$\bm{q}^{(1)}\cdots  \bm{q}^{(r)}$的基础上添加$m-r$个正交列，以完成$\mathbb{R} ^m$的一组正交基。因此，在$\bm{R}$矩阵中附加$m-r$个全零的尾行，以得到
+$\bm{Q} \bm{R}$分解的另一种完整形式使用$\bm{Q}$矩阵中的所有$m$列：在$\bm{q}^{(1)}\cdots  \bm{q}^{(r)}$的基础上添加$m-r$个正交列，以完成$\mathbb{R} ^m$的一组正交基。因此，在$\bm{R}$矩阵中附加$m-r$个全零的尾行，以得到
 $$
 \bm{A}=\bm{Q} \bm{R} \bm{E}^\top ,\bm{Q} \in \mathbb{R} ^m,\bm{Q}^\top \bm{Q} = \bm{I}_m, \bm{R} =
 \begin{bmatrix}
