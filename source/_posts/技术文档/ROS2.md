@@ -75,3 +75,11 @@ wsl的网络隔离、多播限制，导致节点间无法通信、ros2 daemon无
 ```bash
 ros2 daemon start
 ```
+
+### 4. 安装Gazebo
+
+```bash
+sudo apt install ros-humble-ros-gz
+# 或者
+sudo apt install ros-jazzy-ros-gz
+```
