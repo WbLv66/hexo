@@ -4,7 +4,9 @@ date: 2025-10-12 21:27:29
 # updated:
 # tags:
 #     - 
-categories: Optimization Models
+categories:
+          - 书籍笔记
+          - Optimization Models
 # keywords:
 # description:
 top_img: transparent

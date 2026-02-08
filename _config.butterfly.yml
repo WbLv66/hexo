@@ -21,6 +21,14 @@ menu:
   时间轴: /archives/ || iconfont icon-shijianzhou
   标签: /tags/ || iconfont icon-biaoqian
   分类: /categories/ || iconfont icon-fenlei
+  # 文档||fas fa-book:
+    # 🚀 快速開始: /Optimization%20Models/
+    # 📑 主題頁面: /posts/dc584b87/
+    # 🛠 主題配置: /posts/4aa8abbe/
+    # ⚔️ 標簽外挂: /posts/ceeb73f/
+    # ❓ 主題問答: /posts/98d20436/
+    # ⚡️ 進階教程: /posts/4073eda/
+    # ✨ 更新日誌: /posts/198a4240/
   # 清单||fa fa-heartbeat:
   # 音乐: /music/ || fas fa-music
   # 照片: /Gallery/ || fas fa-images

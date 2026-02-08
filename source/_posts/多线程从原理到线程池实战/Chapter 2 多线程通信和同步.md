@@ -1,11 +1,13 @@
 ---
-title: 多线程通信和同步
+title: Chapter 2 多线程通信和同步
 date: 2026-01-24 22:18:05
 # updated:
 tags:
     - 多线程
     - C++
-categories: 多线程从原理到线程池实战
+categories:
+          - 书籍笔记
+          - 多线程从原理到线程池实战
 # keywords:
 # description:
 top_img: transparent

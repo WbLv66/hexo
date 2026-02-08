@@ -4,7 +4,9 @@ date: 2025-09-13 10:39:05
 # updated:
 # tags:
 #     - 
-categories: Optimization Models
+categories:
+          - 书籍笔记
+          - Optimization Models
 # keywords:
 # description:
 top_img: transparent
@@ -53,7 +55,6 @@ $$
 x,y \in \mathcal{V} \Rightarrow \alpha x + \beta y \in \mathcal{V}
 $$
 
-
 > 子空间必须包含原点
 
 线性组合(linear combination)的形式如下
@@ -80,7 +81,7 @@ $$
 仿射集(affine sets)被定义为子空间的平移
 
 $$
- \mathcal{A} = \{ \mathbf{x} \mid \mathbf{x} = \mathbf{v} + \mathbf{y}, \mathbf{v} \in \mathcal{V} \} 
+ \mathcal{A} = \{ \mathbf{x} \mid \mathbf{x} = \mathbf{v} + \mathbf{y}, \mathbf{v} \in \mathcal{V} \}
 $$
 其中$\mathbf{y}$是给定的点，$\mathcal{V}$是给定的子空间.仿射集必定经过$\mathbf{y}$
 
@@ -103,7 +104,7 @@ $$
 \begin{gather*}
 \forall \mathbf{x} \in \mathcal{X} ,\lVert \mathbf{x} \rVert \ge 0 ,and\lVert \mathbf{x} \rVert = 0 \text{ if and only if } \lVert \mathbf{x} \rVert = \mathbf{0} \\
 \forall \mathbf{x}, \mathbf{y} \in \mathcal{X} ,\lVert \mathbf{x}+\mathbf{y} \rVert \le \lVert \mathbf{x} \rVert + \lVert \mathbf{y} \rVert (\text{triangle inequality}) \\
-\forall \mathbf{x} \in \mathcal{X} ,\lVert \alpha \mathbf{x} \rVert = \lvert \alpha \rvert \lVert \mathbf{x} \rVert 
+\forall \mathbf{x} \in \mathcal{X} ,\lVert \alpha \mathbf{x} \rVert = \lvert \alpha \rvert \lVert \mathbf{x} \rVert
 \end{gather*}
 $$
 $L_p$范数被定义为
@@ -169,29 +170,29 @@ $$
 在内积空间中$\sqrt{\langle \mathbf{x},\mathbf{x} \rangle}$是一个范数，经常被简写为$\lVert \mathbf{x} \rVert$
 
 $$
- \lVert \mathbf{x} - \mathbf{y} \rVert^2_2 = \left( \mathbf{x} - \mathbf{y} \right)^\top \left( \mathbf{x} - \mathbf{y} \right) = \mathbf{x}^\top \mathbf{x} + \mathbf{y}^\top \mathbf{y} - 2 \mathbf{x}^\top \mathbf{y} 
+ \lVert \mathbf{x} - \mathbf{y} \rVert^2_2 = \left( \mathbf{x} - \mathbf{y} \right)^\top \left( \mathbf{x} - \mathbf{y} \right) = \mathbf{x}^\top \mathbf{x} + \mathbf{y}^\top \mathbf{y} - 2 \mathbf{x}^\top \mathbf{y}
 $$
 标准向量积和两个向量的夹角有关，定义$\theta$为$\mathbf{0} \mathbf{x}$和$\mathbf{0} \mathbf{y}$的夹角，通过几何关系可以得到
 
 $$
- \cos \theta = \frac{\mathbf{x} ^\top \mathbf{y}}{\lVert \mathbf{x} \rVert_2 \lVert \mathbf{y} \rVert_2} 
+ \cos \theta = \frac{\mathbf{x} ^\top \mathbf{y}}{\lVert \mathbf{x} \rVert_2 \lVert \mathbf{y} \rVert_2}
 $$
 当两个向量内积为$0$时说明两个线是正交的(orthogonal)；当$\theta$为$0^\circ$或者$\pm180^\circ$时两直线平行(parallel)，这时标准内积的绝对值最大，为二者绝对值的乘积
 
 通过推导可以得到$\mathbf{x} ^\top \mathbf{y}=\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$，由于$\lvert \theta \rvert \le 1$，因此可以得到柯西不等式(Cauchy–Schwarz inequality)
 
 $$
-\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert 
+\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert
 $$
 将这个不等式推广到$L_p$范数称为霍尔德不等式(Holder)：$\text{for any }p,q \le 1 \text{ such that } 1/p + 1/q = 1, \text{ it holds that}$
 
 $$
-\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \sum^n_{k=1} \lvert x_k y_k \rvert \le \lVert \mathbf{x} \rVert_p \lVert \mathbf{y} \rVert_p 
+\lvert \mathbf{x} ^\top \mathbf{y} \rvert \le \sum^n_{k=1} \lvert x_k y_k \rvert \le \lVert \mathbf{x} \rVert_p \lVert \mathbf{y} \rVert_p
 $$
 考虑到一个非零向量$\mathbf{y} \in \mathbb{R}^n$，寻找某个向量$\mathbf{x} \in \mathcal{B}_p$（在$L_p$范数下的单位球）使得内积$\mathbf{x}^\top\mathbf{y}$ 最大化的问题-，即
 
 $$
- \max_{ \lVert \mathbf{x} \rVert_p \le 1} \mathbf{x}^\top\mathbf{y} 
+ \max_{ \lVert \mathbf{x} \rVert_p \le 1} \mathbf{x}^\top\mathbf{y}
 $$
 当$p=2$时最优解可以从几何意义$\mathbf{x} ^\top \mathbf{y}=\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos\theta$中得到，即$\mathbf{x}$与$\mathbf{y}$对齐(aligned)/平行(parallel)，同时范数取最大值$1$时为最优解。唯一解是
 

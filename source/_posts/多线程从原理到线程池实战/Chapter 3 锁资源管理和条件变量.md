@@ -5,7 +5,9 @@ date: 2026-01-26 19:31:55
 tags:
     - 多线程
     - C++
-categories: 多线程从原理到线程池实战
+categories:
+          - 书籍笔记
+          - 多线程从原理到线程池实战
 # keywords:
 # description:
 top_img: transparent

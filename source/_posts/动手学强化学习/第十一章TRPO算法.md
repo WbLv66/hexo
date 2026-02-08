@@ -4,7 +4,9 @@ date: 2025-07-15 15:41:05
 # updated:
 # tags:
 #     - 
-categories: 
+categories:
+          - 书籍笔记
+          - 动手学强化学习
 # keywords:
 # description:
 top_img: transparent
