@@ -37,7 +37,8 @@ top_img: transparent
 
 ## 2. loam_interface
 
-用来桥接不同slam算法，通过修改loam_interface.launch可以使此项目适配各种slam算法。修改规则可参考[State Estimation Setup Notes](https://drive.google.com/file/d/1jW1jFDvRsUWcfivC6WWcHHdX-JDSzPGo/view)
+用来桥接不同slam算法，通过修改loam_interface.launch可以使此项目适配各种slam算法。修改规则可参考[State Estimation Setup Notes](https://drive.google.com/file/d/1zn8gU5FL8Vnccs-80708XfnRDovmf7hm/view)
+
 
 输入为不同slam算法输出的stateEstimationTopic和registeredScanTopic
 
