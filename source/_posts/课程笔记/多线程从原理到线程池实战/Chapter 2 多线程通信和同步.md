@@ -6,7 +6,7 @@ tags:
     - 多线程
     - C++
 categories:
-          - 书籍笔记
+          - 课程笔记
           - 多线程从原理到线程池实战
 # keywords:
 # description:
