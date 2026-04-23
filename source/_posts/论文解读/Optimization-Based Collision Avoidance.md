@@ -27,6 +27,12 @@ top_img: transparent
 # noticeOutdate:
 ---
 
+<!-- markdownlint-disable MD034 -->
+{% btn 'https://github.com/XiaojingGeorgeZhang/OBCA',GitHub %}
+{% btn 'https://ieeexplore.ieee.org/document/9062306',TCST %}
+{% btn 'https://arxiv.org/abs/1711.03449',Arxiv %}
+<!-- markdownlint-enable MD034 -->
+
 ## 2. 问题描述
 
 ### 2.1 障碍物建模
