@@ -164,3 +164,15 @@ E(\bm{s}_h,\bm{\mu}_t^i,\bm{\lambda}_t^i) = \bm{\mu}_h^{i\top} \bm{G} + \bm{\lam
 \end{gather*}
 $$
 $I(\bm{s}_h,\bm{\mu}_t^i,\bm{\lambda}_t^i)$代表$D_t^i$的目标函数的惩罚项；$E(\bm{s}_h,\bm{\mu}_t^i,\bm{\lambda}_t^i)$代表$D_t^i$的等式约束的惩罚项
+
+### 4.2 NeuPAN系统
+
+给定时刻$t$的一组障碍点$\mathbb{P}_t = \left\{ \bm{p}_t^1,\dots,\bm{p}_t^M \right\}$及其相关速度$\mathbb{V}_t = \left\{ \bm{v}_t^1,\dots,\bm{v}_t^M \right\}$，在全局坐标系统中，时域$H$内的点流应为
+$$
+\mathbb{PF}_t =
+\begin{bmatrix}
+\bm{p}_t^1 & \cdots & \bm{p}_t^M \\
+\vdots & \ddots & \vdots \\
+\bm{p}_{t+H}^1 & \cdots & \bm{p}_{t+H}^M
+\end{bmatrix}
+$$

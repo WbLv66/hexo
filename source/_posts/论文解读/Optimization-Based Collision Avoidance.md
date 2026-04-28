@@ -183,7 +183,7 @@ $$
 $$
 \begin{align*}
 & \max _{\bm{\lambda }, \bm{\mu },\bm{\eta}} \min _{\bm{y},\bm{o},\bm{e}'} \ \lVert \bm{y} \rVert + \bm{\lambda }^\top (\bm{Ao}-\bm{b})+ \bm{\mu }^\top (\bm{Ge}'-\bm{g}) + \bm{\eta }^\top (\bm{R}(\bm{x})\bm{e}'+\bm{t}(\bm{x}) - \bm{o} - \bm{y})\\
-= & \max _{\bm{\lambda }, \bm{\mu },\bm{\eta}} \  \min _{\bm{y}} \ (\lVert \bm{y} \rVert - \bm{\eta }^\top \bm{y}) + \min _{\bm{o}} \ (\bm{\lambda }^\top \bm{Ao} - \bm{\eta o}) + \min _{\bm{e}'} \ (\bm{\mu }^\top \bm{Ge}' - \bm{\eta}^\top \bm{R}(\bm{x})\bm{e}') -\bm{\lambda }^\top \bm{b}(\bm{x}) - \bm{\mu}^\top \bm{g} +  \bm{\eta}^\top \bm{t} \\
+= & \max _{\bm{\lambda }, \bm{\mu },\bm{\eta}} \  \min _{\bm{y}} \ (\lVert \bm{y} \rVert - \bm{\eta }^\top \bm{y}) + \min _{\bm{o}} \ (\bm{\lambda }^\top \bm{Ao} - \bm{\eta}^\top \bm{o}) + \min _{\bm{e}'} \ (\bm{\mu }^\top \bm{Ge}' - \bm{\eta}^\top \bm{R}(\bm{x})\bm{e}') -\bm{\lambda }^\top \bm{b}(\bm{x}) - \bm{\mu}^\top \bm{g} +  \bm{\eta}^\top \bm{t} \\
 = & \max _{\bm{\lambda }, \bm{\mu },\bm{\eta}} \  \min _{\bm{y}} \ (\lVert \bm{y} \rVert - \bm{\eta }^\top \bm{y}) + \min _{\bm{o}} \ ( \bm{\eta}-\bm{A}^\top \bm{\lambda })^\top\bm{o} + \min _{\bm{e}'} \ (\bm{G}^\top \bm{\mu} - \bm{R}(\bm{x})^\top \bm{\eta})^\top\bm{e}' -\bm{\lambda }^\top \bm{b}(\bm{x}) - \bm{\mu}^\top \bm{g} +  \bm{\eta}^\top \bm{t}
 \end{align*}
 $$
@@ -234,3 +234,10 @@ $$
   & \bm{A}^\top \bm{\lambda} \rVert_* \leq 1, \quad \bm{\lambda} \succeq _{\mathcal{K}^*} 0, \quad \bm{\mu} \succeq _{\bar{\mathcal{K}}^*} 0
  \end{align*}
 $$
+
+---
+参考资源
+
+[凸优化基础](https://www.bilibili.com/video/BV1CxHUzLEip/?share_source=copy_web&vd_source=5690184b80b2e24595a4c16d516181af)
+
+[机器人中的数值优化](https://www.shenlanxueyuan.com/course/745)
