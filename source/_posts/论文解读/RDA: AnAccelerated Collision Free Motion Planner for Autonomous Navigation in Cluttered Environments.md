@@ -141,16 +141,17 @@ $$
 具备避障功能的模型预测控制可以改写为
 
 $$
-\begin{align*}
+\begin{align}
   \min_{\substack{\left\{ \bm{s}_t , \bm{u}_t , d_t \right\} \\  \left\{ \bm{\lambda}_{t,m} , \bm{\mu}_{t,m} , z_{t,m} \right\}} } \ & C_0(\left\{ \bm{s}_t , \bm{u}_t \right\}) + C_1(\bm{d})  \\
   \text{s.t.} \ & \bm{s}_{t+1} = \bm{A}_t \bm{s}_t + \bm{B}_t \bm{u}_t + \bm{c}_t, \\
   & \bm{u}_{\min} \preceq \bm{u}_t \preceq \bm{u}_{\max}, \quad \bm{a}_{\min} \preceq \bm{a}_t \preceq \bm{a}_{\max}, \\
-  & d_t \in [d_{\min }, d_{\max}], \quad z_{t,m} \geq 0, \\
+  & d_t \in [d_{\min }, d_{\max}], \\
+  & z_{t,m} \geq 0, \\
   & \lVert \bm{D}_m^\top \bm{\lambda}_{t,m} \rVert_* \leq 1, \\
   & \bm{\lambda}_{t,m} \succeq _{\mathcal{O}^*_m} 0, \quad \bm{\mu}_{t,m} \succeq _{\mathcal{K}_r^*} 0,\\
   & H_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m}) = 0, \\
   & I_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m},d_t,z_{t,m}) = 0
- \end{align*}
+ \end{align}
 $$
 其中
 $$
@@ -160,3 +161,24 @@ $$
 \end{gather*}
 $$
 为了将距离的不等式转换为等式，新加入了变量$z_{t,m}$，即$\dots \geq d_t \Leftrightarrow \exists z_{t,m} \geq 0 : \dots - d_t - z_{t,m}=0$
+
+采用交替方向乘子法(ADMM)解决这个双凸优化问题，其中每次迭代都包括更小的凸子问题，并且与不同障碍物相关的对偶变量会并行更新以加快计算速度。缩放形式的增广拉格朗日函数可以表示为
+$$
+\begin{align*}
+& \mathcal{L}(\left\{ \bm{s}_t,\bm{u}_t,d_t \right\}, \left\{ \bm{\lambda }_{t,m},\bm{\mu }_{t,m},z_{t,m} \right\} , \left\{ \bm{\xi}_{t,m} , \bm{\zeta}_{t,m} \right\} ) \\
+= & C_0(\left\{ \bm{s}_t ,\bm{u}_t \right\} ) +C_1(\bm{d}) + J(\left\{ \bm{s}_t,\bm{u}_t,d_t \right\} ) \\
+& + \sum_{t=0}^{N} \sum_{m=1}^{M} Q_{t,m}(\bm{\lambda }_{t,m},\bm{\mu }_{t,m},z_{t,m}) \\
+& + \frac{\rho}{2} \sum_{t=0}^{N} \sum_{m=1}^{M} \lVert I_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m},d_t,z_{t,m}) + \bm{\zeta}_{t,m} \rVert_2^2 \\
+& + \frac{\rho}{2} \sum_{t=0}^{N} \sum_{m=1}^{M} \lVert H_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m}) + \bm{\xi}_{t,m} \rVert_2^2
+\end{align*}
+$$
+其中$\bm{\xi}_{t,m}$和$\bm{\zeta}_{t,m}$是对应等式约束$H$和$I$的对偶变量。这里$J(\left\{ \bm{s}_t,\bm{u}_t,d_t \right\} )$是约束(2)–(4)的指示函数，即如果约束被满足，函数值取为零，否则取为正无穷。类似地，$Q_{t,m}(\bm{\lambda }_{t,m},\bm{\mu }_{t,m},z_{t,m})$是(5)–(7)中第$(t, m)$个约束的指示函数。这里之所以使用指示函数而不是变为增广拉格朗日处理是因为这些约束都是简单约束，可以使用投影简单处理；而$H$和$I$中包含旋转和平移矩阵，是非线性函数，难以简单处理
+
+由于约束(2)的存在，$C_0,C_1,J$三项在不同$t$之间是耦合的，而后三项则可相对于 t 和 m 分解。因此，我们将原始变量分为两组：1) {st, ut, dt}；2) {λt,m, µt,m, zt,m}。鉴于对偶变量{ξt,m, ζt,m}可以并行更新，ADMM 方法用于最小化增广拉格朗日函数是
+
+---
+参考资源
+
+[交替方向乘子法](https://zhuanlan.zhihu.com/p/106896627)
+
+[机器人中的数值优化](https://www.shenlanxueyuan.com/course/745)

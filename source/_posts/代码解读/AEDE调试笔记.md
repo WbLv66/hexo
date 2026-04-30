@@ -4,7 +4,7 @@ date: 2025-08-08 16:08:09
 # updated:
 # tags:
 #     - 
-categories: 自主探索代码
+categories: 代码解读
 # keywords:
 # description:
 top_img: transparent
