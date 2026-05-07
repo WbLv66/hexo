@@ -182,3 +182,5 @@ $$
 [交替方向乘子法](https://zhuanlan.zhihu.com/p/106896627)
 
 [机器人中的数值优化](https://www.shenlanxueyuan.com/course/745)
+
+[差速轮小车MPC轨迹跟踪器设计与实现](https://zhuanlan.zhihu.com/p/666458669)
