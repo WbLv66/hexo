@@ -59,6 +59,27 @@ $$
 $$
 其中$n_r$表示机器人工作空间的维度
 
+旋转矩阵中包含三角函数，是非线性的，需要对旋转矩阵进行一阶泰勒展开
+$$
+R(\phi) =
+\begin{bmatrix}
+\cos \phi & -\sin \phi \\
+\sin \phi & \cos \phi
+\end{bmatrix}\\
+\begin{align*}
+R(\phi) = & R(\phi_0)  + \left . \frac{\partial R}{\partial \phi} \right | _{\phi = \phi _0}(\phi - \phi _0) \\
+= & R(\phi_0) - \bm{J} \phi _0 + \bm{J} \phi
+\end{align*}
+$$
+式中$\bm{J}$为旋转矩阵对航向角的雅可比矩阵
+$$
+\bm{J} =
+\begin{bmatrix}
+-\sin \phi _0 & -\cos \phi _0 \\
+\cos \phi _0 & -\sin \phi _0
+\end{bmatrix}
+$$
+
 ### 3.3 避碰
 
 机器人和障碍物的最小距离表示为
@@ -73,6 +94,117 @@ $$
   \text{s.t.} \ & \bm{Do} \preceq _{\mathcal{O}_m} \bm{b}, \\
   & \bm{Gz} \preceq _{\mathcal{K}_r} \bm{h}
 \end{align*}
+$$
+
+差速机器人的状态空间模型为
+$$
+\begin{bmatrix}
+x_{t+1} \\
+y_{t+1} \\
+\theta_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_t \\
+y_t \\
+\theta_t
+\end{bmatrix}
++
+\begin{bmatrix}
+\cos (\theta_t) \Delta t & 0 \\
+\sin (\theta_t) \Delta t & 0 \\
+0 &  \Delta t \\
+\end{bmatrix}
+\begin{bmatrix}
+v_t \\
+\psi_t
+\end{bmatrix}
+$$
+用函数表达为
+$$
+\begin{gather*}
+\bm{s}_{t+1} = \bm{s}_t + f(\bm{s}_t,\bm{u}_t) \Delta t \\
+f(\bm{s}_t,\bm{u}_t) = [v_t \cos(\theta _t) , v_t \sin(\theta _t), \psi_t]
+\end{gather*}
+$$
+此模型为一个非线性模型，为了简化，需要使用一阶泰勒展开对 函数进行线性化，在$(\bm{s}_r,\bm{u}_r)$即参考状态和参考输入处展开
+$$
+\bm{s}_{t+1} = \bm{s}_t + f(\bm{s}_r,\bm{u}_r) \Delta t + \left. \frac{\partial f}{\partial \bm{s}} \right|_{\bm{s}=\bm{s}_r,\bm{u}=\bm{u}_r}(\bm{s}_t - \bm{s}_r) \Delta t + \left. \frac{\partial f}{\partial \bm{u}} \right|_{\bm{s}=\bm{s}_r,\bm{u}=\bm{u}_r}(\bm{u}_t - \bm{u}_r) \Delta t
+$$
+偏导矩阵如下
+$$
+\begin{gather*}
+\left. \frac{\partial f}{\partial \bm{s}} \right|_{\bm{s}=\bm{s}_r,\bm{u}=\bm{u}_r} =
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y} & \frac{\partial f_1}{\partial \theta} \\
+\frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y} & \frac{\partial f_2}{\partial \theta} \\
+\frac{\partial f_3}{\partial x} & \frac{\partial f_3}{\partial y} & \frac{\partial f_3}{\partial \theta} \\
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 0 & -v_r \sin (\theta _r) \\
+0 & 0 & v_r \cos (\theta _r) \\
+0 & 0 & 0 \\
+\end{bmatrix} \\
+\left. \frac{\partial f}{\partial \bm{u}} \right|_{\bm{s}=\bm{s}_r,\bm{u}=\bm{u}_r} =
+\begin{bmatrix}
+\frac{\partial f_1}{\partial v} & \frac{\partial f_1}{\partial \psi}  \\
+\frac{\partial f_2}{\partial v} & \frac{\partial f_2}{\partial \psi}  \\
+\frac{\partial f_3}{\partial v} & \frac{\partial f_3}{\partial \psi}  \\
+\end{bmatrix} =
+\begin{bmatrix}
+\cos (\theta _r) & 0  \\
+\sin (\theta _r) & 0  \\
+0 & 1 \\
+\end{bmatrix}
+\end{gather*}
+$$
+因此
+$$
+\begin{align*}
+x_{t+1} = & x_{t} + [v_r \cos (\theta_r)- v_r \sin (\theta _r) \theta_t +\cos (\theta _r) v_t + v_r \sin (\theta _r) \theta_r - \cos (\theta _r) v_r ]\Delta t \\
+= & x_{t} + [- v_r \sin (\theta _r) \theta_t +\cos (\theta _r) v_t + v_r \sin (\theta _r) \theta_r]\Delta t \\
+y_{t+1} = & y_{t} + [v_r \sin (\theta_r) + v_r \cos (\theta _r) \theta_t +\sin (\theta _r) v_t - v_r \cos (\theta _r) \theta_r - \sin (\theta _r) v_r ]\Delta t \\
+= & y_{t} + [ v_r \cos (\theta _r) \theta_t +\sin (\theta _r) v_t - v_r \cos (\theta _r) \theta_r ]\Delta t \\
+\theta_{t+1} = & \theta_{t} + [\psi_r + \psi_t - \psi_r ]\Delta t \\
+= & \theta_{t} + \psi_t \Delta t \\
+\end{align*}
+$$
+写成状态空间方程为
+$$
+\begin{bmatrix}
+x_{t+1} \\
+y_{t+1} \\
+\theta_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & -v_r \sin (\theta _r) \Delta t \\
+1 & 0 & v_r \cos (\theta _r) \Delta t \\
+0 & 0 & 1
+\end{bmatrix}
+
+\begin{bmatrix}
+x_t \\
+y_t \\
+\theta_t
+\end{bmatrix}
++
+\begin{bmatrix}
+\cos (\theta_r) \Delta t & 0 \\
+\sin (\theta_r) \Delta t & 0 \\
+0 &  \Delta t \\
+\end{bmatrix}
+
+\begin{bmatrix}
+v_t \\
+\psi_t
+\end{bmatrix}
++
+\begin{bmatrix}
+v_r \sin (\theta _r) \theta_r \Delta t \\
+- v_r \cos (\theta _r) \theta_r \\
+0
+\end{bmatrix}
 $$
 
 ### 3.4 问题表述
@@ -122,7 +254,7 @@ $$
 因为$\mathbb{O}$和$\mathbb{C}$具有非空相对内部，具有强对偶性。因此原问题与对偶问题等价
 $$
 \begin{align*}
-  \operatorname{dist} (\mathbb{Z}_t(\bm{s}_t),\mathbb{O}_m) = \max _{\bm{\lambda }_{t,m},\bm{\mu}_{t,m}} \ & \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h}_m \\
+  \operatorname{dist} (\mathbb{Z}_t(\bm{s}_t),\mathbb{O}_m) = \max _{\bm{\lambda }_{t,m},\bm{\mu}_{t,m}} \ & \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h} \\
   \text{s.t.} \ & \lVert \bm{D}_m^\top \bm{\lambda}_{t,m} \rVert_* \leq 1, \\
   & \bm{\mu}_{t,m}^\top \bm{G} + \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{R}_t(\bm{s}_t)= 0, \\
   & \bm{\lambda}_{t,m} \succeq _{\mathcal{O}^*_m} 0, \\
@@ -134,7 +266,7 @@ $$
 \begin{align*}
   &\operatorname{dist} (\mathbb{Z}_t(\bm{s}_t),\mathbb{O}_m) \geq d_t  \Leftrightarrow\\
     &\exists  \bm{\mu}_{t,m} \succeq _{\mathcal{K}_r^*} 0 , \bm{\lambda}_{t,m} \succeq _{\mathcal{O}^*_m} 0 : \\
-   & \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h}_m \geq d_t , \\
+   & \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h} \geq d_t , \\
    &\lVert \bm{D}_m^\top \bm{\lambda}_{t,m} \rVert_* \leq 1 , \quad \bm{\mu}_{t,m}^\top \bm{G} + \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{R}_t(\bm{s}_t)= 0
 \end{align*}
 $$
@@ -157,7 +289,7 @@ $$
 $$
 \begin{gather*}
     H_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m}) = \bm{\mu}_{t,m}^\top \bm{G} + \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{R}_t(\bm{s}_t) \\
-    I_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m},d_t,z_{t,m}) = \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h}_m - d_t - z_{t,m}
+    I_{t,m}(\bm{s}_t,\lambda_{t,m},\mu_{t,m},d_t,z_{t,m}) = \bm{\lambda}_{t,m}^\top \bm{D}_m \bm{p}_t(\bm{s}_t) - \bm{\lambda}_{t,m}^\top \bm{b}_m - \bm{\mu}_{t,m}^\top \bm{h} - d_t - z_{t,m}
 \end{gather*}
 $$
 为了将距离的不等式转换为等式，新加入了变量$z_{t,m}$，即$\dots \geq d_t \Leftrightarrow \exists z_{t,m} \geq 0 : \dots - d_t - z_{t,m}=0$

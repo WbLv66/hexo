@@ -48,22 +48,3 @@ top_img: transparent
 1. 求直线向量$\bm{v} = \bm{p}_2 - \bm{p}_1 = (x_2 - x_1 , y_2 - y_1)$，向量指向顺时针方向
 2. 令$\bm{v}$与$\bm{a}$的叉乘结果为负，可以求连线左侧的法向向量。注意，对于凸多边形，由于表达式是$\leq$，因此法向量必须指向多边形外侧
 3. 用$\bm{a}^\top \bm{p}_1$求解$\bm{b}$
-
-
-差速运动学模型
-
-$$
-\bm{s}_{t+1} = \bm{A}_t \bm{s}_{t} + \bm{B}_t \bm{u}_{t} + \bm{c}_t \\
-
-\bm{s}_t = ( x_t , y_t , \theta_t ) \\
-
-\bm{u}_t = (v_t , \psi_t)
-
-$$
-
-$$
-x_{t+1} = x_t - v \sin (\theta) dt \theta _t + \cos (\theta) dt v_t + \theta_t v \sin (\theta) dt \\
-
-
-[1, 0, -v * dt * sin(phi)], [0, 1, v * dt * cos(phi)], [0, 0, 1]
-$$
