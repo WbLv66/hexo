@@ -48,3 +48,23 @@ top_img: transparent
 1. 求直线向量$\bm{v} = \bm{p}_2 - \bm{p}_1 = (x_2 - x_1 , y_2 - y_1)$，向量指向顺时针方向
 2. 令$\bm{v}$与$\bm{a}$的叉乘结果为负，可以求连线左侧的法向向量。注意，对于凸多边形，由于表达式是$\leq$，因此法向量必须指向多边形外侧
 3. 用$\bm{a}^\top \bm{p}_1$求解$\bm{b}$
+
+update_su_cost_cons
+
+constraints
+
+加粗代表变量
+$$
+\begin{gather*}
+R'_t - (J' \phi')_t + J'_t \bm{\theta}_t  - \bm{R}_t =0, \forall t \\
+\bm{d}_t \in [d_{\min }, d_{\max}], \forall t \\
+\bm{H}_{t,m} = (\lambda D)_{t,m}\bm{\theta}_t-(\lambda b)_{t,m} - \mu _{t,m}^\top h - \bm{d}_t - z_{t,m} + \zeta _{t,m},\forall t,m \\
+\bm{I}_{t,m} = \mu _{t,m}^\top G +(\lambda D)\bm{R}_t+ \xi _{t,m} ,\forall t,m 
+\end{gather*}
+
+
+
+$$
+
+LamMuZ_cost_cons
+
