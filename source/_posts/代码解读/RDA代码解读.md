@@ -49,22 +49,89 @@ top_img: transparent
 2. 令$\bm{v}$与$\bm{a}$的叉乘结果为负，可以求连线左侧的法向向量。注意，对于凸多边形，由于表达式是$\leq$，因此法向量必须指向多边形外侧
 3. 用$\bm{a}^\top \bm{p}_1$求解$\bm{b}$
 
-update_su_cost_cons
+## 2. 优化问题构建
 
-constraints
+**加粗代表变量**
 
-加粗代表变量
+### 2.1 `construct_su_prob`
+
+将$s,u,d$视为变量
+
+优化问题为
 $$
-\begin{gather*}
-R'_t - (J' \phi')_t + J'_t \bm{\theta}_t  - \bm{R}_t =0, \forall t \\
-\bm{d}_t \in [d_{\min }, d_{\max}], \forall t \\
-\bm{H}_{t,m} = (\lambda D)_{t,m}\bm{\theta}_t-(\lambda b)_{t,m} - \mu _{t,m}^\top h - \bm{d}_t - z_{t,m} + \zeta _{t,m},\forall t,m \\
-\bm{I}_{t,m} = \mu _{t,m}^\top G +(\lambda D)\bm{R}_t+ \xi _{t,m} ,\forall t,m 
-\end{gather*}
-
-
-
+\begin{align*}
+\min \ & (\operatorname{cost}_{nav} + \operatorname{cost}_{su}) \\
+\text{s.t.} \ & \operatorname{constraints}_{nav} \cap \operatorname{constraints}_{su}
+\end{align*}
 $$
 
-LamMuZ_cost_cons
+1. `nav_cost_cons`
 
+约束包含
+$$
+\begin{align*}
+& \operatorname{constraints}_{nav}：\\
+& \bm{s}_{t+1} = A_t \bm{s}_t + B_t \bm{u}_t + C_t, \forall t \\
+& \lVert \bm{v}_{t+1} - \bm{v}_t \rVert \leq  a_{\max}, \forall t \\
+& \lVert \bm{u}_t \rVert \leq  u_{\max},\forall t \\
+& \bm{s}_0 = s_0
+\end{align*}
+$$
+
+代价函数为
+
+$$
+\begin{align*}
+& \operatorname{cost}_{nav} : \\
+& Q_t \sum_{t=0}^{N} \lVert \bm{s}_t - s'_t \rVert_2^2 + P_t \sum_{t=0}^{N} (\bm{v}_t - v'_t) ^2
+\end{align*}
+$$
+
+1. `update_su_cost_cons`
+
+约束包含
+$$
+\begin{align*}
+& \operatorname{constraints}_{su}：\\
+& R'_t - (J' \phi')_t + J'_t \bm{\theta}_t  - \bm{R}_t =0, \forall t \\
+& \bm{d}_t \in [d_{\min }, d_{\max}], \forall t \\
+& \bm{I}_{t,m} = (\lambda D)_{t,m}\bm{s}_t-(\lambda b)_{t,m} - \mu _{t,m}^\top h - \bm{d}_t - z_{t,m} + \zeta _{t,m},\forall t,m \\
+& \bm{H}_{t,m} = \mu _{t,m}^\top G +(\lambda D)\bm{R}_t+ \xi _{t,m} ,\forall t,m
+\end{align*}
+$$
+
+代价函数为
+
+$$
+\begin{align*}
+& \operatorname{cost}_{su} : \\
+&-\eta \sum_{t=0}^{N}\bm{d}_t +\frac{\rho_1}{2} \sum_{t=0}^{N} \sum_{m=0}^{M} \lVert \min(\bm{I}_{t,m} , 0)  \rVert_2^2 + \frac{\rho_2}{2} \sum_{t=0}^{N} \sum_{m=0}^{M} \lVert \bm{H}_{t,m}  \rVert_2^2
+\end{align*}
+$$
+这里在计算$I_{t,m}$的代价函数时使用了$\min(\bm{I}_{t,m} , 0)$，这是为了惩罚大于零的情况，本质上是将约束从$=0$放松为$\geq 0$，因为安全距离适当变大是可接受的，这样可以加快计算速度
+
+### 2.2 `construct_LamMuZ_prob`
+
+将$\lambda ,\mu ,z$视为变量
+
+优化问题为
+$$
+\begin{align*}
+\forall m \\
+\min \ & \operatorname{cost}_m \\
+\text{s.t.} \ & \operatorname{constraints}_m
+\end{align*}
+$$
+
+`LamMuZ_cost_cons`
+
+约束包含
+$$
+\begin{align*}
+& \operatorname{constraints}_{m}：\\
+& \lVert D_{t,m}^\top \bm{\lambda}_{t,m}  \rVert_* \leq 1, \forall t,m \\
+& \bm{d}_t \in [d_{\min }, d_{\max}], \forall t \\
+& \bm{I}_{t,m} = \bm{\lambda}_{t,m}^\top  (D p)_{t,m}-\bm{\lambda}_{t,m}^\top b_{t,m} - \bm{\mu} _{t,m}^\top h - d_t - \bm{z}_{t,m} + \zeta _{t,m},\forall t,m \\
+& \bm{H}_{t,m} = \bm{\mu} _{t,m}^\top G +\bm{\lambda}_{t,m}^\top(D R)_t+ \xi _{t,m} ,\forall t,m
+\end{align*}
+$$
