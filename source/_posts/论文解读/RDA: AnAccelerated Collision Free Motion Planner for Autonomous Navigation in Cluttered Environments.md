@@ -42,7 +42,7 @@ top_img: transparent
 
 ### 3.1 障碍物模型
 
-障碍物可以看成凸机，用锥不等式表示
+障碍物可以看成凸集，用锥不等式表示
 $$
 \mathbb{O}_m = \left\{ \bm{o} \in \mathbb{R} ^{O_m} \mid \bm{D}_m \bm{o} \preceq_{\mathcal{O}_m} \bm{b}_m \right\}
 $$

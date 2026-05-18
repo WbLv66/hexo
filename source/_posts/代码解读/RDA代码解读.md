@@ -45,9 +45,16 @@ top_img: transparent
 
 计算半空间的过程
 
-1. 求直线向量$\bm{v} = \bm{p}_2 - \bm{p}_1 = (x_2 - x_1 , y_2 - y_1)$，向量指向顺时针方向
-2. 令$\bm{v}$与$\bm{a}$的叉乘结果为负，可以求连线左侧的法向向量。注意，对于凸多边形，由于表达式是$\leq$，因此法向量必须指向多边形外侧
+1. 求直线向量$\bm{v} = \bm{p}_2 - \bm{p}_1 = (x_2 - x_1 , y_2 - y_1)$，向量指向逆时针方向
+2. 令$\bm{v}$与$\bm{a}$的叉乘结果为负，可以求连线右侧的法向向量。注意，对于凸多边形，由于表达式是$\leq$，因此法向量必须指向多边形外侧
 3. 用$\bm{a}^\top \bm{p}_1$求解$\bm{b}$
+
+`def cone_para_array(
+        self, array: cp.Variable, cone_flag: cp.Variable)-> cp.constraints.nonpos.Inequality`
+
+此函数的作用是构建约束$\bm{\lambda}_{t,m} \succeq _{\mathcal{O}^*_m} 0$
+
+此函数将非负象限锥和二阶锥的情况都放进一个约束中，因为优化问题是提前建立好的，在运动前无法确定第$n$个障碍物到底是哪种类型，因此都需要考虑进去
 
 ## 2. 优化问题构建
 
@@ -130,8 +137,18 @@ $$
 \begin{align*}
 & \operatorname{constraints}_{m}：\\
 & \lVert D_{t,m}^\top \bm{\lambda}_{t,m}  \rVert_* \leq 1, \forall t,m \\
-& \bm{d}_t \in [d_{\min }, d_{\max}], \forall t \\
+& \bm{\lambda}_{t,m} \succeq _{\mathcal{O}^*_m} 0, \forall t \\
+& \bm{\mu}_{t,m} \succeq _{\mathcal{K}^*_r} 0, \forall t \\
 & \bm{I}_{t,m} = \bm{\lambda}_{t,m}^\top  (D p)_{t,m}-\bm{\lambda}_{t,m}^\top b_{t,m} - \bm{\mu} _{t,m}^\top h - d_t - \bm{z}_{t,m} + \zeta _{t,m},\forall t,m \\
 & \bm{H}_{t,m} = \bm{\mu} _{t,m}^\top G +\bm{\lambda}_{t,m}^\top(D R)_t+ \xi _{t,m} ,\forall t,m
+\end{align*}
+$$
+
+代价函数为
+
+$$
+\begin{align*}
+& \operatorname{cost}_m : \\
+& \frac{\rho_1}{2} \sum_{t=0}^{N} \lVert \min(\bm{I}_{t,m} , 0)  \rVert_2^2 + \frac{\rho_2}{2} \sum_{t=0}^{N} \lVert \bm{H}_{t,m}  \rVert_2^2
 \end{align*}
 $$

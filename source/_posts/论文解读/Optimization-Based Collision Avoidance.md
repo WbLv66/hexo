@@ -43,7 +43,7 @@ $$
 \mathbb{O}^{(m)} = \left\{ \bm{y} \in \mathbb{R} ^n \mid \bm{A}^{(m)} \bm{y} \preceq _{\mathcal{K}} \bm{b}^{(m)}\right\}  
 $$
 
-上标$^{(m)}$表示在时间步为$m$时的障碍物位置；$\bm{A}^{(m)} \bm{y} \preceq _{\mathcal{K}} \bm{b}^{(m)}$可以展开为$\bm{b}^{(m)} - \bm{A}^{(m)} \bm{y} \in \mathcal{K}$。若令$\mathcal{K} = \mathbb{R} ^l_+$即非负象限锥，则此广义不等式变为逐元素不等式$\leq$，此时障碍物由不同的半空间组成，是一个多面体；若令锥为二阶锥，此时障碍物是一个椭球
+上标$^{(m)}$表示在时间步为$m$时的障碍物位置；$\bm{A}^{(m)} \bm{y} \preceq _{\mathcal{K}} \bm{b}^{(m)}$可以展开为$\bm{b}^{(m)} - \bm{A}^{(m)} \bm{y} \in \mathcal{K}$。若令$\mathcal{K} = \mathbb{R} ^l_+$即非负象限锥，则此广义不等式变为逐元素不等式$\leq$，此时障碍物由不同的半空间组成，是一个多面体；若令锥为二阶锥，此时障碍物是一个椭球，满足$\mathcal{K} = \left\{ (\bm{x},\bm{t}) \in \mathbb{R} ^{l+1} \mid \lVert \bm{x} \rVert_2 \leq \bm{t} \right\}$，即前几项的二范数小于等于最后一项
 
 ### 2.2 被控物体建模
 
