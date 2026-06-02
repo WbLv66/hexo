@@ -66,3 +66,11 @@ git config --global user.email '你的邮箱'
 ```
 
 `git config --list`可以查看信息
+
+## 4. 正常显示中文
+
+```bash
+git config --global core.quotepath false
+```
+
+这样`Git`不再对中文进行转义，直接以标准的`UTF-8`编码输出中文，在终端里直接显示为正常的汉字

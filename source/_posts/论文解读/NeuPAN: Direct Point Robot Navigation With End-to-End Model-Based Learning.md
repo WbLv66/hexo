@@ -135,7 +135,7 @@ D_t^i = \max _{\bm{\mu}_t^i,\bm{\lambda}_t^i} \ & \bm{\mu}_t^{i\top}(\bm{G} \wid
 & \bm{\mu}_t^{i\top} \bm{G} + \bm{\lambda}_t^{i\top}\bm{R}(\bm{s}_t) = 0  \\
 \end{align*}
 $$
-其中$\widetilde{\bm{p}}_t^i = \bm{R}_t(\bm{s}_t)^\top \left[ \bm{p}_t^i -  \bm{t}_t(\bm{s}_t)  \right]$。并且$\bm{\mu}_t^i$定义了边是否与碰撞相关；$\bm{\mu}_t^i$决定了了分离超平面的法向量，证明如下
+其中$\widetilde{\bm{p}}_t^i = \bm{R}_t(\bm{s}_t)^\top \left[ \bm{p}_t^i -  \bm{t}_t(\bm{s}_t)  \right]$。并且$\bm{\mu}_t^i$定义了边是否与碰撞相关；$\bm{\lambda}_t^i$决定了了分离超平面的法向量，证明如下
 
 > 根据KKT中的互补松弛性
 > $$

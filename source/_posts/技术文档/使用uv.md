@@ -31,16 +31,24 @@ top_img: transparent
 
 ## 1. uv安装
 
-直接使用Python自带的pip安装，兼容性最佳
+使用`curl`下载脚本并通过`sh`执行：
 
 ```bash
-pip install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-随后将pip安装的包导入到环境变量中，在.bashrc或者.zshrc中添加
+如果系统没有`curl`，可以使用`wget`
 
 ```bash
-export PATH="$HOME/.local/bin:$PATH"
+wget -qO- https://astral.sh/uv/install.sh | sh
+```
+
+要为`uv`命令和`uvx`命令启用`shell`自动补全，运行以下对应命令
+
+```bash
+echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+
+echo 'eval "$(uvx --generate-shell-completion bash)"' >> ~/.bashrc
 ```
 
 使用`source ~/.zshrc`刷新
@@ -112,78 +120,23 @@ uv pip install
 
 ## 3. 换源
 
-`uv`换源包括三个方面一个是依赖包的源一个是`python`的源还有一个是`pip`的源
-
-在`.zshrc`中更换`python`源
+通过配置`uv`的原生配置文件，无论是`uv pip`还是`uv add`都能直接生效
 
 ```bash
-export UV_PYTHON_INSTALL_MIRROR=https://ghproxy.cn/https://github.com/indygreg/python-build-standalone/releases/download
+mkdir -p ~/.config/uv
+
+vim ~/.config/uv/uv.toml
 ```
 
-在项目中的`pyproject.toml`文件中更换依赖包源
+写入
 
 ```toml
-[tool.uv]
-index-url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+[[index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
 ```
 
-创建文件`~/.pip/pip.conf`
-
-```bash
-mkdir ~/.pip
-
-touch ~/.pip/pip.conf
-```
-
-打开配置文件，修改如下
-
-```toml
-[global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-[install]
-trusted-host = https://pypi.tuna.tsinghua.edu.cn
-```
-
-查看 镜像地址：
-
-```bash
-pip3 config list
-```
-
-## 4. 安装pytorch
-
-这里以安装`pytorch-cu124`版本为例
-
-在`pyproject.toml`文件中添加如下内容
-
-```toml
-[project]
-...
-dependencies = [
-     "torch>=2.4.0",
-     "torchvision>=0.22.0",
-     ...
-]
-[tool.uv.sources]
-torch = [
-  { index = "pytorch-cu124" },
-]
-torchvision = [
-    { index = "pytorch-cu124" },
-]
-[[tool.uv.index]]
-name = "pytorch-cu124"
-url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
-explicit = true
-```
-
-然后同步项目依赖
-
-```bash
-uv sync
-```
-
-## 5. 使用Jupyter
+## 4. 使用Jupyter
 
 使用如下指令即可运行Jupyter
 
@@ -194,3 +147,5 @@ uv run --with jupyter jupyter lab
 ---
 
 [官方文档](https://docs.astral.sh/uv/)
+
+[中文文档](https://uv.doczh.com/)
