@@ -1,5 +1,5 @@
 ---
-title:" OptNet: Differentiable Optimizationasa Layerin Neural Networks"
+title: "OptNet: Differentiable Optimizationasa Layerin Neural Networks"
 date: 2026-06-14 18:57:42
 # updated:
 # tags:
