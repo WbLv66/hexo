@@ -121,7 +121,7 @@ cover:
   index_enable: true
   aside_enable: true
   archives_enable: true
-  spm: 1
+  suffix: 1
   # When cover is not set, the default cover is displayed
   default_cover:
     - https://random.wblv66.top

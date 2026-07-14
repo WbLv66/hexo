@@ -27,6 +27,11 @@ top_img: transparent
 # noticeOutdate:
 ---
 
+## 1. 
+
+`Dune`部分的网络结构是在`obs_point_net.py`中定义的，`Linear+LayerNorm+Tanh`代表$\lambda$的更新过程；`Linear+ReLU`代表$\mu$的更新过程，交替重复三次得到$\mu$，而$\lambda$则通过等式约束条件计算得到
+
+在计算损失函数时会用到机器人本体的姿态即$R$，姿态是随机生成的
 
 ## 2. 优化问题构建
 

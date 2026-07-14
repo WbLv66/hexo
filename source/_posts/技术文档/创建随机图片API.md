@@ -42,7 +42,7 @@ top_img: transparent
 
 ```php
 <?php
-//存有image链接的文件名img.txt
+//存有美图链接的文件名img.txt
 $filename = "img.txt";
 if(!file_exists($filename)){
     die('文件不存在');
@@ -60,19 +60,11 @@ while(!feof($fs)){
  
 //从数组随机获取链接
 $pic = $pics[array_rand($pics)];
- 
-//返回指定格式
-$type=$_GET['type'];
-switch($type){
- 
-//JSON返回
-case 'json':
-    header('Content-type:text/json');
-    die(json_encode(['pic'=>$pic]));
- 
-default:
-    die(header("Location: $pic"));
-}
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
+header("Location: $pic");
+die();
 ?>
 ```
 
