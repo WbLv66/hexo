@@ -37,7 +37,7 @@ top_img: transparent
 {% btn 'https://github.com/hanruihua/neupan_ros',ROS %}
 <!-- markdownlint-enable MD034 -->
 
-代码解读请参考{% post_link 代码解读/NeuPAN代码解读  NeuPAN代码解读%}
+代码解读请参考{% post_link 代码解读/端到端/NeuPAN代码解读  NeuPAN代码解读%}
 
 ## 3. 问题陈述
 
