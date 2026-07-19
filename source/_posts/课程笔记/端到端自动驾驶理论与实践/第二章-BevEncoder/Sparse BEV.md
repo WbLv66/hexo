@@ -90,6 +90,31 @@ top_img: transparent
 
 在3D空间中在$[0,1]$范围内均匀初始化一组可学习的3D锚点，通过MLP生成3D目标查询query。将3D感知特征压平作为key和value，与锚点进行交互
 
+## 4. PETRv2
+
+<!-- markdownlint-disable MD034 -->
+{% btn 'https://github.com/megvii-research/PETR',GitHub %}
+{% btn 'https://arxiv.org/abs/2206.01256', ICCV 2023 %}
+<!-- markdownlint-enable MD034 -->
+
+![petr-2.png](https://minio.wblv66.top/end-to-end/petr-2.png)
+
+### 4.1 引入了历史帧
+
+`PETR`只看单帧，无法估计物体速度，v2引入了历史帧$t-1$。其中$t-1$时刻的3D坐标会根据车辆运动姿态变换到$t$帧坐标系下，然后将对其的两帧3D坐标拼接，同时也将两帧的2D特征图拼接
+
+### 4.2 特征引导位置编码
+
+![petr-3.png](https://minio.wblv66.top/end-to-end/petr-3.png)
+
+v2中将value和key分开输出，从2D特征得到value。将2D图像特征与3D位置编码进行加权，从而产生与图像内容绑定的3D位置感知特征，作为key
+
+这样使得图像特征中包含的“隐式深度信息”能够实时修正3D位置编码，显著提高了系统对相机抖动、安装误差等外参噪声的鲁棒性
+
+### 4.3 定义多种query
+
+根据不同任务的需求定义了多种query，分别用于3D目标检测、BEV分割、3D车道线检测
+
 ---
 参考文章
 

@@ -4,7 +4,9 @@ date: 2026-05-26 17:04:55
 # updated:
 # tags:
 #     - 
-categories: 代码解读
+categories: 
+          - 代码解读
+          - 端到端
 # keywords:
 # description:
 top_img: transparent
@@ -27,7 +29,7 @@ top_img: transparent
 # noticeOutdate:
 ---
 
-## 1. 
+## 1
 
 `Dune`部分的网络结构是在`obs_point_net.py`中定义的，`Linear+LayerNorm+Tanh`代表$\lambda$的更新过程；`Linear+ReLU`代表$\mu$的更新过程，交替重复三次得到$\mu$，而$\lambda$则通过等式约束条件计算得到
 

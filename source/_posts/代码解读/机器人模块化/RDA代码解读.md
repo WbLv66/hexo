@@ -4,7 +4,9 @@ date: 2026-04-29 20:47:01
 # updated:
 # tags:
 #     - 
-categories: 代码解读
+categories: 
+          - 代码解读
+          - 机器人模块化
 # keywords:
 # description:
 top_img: transparent

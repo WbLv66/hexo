@@ -37,6 +37,8 @@ top_img: transparent
 {% btn 'https://github.com/hanruihua/neupan_ros',ROS %}
 <!-- markdownlint-enable MD034 -->
 
+代码解读请参考{% post_link 代码解读/NeuPAN代码解读  NeuPAN代码解读%}
+
 ## 3. 问题陈述
 
 ### 3.1 机器人运动学
@@ -177,11 +179,8 @@ $$
 \end{bmatrix}
 $$
 
-
-
-
-
 增加近端项（靠近参考点）有两个用处
+
 1. 保证前后两次规划的轨迹不要相差太大，保证平滑性
 2. 公式中存在线性化处理，真实状态和预测状态相差较小才能保证线性化的准确性
 
