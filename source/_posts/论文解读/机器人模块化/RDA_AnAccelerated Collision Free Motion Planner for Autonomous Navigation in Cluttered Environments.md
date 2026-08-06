@@ -4,7 +4,9 @@ date: 2026-04-28 15:06:49
 # updated:
 # tags:
 #     - 
-categories: 论文解读
+categories: 
+          - 论文解读
+          - 机器人模块化
 # keywords:
 # description:
 top_img: transparent
@@ -36,7 +38,7 @@ top_img: transparent
 {% btn 'https://github.com/hanruihua/rda_ros',ROS %}
 <!-- markdownlint-enable MD034 -->
 
-此论文以OBCA为基础，具体解释请参考{% post_link 论文解读/"Optimization-Based Collision Avoidance"  OBCA%}
+此论文以OBCA为基础，具体解释请参考{% post_link 论文解读/机器人模块化/"Optimization-Based Collision Avoidance"  OBCA%}
 
 ## 3. 问题陈述
 

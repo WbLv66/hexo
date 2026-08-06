@@ -4,7 +4,9 @@ date: 2026-07-17 19:35:09
 # updated:
 # tags:
 #     - 
-categories: 论文解读
+categories: 
+          - 论文解读
+          - 端到端
 # keywords:
 # description:
 top_img: transparent

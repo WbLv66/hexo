@@ -4,7 +4,9 @@ date: 2026-04-20 16:20:30
 # updated:
 # tags:
 #     - 
-categories: 论文解读
+categories: 
+          - 论文解读
+          - 机器人模块化
 # keywords:
 # description:
 top_img: transparent

@@ -4,7 +4,9 @@ date: 2026-04-22 21:46:17
 # updated:
 # tags:
 #     - 
-categories: 论文解读
+categories: 
+          - 论文解读
+          - 端到端
 # keywords:
 # description:
 top_img: transparent
@@ -50,7 +52,7 @@ $$
 \mathbb{C} = \left\{ \bm{x} \in \mathbb{R} ^n \mid \bm{Gx} \preceq_{\mathcal{K}}\bm{h}  \right\}
 $$
 
-具体解释请参考{% post_link 论文解读/"Optimization-Based Collision Avoidance"  OBCA%}
+具体解释请参考{% post_link 论文解读/机器人模块化/"Optimization-Based Collision Avoidance"  OBCA%}
 
 由于机器人在不断运动，因此给定状态$\bm{s}_t$，第$t$帧的占用空间表示为凸紧集$\mathbb{Z}_t$
 $$
