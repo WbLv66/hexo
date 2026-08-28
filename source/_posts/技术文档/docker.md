@@ -29,6 +29,8 @@ top_img: transparent
 
 ## 1. 安装
 
+### 1.1 手动安装（生产环境推荐）
+
 安装依赖
 
 ```bash
@@ -37,7 +39,6 @@ sudo apt install -y ca-certificates curl
 ```
 
 下载 GPG 密钥
-
 
 ```bash
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -54,6 +55,14 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### 1.2 脚本安装（开发环境推荐）
+
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
 ```
 
 ## 2. 更改权限
@@ -121,12 +130,12 @@ docker run [OPTIONS] IMAGE
 参考指令
 
 ```bash
-docker run -it 
---name ros1_noetic 
---gpus all 
---net=host 
--e DISPLAY=$DISPLAY 
--v /tmp/.X11-unix:/tmp/.X11-unix 
+docker run -it \
+--name ros1_noetic \
+--gpus all \
+--net=host \
+-e DISPLAY=$DISPLAY \ 
+-v /tmp/.X11-unix:/tmp/.X11-unix \ 
 ros1_noetic_img
 ```
 
@@ -267,7 +276,7 @@ sudo systemctl restart docker
 
 ## 6. X11转发
 
-创建容器时使用`-e DISPLAY=$DISPLAY 
+创建容器时使用`-e DISPLAY=$DISPLAY
 -v /tmp/.X11-unix:/tmp/.X11-unix`
 
 宿主机可能还需要执行`xhost +local:docker`
@@ -284,26 +293,33 @@ docker image inspect IMAGE --format '{{.Os}}/{{.Architecture}}'
 
 想要拉取对应架构的镜像可以在`docker pull`后增加`--platform linux/arm64`参数
 
-## 8. 通过镜像文件构建镜像
+## 8. 容器分发
 
-在能联网的机器上下载镜像文件
+将构建好的容器保存为镜像
 
 ```bash
-docker pull --platform linux/arm64 arm64v8/ros:noetic-perception-focal
-docker save arm64v8/ros:noetic-perception-focal -o ros_noetic_perception_arm64.tar
+docker commit 容器名 镜像名:tag
+```
+
+> 注意挂载的内容不会保存在镜像中；容器分发需要保持cpu架构一致
+
+将镜像保存为压缩文件
+
+```bash
+docker save 镜像名:tag | gzip > 镜像名-tag.tar.gz
 ```
 
 然后传到对应主机上，在目标主机上构筑镜像
 
 ```bash
-docker load -i ros_noetic_perception_arm64.tar
+docker load -i 镜像名-tag.tar.gz
 ```
 
 ## 9. 换源
 
 在`Dockerfile` 中`SHELL`后面添加相关内容
 
-## 9.1 `apt`换源
+### 9.1 `apt`换源
 
 对于`arm`架构
 
@@ -317,7 +333,6 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restr
 EOF
 ```
 
-
 对于`amd`架构
 
 ```dockerfile
@@ -330,7 +345,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted 
 EOF
 ```
 
-## 9.2 `ros`换源
+### 9.2 `ros`换源
 
 ```dockerfile
 # ROS 清华源
